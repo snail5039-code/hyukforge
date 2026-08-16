@@ -4,6 +4,8 @@ import { JetBrains_Mono } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { Nav } from "@/components/layout/Nav";
+import { Footer } from "@/components/layout/Footer";
 import "../globals.css";
 
 // 모노스페이스는 버전·용량·날짜·라벨에 쓴다. 워크벤치 톤의 핵심.
@@ -64,7 +66,11 @@ export default async function LocaleLayout({
       </head>
       <body>
         {/* 서버 컴포넌트에서 렌더되면 locale과 messages를 알아서 받는다 */}
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <Nav />
+          {children}
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

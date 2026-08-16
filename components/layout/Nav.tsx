@@ -1,0 +1,63 @@
+import Image from "next/image";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
+import { LocaleSwitcher } from "./LocaleSwitcher";
+
+export async function Nav() {
+  const t = await getTranslations();
+
+  const items = [
+    { href: "/products", label: t("nav.products") },
+    { href: "/downloads", label: t("nav.downloads") },
+    { href: "/changelog", label: t("nav.changelog") },
+    { href: "/about", label: t("nav.about") },
+  ];
+
+  return (
+    <nav className="sticky top-0 z-30 border-b border-line bg-bg">
+      <div className="mx-auto flex h-[58px] max-w-page items-center gap-7 px-gutter">
+        {/* 마크는 28px 미만으로 줄이지 않는다 — 사선 디테일이 뭉개진다 */}
+        <Link href="/" className="mr-auto flex items-center gap-[10px]">
+          <Image
+            src="/brand/mark.png"
+            alt="HyukForge"
+            width={458}
+            height={331}
+            priority
+            className="h-7 w-auto"
+          />
+          <Image
+            src="/brand/wordmark.png"
+            alt=""
+            width={950}
+            height={88}
+            priority
+            className="hidden h-[12px] w-auto sm:block"
+          />
+        </Link>
+
+        <ul className="hidden items-center gap-7 md:flex">
+          {items.map((it) => (
+            <li key={it.href}>
+              <Link
+                href={it.href}
+                className="text-[13.5px] text-mute transition-colors hover:text-ink"
+              >
+                {it.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <LocaleSwitcher />
+
+        <Link
+          href="/login"
+          className="border border-edge px-[14px] py-[7px] font-mono text-[11px] tracking-tag text-mute transition-colors hover:border-amber hover:text-amber"
+        >
+          {t("auth.signIn")}
+        </Link>
+      </div>
+    </nav>
+  );
+}

@@ -1,0 +1,135 @@
+import { getTranslations } from "next-intl/server";
+import { Btn, Label } from "@/components/ui";
+import { AppWindow } from "@/components/product/AppWindow";
+
+/**
+ * 히어로. 비대칭 44:56으로 나눈다 — 반반은 기계적으로 보인다.
+ * 오른쪽은 3D 렌더가 아니라 실제 앱 화면이 들어갈 자리다.
+ */
+export async function Hero() {
+  const t = await getTranslations();
+
+  return (
+    <section className="grid items-start gap-16 pb-[76px] pt-[92px] lg:grid-cols-[minmax(0,44fr)_minmax(0,56fr)]">
+      <div>
+        <Label>{t("home.eyebrow")}</Label>
+        <h1 className="mb-[22px] mt-[18px] text-[clamp(30px,4.2vw,50px)] font-bold leading-[1.18] tracking-[-0.03em]">
+          {t.rich("home.headline", {
+            br: () => <br />,
+            accent: (chunks) => (
+              <em className="not-italic text-amber">{chunks}</em>
+            ),
+          })}
+        </h1>
+        <p className="max-w-[34ch] text-[15.5px] text-mute">{t("home.lead")}</p>
+
+        <div className="mt-[30px] flex flex-wrap gap-[10px]">
+          <Btn href="/products" variant="primary">
+            {t("home.ctaProducts")}
+          </Btn>
+          <Btn href="/changelog">{t("home.ctaChangelog")}</Btn>
+        </div>
+
+        <p className="mt-5 border-l border-edge pl-3 text-[12.5px] text-dim">
+          {t("home.privacyNote")}
+        </p>
+      </div>
+
+      <HeroWindow />
+    </section>
+  );
+}
+
+/**
+ * 스크린샷이 준비되기 전까지 쓰는 UI 모형.
+ * 제품이 발행되면 그 제품의 실제 화면 캡처로 교체한다.
+ */
+function HeroWindow() {
+  const rows = [
+    ["2026_계약서_최종.pdf", "문서 / 계약", "1.2 MB", true],
+    ["capture_0814.png", "이미지 / 캡처", "820 KB", false],
+    ["setup_v1.2.0.exe", "설치파일", "24.5 MB", false],
+    ["회의록_사본(2).docx", "중복 의심", "96 KB", false],
+    ["backup_0731.zip", "압축 / 백업", "412 MB", false],
+    ["invoice_july.xlsx", "문서 / 정산", "44 KB", false],
+  ] as const;
+
+  return (
+    <AppWindow
+      title="File Organizer — D:\Downloads"
+      footLeft="규칙 12개 적용"
+      footRight="v1.2.0 · Windows 10/11"
+    >
+      <div className="grid min-h-[296px] grid-cols-[132px_1fr]">
+        <div className="border-r border-line py-3">
+          {["모든 파일", "중복 항목", "규칙 12", "제외 목록", "기록"].map(
+            (label, i) => (
+              <span
+                key={label}
+                className={`block border-l-2 px-[14px] py-[6px] font-mono text-[11px] ${
+                  i === 0
+                    ? "border-l-amber bg-[#141210] text-amber"
+                    : "border-l-transparent text-mute"
+                }`}
+              >
+                {label}
+              </span>
+            ),
+          )}
+        </div>
+
+        <div>
+          <table className="w-full border-collapse font-mono text-[11px]">
+            <thead>
+              <tr>
+                {["이름", "분류 결과", "크기"].map((h) => (
+                  <th
+                    key={h}
+                    className="border-b border-line px-[14px] py-[9px] text-left font-normal tracking-btn text-dim"
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map(([name, kind, size, hit]) => (
+                <tr key={name}>
+                  <td
+                    className={`border-b border-[#151312] px-[14px] py-[7px] ${
+                      hit ? "text-ink" : "text-mute"
+                    }`}
+                  >
+                    {hit && <span className="text-amber">▸ </span>}
+                    {name}
+                  </td>
+                  <td
+                    className={`border-b border-[#151312] px-[14px] py-[7px] ${
+                      hit ? "text-ink" : "text-mute"
+                    }`}
+                  >
+                    {kind}
+                  </td>
+                  <td
+                    className={`border-b border-[#151312] px-[14px] py-[7px] ${
+                      hit ? "text-ink" : "text-mute"
+                    }`}
+                  >
+                    {size}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div className="px-[14px] py-3">
+            <span className="u-label">정리 중 · 1,284개 중 873개</span>
+            <div className="mt-[2px] h-[3px] bg-[#1A1815]">
+              <span className="block h-[3px] w-[68%] bg-amber" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </AppWindow>
+  );
+}
