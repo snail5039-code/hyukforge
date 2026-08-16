@@ -42,3 +42,6 @@ next-env.d.ts
 
 # .env.example은 커밋한다 (README가 참조)
 !.env.example
+
+# 폰트는 node_modules에서 복사해 만든다 (scripts/fonts.mjs)
+/public/fonts/

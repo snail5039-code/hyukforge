@@ -34,9 +34,11 @@
   --color-webapp: #a88a5e;
   --color-labs: #8f7aa8;
 
-  /* 글꼴 */
-  --font-sans: Pretendard, ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", "Malgun Gothic", sans-serif;
+  /* 글꼴 — 둘 다 SIL Open Font License. 상업적 사용에 제약이 없다.
+     Pretendard  직접 호스팅 (scripts/fonts.mjs)
+     JetBrains Mono  next/font/google 이 빌드할 때 받아 같이 배포한다 */
+  --font-sans: "Pretendard Variable", Pretendard, ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", "Malgun Gothic", sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo,
     Consolas, monospace;
 

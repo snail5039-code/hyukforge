@@ -57,12 +57,10 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={jetbrains.variable}>
       <head>
-        {/* Pretendard는 구글 폰트에 없어 CDN에서 받는다. 동적 서브셋이라 한글 용량 부담이 적다. */}
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-        />
+        {/* Pretendard는 구글 폰트에 없어 직접 호스팅한다.
+            scripts/fonts.mjs 가 node_modules 에서 public/fonts 로 복사한다.
+            동적 서브셋이라 브라우저가 실제로 쓰는 글자 범위만 받는다. */}
+        <link rel="stylesheet" href="/fonts/pretendard/pretendard.css" />
       </head>
       <body>
         {/* 서버 컴포넌트에서 렌더되면 locale과 messages를 알아서 받는다 */}
