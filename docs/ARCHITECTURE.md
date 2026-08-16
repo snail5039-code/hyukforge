@@ -254,8 +254,41 @@ create table entitlements (
 | `downloads` | 본인 것만 | insert는 service role만 (API 라우트) |
 | `entitlements` | 본인 것만 | service role만 |
 
-`role` 컬럼을 사용자가 스스로 바꿀 수 없도록, `profiles` UPDATE 정책에서 해당 컬럼을 제외한다.
-admin 판정은 `auth.jwt()`가 아니라 `profiles.role`을 조회하는 `is_admin()` SQL 함수로 한다.
+`role` 컬럼은 사용자가 스스로 바꿀 수 없다. 컬럼 단위 제어는 정책으로 표현하기 어려워
+`profiles_protect_role` 트리거가 관리자가 아닌 변경을 되돌린다.
+admin 판정은 `auth.jwt()`가 아니라 `profiles.role`을 조회하는 `is_admin()` 함수로 한다.
+JWT를 안 보므로 권한을 바꾸면 다시 로그인하지 않아도 즉시 반영된다.
+
+### 함수 실행 권한 — 두 번 데인 곳
+
+**Postgres는 함수를 만들 때 `EXECUTE`를 자동으로 `PUBLIC`에 부여한다.**
+`anon`은 `PUBLIC`에 속하므로 `revoke ... from anon`만 해서는 아무 효과가 없다.
+반드시 `revoke ... from public`부터 해야 한다.
+
+그런데 전부 잠그면 안 된다. 함수를 **누가 부르는지**로 갈린다.
+
+| 함수 | 호출 주체 | anon 권한 |
+| --- | --- | --- |
+| `record_download()` | 앱 코드 | **없어야 함** |
+| `is_admin()` | **RLS 정책 자신** | **있어야 함** |
+
+`is_admin()`을 anon에게서 회수하면 공개 제품 조회가 통째로 막힌다. 정책이
+
+```sql
+using (status = 'published' or public.is_admin())
+```
+
+이고 `to anon`으로 걸려 있어서, anon이 조회할 때도 이 함수가 평가된다.
+SQL의 `or`는 왼쪽이 참이라고 오른쪽을 건너뛴다는 보장이 없다.
+anon에게 돌려줘도 새는 정보는 없다 — 로그인하지 않으면 `auth.uid()`가 null이라 언제나 `false`다.
+
+### 검사
+
+`node scripts/db-check.mjs`가 원격 DB에 대고 스키마와 접근 제어를 함께 본다.
+테이블 11개 존재, 분류 5개 공개 조회, 개인 데이터가 anon에게 0행, `record_download`가
+anon에게 `42501 permission denied`인지까지. 키 값은 출력하지 않는다.
+
+RLS 변경 뒤에는 이걸 돌린다. 위의 `is_admin` 문제는 화면을 만들기 전에 이 스크립트가 잡아냈다.
 
 ## 4. 다운로드 흐름
 
