@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "HyukForge",
+    "description": "I build them alone and I fix them alone. Office tools, small games, odd utilities."
+  },
+  "nav": {
+    "products": "Products",
+    "downloads": "Downloads",
+    "changelog": "Changelog",
+    "about": "About",
+    "shelf": "My shelf"
+  },
+  "home": {
+    "eyebrow": "Independent software studio · 2026—",
+    "headline": "Built because I needed it.<br></br>Take it if you <accent>need it too</accent>.",
+    "lead": "I build them alone and I fix them alone. Office tools, small games, odd utilities. Everything here is free right now, and if you report a bug I usually ship a fix within a few days.",
+    "ctaProducts": "Browse products",
+    "ctaChangelog": "Changelog",
+    "privacyNote": "Your account is only used for download history and update notices. No marketing email.",
+    "featured": "Most downloaded this week",
+    "wip": "What I'm working on"
+  },
+  "stats": {
+    "products": "Built",
+    "downloads": "Downloads this month",
+    "updated": "Last update",
+    "price": "Price",
+    "allFree": "All free"
+  },
+  "section": {
+    "products": "Products",
+    "downloads": "Downloads",
+    "changelog": "Changelog",
+    "about": "About"
+  },
+  "category": {
+    "all": "All",
+    "office": "Office",
+    "games": "Games",
+    "utilities": "Utilities",
+    "webapps": "Web apps",
+    "labs": "Labs"
+  },
+  "product": {
+    "download": "Download",
+    "open": "Open",
+    "changelog": "Changelog",
+    "name": "Name",
+    "category": "Category",
+    "version": "Version",
+    "size": "Size",
+    "platform": "Platform",
+    "updated": "Updated",
+    "price": "Price",
+    "free": "Free",
+    "requirements": "System requirements",
+    "comingSoon": "Coming soon",
+    "loginRequired": "Sign in to download",
+    "count": "{count}"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "withGoogle": "Continue with Google",
+    "withEmail": "Email me a link",
+    "emailPlaceholder": "Email address",
+    "sendLink": "Send link",
+    "linkSent": "Check your inbox. The link expires in an hour.",
+    "noPassword": "No passwords here."
+  },
+  "common": {
+    "viewAll": "View all",
+    "loading": "Loading",
+    "empty": "Nothing here yet",
+    "notFound": "Page not found",
+    "language": "Language"
+  },
+  "footer": {
+    "rights": "© {year} HyukForge",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "contact": "Contact"
+  }
+}

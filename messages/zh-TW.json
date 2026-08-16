@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "HyukForge",
+    "description": "一個人做，一個人修。辦公工具、小遊戲、各種小工具。"
+  },
+  "nav": {
+    "products": "產品",
+    "downloads": "下載",
+    "changelog": "開發記錄",
+    "about": "關於",
+    "shelf": "我的收藏"
+  },
+  "home": {
+    "eyebrow": "獨立軟體工作室 · 2026—",
+    "headline": "因為需要，所以做了。<br></br>需要的話，<accent>拿去用吧</accent>。",
+    "lead": "一個人做，一個人修。辦公工具、小遊戲、各種小工具。現在這裡的東西全部免費，發現問題告訴我，通常幾天內就會修好重新發布。",
+    "ctaProducts": "瀏覽產品",
+    "ctaChangelog": "開發記錄",
+    "privacyNote": "帳號只用於下載記錄與更新通知，不會寄送行銷郵件。",
+    "featured": "本週下載最多",
+    "wip": "正在做的東西"
+  },
+  "stats": {
+    "products": "已完成",
+    "downloads": "本月下載",
+    "updated": "最近更新",
+    "price": "價格",
+    "allFree": "全部免費"
+  },
+  "section": {
+    "products": "產品",
+    "downloads": "下載",
+    "changelog": "開發記錄",
+    "about": "關於"
+  },
+  "category": {
+    "all": "全部",
+    "office": "辦公",
+    "games": "遊戲",
+    "utilities": "工具",
+    "webapps": "網頁應用",
+    "labs": "實驗室"
+  },
+  "product": {
+    "download": "下載",
+    "open": "開啟",
+    "changelog": "更新說明",
+    "name": "名稱",
+    "category": "分類",
+    "version": "版本",
+    "size": "大小",
+    "platform": "執行環境",
+    "updated": "更新",
+    "price": "價格",
+    "free": "免費",
+    "requirements": "系統需求",
+    "comingSoon": "即將發布",
+    "loginRequired": "下載需要先登入",
+    "count": "{count}"
+  },
+  "auth": {
+    "signIn": "登入",
+    "signOut": "登出",
+    "withGoogle": "使用 Google 繼續",
+    "withEmail": "透過郵件接收連結",
+    "emailPlaceholder": "電子郵件地址",
+    "sendLink": "傳送連結",
+    "linkSent": "請查看收件匣。連結一小時後失效。",
+    "noPassword": "這裡不使用密碼。"
+  },
+  "common": {
+    "viewAll": "查看全部",
+    "loading": "載入中",
+    "empty": "還沒有內容",
+    "notFound": "找不到頁面",
+    "language": "語言"
+  },
+  "footer": {
+    "rights": "© {year} HyukForge",
+    "privacy": "隱私權政策",
+    "terms": "使用條款",
+    "contact": "聯絡"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "HyukForge",
+    "description": "ひとりで作って、ひとりで直しています。仕事の道具、小さなゲーム、雑多なユーティリティ。"
+  },
+  "nav": {
+    "products": "製品",
+    "downloads": "ダウンロード",
+    "changelog": "開発記録",
+    "about": "紹介",
+    "shelf": "マイ棚"
+  },
+  "home": {
+    "eyebrow": "独立系ソフトウェア工房 · 2026—",
+    "headline": "必要だから作りました。<br></br>必要なら<accent>持っていってください</accent>。",
+    "lead": "ひとりで作って、ひとりで直しています。仕事の道具、小さなゲーム、雑多なユーティリティ。今あるものはすべて無料です。バグを教えてもらえれば、たいてい数日で直して出し直します。",
+    "ctaProducts": "製品を見る",
+    "ctaChangelog": "開発記録",
+    "privacyNote": "アカウントはダウンロード履歴と更新のお知らせにのみ使います。宣伝メールは送りません。",
+    "featured": "今週いちばん多く受け取られたもの",
+    "wip": "いま作っているもの"
+  },
+  "stats": {
+    "products": "作ったもの",
+    "downloads": "今月のダウンロード",
+    "updated": "最終更新",
+    "price": "価格",
+    "allFree": "すべて無料"
+  },
+  "section": {
+    "products": "製品",
+    "downloads": "ダウンロード",
+    "changelog": "開発記録",
+    "about": "紹介"
+  },
+  "category": {
+    "all": "すべて",
+    "office": "仕事用",
+    "games": "ゲーム",
+    "utilities": "ユーティリティ",
+    "webapps": "ウェブアプリ",
+    "labs": "実験室"
+  },
+  "product": {
+    "download": "受け取る",
+    "open": "開く",
+    "changelog": "変更履歴",
+    "name": "名前",
+    "category": "分類",
+    "version": "バージョン",
+    "size": "サイズ",
+    "platform": "動作環境",
+    "updated": "更新",
+    "price": "価格",
+    "free": "無料",
+    "requirements": "動作要件",
+    "comingSoon": "まもなく公開",
+    "loginRequired": "受け取るにはログインが必要です",
+    "count": "{count}件"
+  },
+  "auth": {
+    "signIn": "ログイン",
+    "signOut": "ログアウト",
+    "withGoogle": "Google で続ける",
+    "withEmail": "メールでリンクを受け取る",
+    "emailPlaceholder": "メールアドレス",
+    "sendLink": "リンクを送る",
+    "linkSent": "受信箱をご確認ください。リンクは1時間で期限切れになります。",
+    "noPassword": "パスワードは預かりません。"
+  },
+  "common": {
+    "viewAll": "すべて見る",
+    "loading": "読み込み中",
+    "empty": "まだありません",
+    "notFound": "ページが見つかりません",
+    "language": "言語"
+  },
+  "footer": {
+    "rights": "© {year} HyukForge",
+    "privacy": "プライバシー",
+    "terms": "利用規約",
+    "contact": "お問い合わせ"
+  }
+}

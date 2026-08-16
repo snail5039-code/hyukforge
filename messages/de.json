@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "HyukForge",
+    "description": "Allein gebaut, allein repariert. Werkzeuge fürs Büro, kleine Spiele, allerlei Hilfsprogramme."
+  },
+  "nav": {
+    "products": "Produkte",
+    "downloads": "Downloads",
+    "changelog": "Änderungen",
+    "about": "Über mich",
+    "shelf": "Mein Regal"
+  },
+  "home": {
+    "eyebrow": "Unabhängiges Software-Studio · 2026—",
+    "headline": "Gebaut, weil ich es brauchte.<br></br>Brauchst du es? <accent>Nimm es mit</accent>.",
+    "lead": "Allein gebaut, allein repariert. Werkzeuge fürs Büro, kleine Spiele, allerlei Hilfsprogramme. Alles hier ist kostenlos. Wer mir einen Fehler meldet, bekommt die Korrektur meist innerhalb weniger Tage.",
+    "ctaProducts": "Produkte ansehen",
+    "ctaChangelog": "Änderungen",
+    "privacyNote": "Das Konto dient nur dem Download-Verlauf und Update-Hinweisen. Keine Werbe-E-Mails.",
+    "featured": "Diese Woche am häufigsten geladen",
+    "wip": "Woran ich gerade arbeite"
+  },
+  "stats": {
+    "products": "Gebaut",
+    "downloads": "Downloads diesen Monat",
+    "updated": "Letzte Aktualisierung",
+    "price": "Preis",
+    "allFree": "Alles kostenlos"
+  },
+  "section": {
+    "products": "Produkte",
+    "downloads": "Downloads",
+    "changelog": "Änderungen",
+    "about": "Über mich"
+  },
+  "category": {
+    "all": "Alle",
+    "office": "Büro",
+    "games": "Spiele",
+    "utilities": "Werkzeuge",
+    "webapps": "Web-Apps",
+    "labs": "Labor"
+  },
+  "product": {
+    "download": "Herunterladen",
+    "open": "Öffnen",
+    "changelog": "Änderungen",
+    "name": "Name",
+    "category": "Kategorie",
+    "version": "Version",
+    "size": "Größe",
+    "platform": "Plattform",
+    "updated": "Aktualisiert",
+    "price": "Preis",
+    "free": "Kostenlos",
+    "requirements": "Systemanforderungen",
+    "comingSoon": "Demnächst",
+    "loginRequired": "Zum Herunterladen anmelden",
+    "count": "{count}"
+  },
+  "auth": {
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "withGoogle": "Weiter mit Google",
+    "withEmail": "Link per E-Mail erhalten",
+    "emailPlaceholder": "E-Mail-Adresse",
+    "sendLink": "Link senden",
+    "linkSent": "Bitte den Posteingang prüfen. Der Link läuft in einer Stunde ab.",
+    "noPassword": "Hier gibt es keine Passwörter."
+  },
+  "common": {
+    "viewAll": "Alle ansehen",
+    "loading": "Wird geladen",
+    "empty": "Noch nichts da",
+    "notFound": "Seite nicht gefunden",
+    "language": "Sprache"
+  },
+  "footer": {
+    "rights": "© {year} HyukForge",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen",
+    "contact": "Kontakt"
+  }
+}

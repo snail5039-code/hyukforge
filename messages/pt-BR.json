@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "HyukForge",
+    "description": "Faço sozinho e conserto sozinho. Ferramentas de trabalho, jogos pequenos, utilitários variados."
+  },
+  "nav": {
+    "products": "Produtos",
+    "downloads": "Downloads",
+    "changelog": "Registro",
+    "about": "Sobre",
+    "shelf": "Minha prateleira"
+  },
+  "home": {
+    "eyebrow": "Estúdio de software independente · 2026—",
+    "headline": "Fiz porque eu precisava.<br></br>Se você precisa, <accent>leve</accent>.",
+    "lead": "Faço sozinho e conserto sozinho. Ferramentas de trabalho, jogos pequenos, utilitários variados. Tudo aqui é gratuito. Se você avisar de um erro, geralmente publico a correção em poucos dias.",
+    "ctaProducts": "Ver produtos",
+    "ctaChangelog": "Registro de mudanças",
+    "privacyNote": "A conta serve apenas para o histórico de downloads e avisos de atualização. Sem e-mails de marketing.",
+    "featured": "Mais baixado desta semana",
+    "wip": "No que estou trabalhando"
+  },
+  "stats": {
+    "products": "Feitos",
+    "downloads": "Downloads no mês",
+    "updated": "Última atualização",
+    "price": "Preço",
+    "allFree": "Tudo grátis"
+  },
+  "section": {
+    "products": "Produtos",
+    "downloads": "Downloads",
+    "changelog": "Registro de mudanças",
+    "about": "Sobre"
+  },
+  "category": {
+    "all": "Tudo",
+    "office": "Trabalho",
+    "games": "Jogos",
+    "utilities": "Utilitários",
+    "webapps": "Apps web",
+    "labs": "Laboratório"
+  },
+  "product": {
+    "download": "Baixar",
+    "open": "Abrir",
+    "changelog": "Mudanças",
+    "name": "Nome",
+    "category": "Categoria",
+    "version": "Versão",
+    "size": "Tamanho",
+    "platform": "Plataforma",
+    "updated": "Atualizado",
+    "price": "Preço",
+    "free": "Grátis",
+    "requirements": "Requisitos do sistema",
+    "comingSoon": "Em breve",
+    "loginRequired": "Entre para baixar",
+    "count": "{count}"
+  },
+  "auth": {
+    "signIn": "Entrar",
+    "signOut": "Sair",
+    "withGoogle": "Continuar com Google",
+    "withEmail": "Receber um link por e-mail",
+    "emailPlaceholder": "Endereço de e-mail",
+    "sendLink": "Enviar link",
+    "linkSent": "Confira sua caixa de entrada. O link expira em uma hora.",
+    "noPassword": "Aqui não usamos senhas."
+  },
+  "common": {
+    "viewAll": "Ver tudo",
+    "loading": "Carregando",
+    "empty": "Ainda não há nada",
+    "notFound": "Página não encontrada",
+    "language": "Idioma"
+  },
+  "footer": {
+    "rights": "© {year} HyukForge",
+    "privacy": "Privacidade",
+    "terms": "Termos",
+    "contact": "Contato"
+  }
+}

@@ -57,13 +57,32 @@ hyukforge/
 │  └─ layout/      Nav, Footer, LocaleSwitcher
 ├─ lib/
 │  ├─ supabase/    client.ts · server.ts · admin.ts
-│  ├─ queries/     제품·릴리스·기록 조회 함수
-│  └─ i18n/        routing.ts · request.ts
+│  └─ queries/     제품·릴리스·기록 조회 함수
+├─ i18n/
+│  ├─ routing.ts   지원 언어 목록, 접두사 정책
+│  ├─ request.ts   요청별 메시지 조립 (폴백 체인)
+│  └─ navigation.ts 언어 접두사를 붙이는 Link·redirect
 ├─ messages/       ko.json · en.json · ja.json … (10개)
+├─ proxy.ts        언어 감지·리다이렉트 (구 middleware.ts)
+├─ scripts/
+│  ├─ brand.mjs      로고 PNG 분석·분할
+│  └─ i18n-check.mjs 번역 키 검사 (빌드 앞에 걸려 있음)
 ├─ supabase/
 │  └─ migrations/
 └─ docs/
 ```
+
+### Next.js 16에서 달라진 것
+
+문서를 보고 따라 하다 막히기 쉬운 지점이라 적어둔다.
+
+| 항목 | 예전 | 지금 |
+| --- | --- | --- |
+| 미들웨어 파일 | `middleware.ts`, `export function middleware` | **`proxy.ts`, `export function proxy`** |
+| `params` | 동기 객체 | **`Promise`** — `const { locale } = await params` |
+| 루트 동적 세그먼트 | props로 전달 | `next/root-params`로 어디서나 조회 가능 (Route Handler는 아직 불가) |
+
+next-intl 공식 문서는 아직 `middleware.ts` 기준이다. `proxy.ts`에서 이름만 맞춰주면 동작은 같다.
 
 **규칙**
 - 데이터 조회는 `lib/queries/*`에만 둔다. 컴포넌트에서 Supabase를 직접 부르지 않는다.
@@ -317,7 +336,25 @@ create trigger on_auth_user_created
 요청 언어 → en → ko
 ```
 
-`lib/queries/`의 조회 함수가 이 순서를 적용해 항상 하나의 번역을 돌려준다. 화면에서 빈 문자열을 처리할 일이 없게 한다.
+화면 문구는 `i18n/request.ts`가 세 겹을 겹쳐서 하나의 메시지 묶음으로 만든다.
+**키가 없을 때뿐 아니라 값이 빈 문자열일 때도 폴백한다** — 번역 중인 항목을 `""`로 남겨둬도 화면이 비지 않는다.
+
+겹치는 순서에 함정이 하나 있다. 단순히 `ko → en → 요청언어` 순으로 덮으면
+한국어 페이지에서 en이 ko를 덮어써 버린다. 요청 언어가 항상 마지막에 오도록
+중복을 제거한 뒤 겹친다.
+
+| 요청 | 겹치는 순서 (뒤가 우선) |
+| --- | --- |
+| `ko` | en → **ko** |
+| `en` | ko → **en** |
+| `ja` | ko → en → **ja** |
+
+제품 설명 등 DB 콘텐츠는 `lib/queries/`의 조회 함수가 같은 순서를 적용한다.
+
+### 검사
+
+`npm run i18n:check`가 `ko.json`을 기준으로 나머지 9개 언어의 누락·빈 값·잉여 키를 본다.
+`npm run build` 앞에 걸려 있어서, 번역이 빠진 채로는 배포가 되지 않는다.
 
 ### 라우팅
 

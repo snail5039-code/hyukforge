@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "HyukForge",
+    "description": "Los hago solo y los arreglo solo. Herramientas de oficina, juegos pequeños, utilidades varias."
+  },
+  "nav": {
+    "products": "Productos",
+    "downloads": "Descargas",
+    "changelog": "Registro",
+    "about": "Acerca de",
+    "shelf": "Mi estante"
+  },
+  "home": {
+    "eyebrow": "Estudio de software independiente · 2026—",
+    "headline": "Lo hice porque lo necesitaba.<br></br>Si te sirve, <accent>llévatelo</accent>.",
+    "lead": "Los hago solo y los arreglo solo. Herramientas de oficina, juegos pequeños, utilidades varias. Todo lo que hay aquí es gratis. Si me avisas de un error, suelo publicar el arreglo en pocos días.",
+    "ctaProducts": "Ver productos",
+    "ctaChangelog": "Registro de cambios",
+    "privacyNote": "La cuenta solo sirve para el historial de descargas y los avisos de actualización. Nada de correos publicitarios.",
+    "featured": "Lo más descargado esta semana",
+    "wip": "En lo que estoy trabajando"
+  },
+  "stats": {
+    "products": "Hechos",
+    "downloads": "Descargas este mes",
+    "updated": "Última actualización",
+    "price": "Precio",
+    "allFree": "Todo gratis"
+  },
+  "section": {
+    "products": "Productos",
+    "downloads": "Descargas",
+    "changelog": "Registro de cambios",
+    "about": "Acerca de"
+  },
+  "category": {
+    "all": "Todo",
+    "office": "Oficina",
+    "games": "Juegos",
+    "utilities": "Utilidades",
+    "webapps": "Apps web",
+    "labs": "Laboratorio"
+  },
+  "product": {
+    "download": "Descargar",
+    "open": "Abrir",
+    "changelog": "Cambios",
+    "name": "Nombre",
+    "category": "Categoría",
+    "version": "Versión",
+    "size": "Tamaño",
+    "platform": "Plataforma",
+    "updated": "Actualizado",
+    "price": "Precio",
+    "free": "Gratis",
+    "requirements": "Requisitos del sistema",
+    "comingSoon": "Próximamente",
+    "loginRequired": "Inicia sesión para descargar",
+    "count": "{count}"
+  },
+  "auth": {
+    "signIn": "Iniciar sesión",
+    "signOut": "Cerrar sesión",
+    "withGoogle": "Continuar con Google",
+    "withEmail": "Enviarme un enlace por correo",
+    "emailPlaceholder": "Correo electrónico",
+    "sendLink": "Enviar enlace",
+    "linkSent": "Revisa tu bandeja de entrada. El enlace caduca en una hora.",
+    "noPassword": "Aquí no se usan contraseñas."
+  },
+  "common": {
+    "viewAll": "Ver todo",
+    "loading": "Cargando",
+    "empty": "Todavía no hay nada",
+    "notFound": "Página no encontrada",
+    "language": "Idioma"
+  },
+  "footer": {
+    "rights": "© {year} HyukForge",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "contact": "Contacto"
+  }
+}
