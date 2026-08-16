@@ -16,6 +16,7 @@
 | [docs/PRD.md](./docs/PRD.md) | 무엇을 왜 만드는가 — 범위, 기능 명세, 단계별 계획 |
 | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) | 기술 스택, DB 스키마, 다운로드 흐름, 다국어 전략 |
 | [docs/DESIGN.md](./docs/DESIGN.md) | 디자인 시스템 — 워크벤치 톤, 토큰, 컴포넌트 규칙 |
+| [COMMIT_CONVENTION.md](./COMMIT_CONVENTION.md) | 커밋 메시지 규칙 (Conventional Commits) |
 
 ## 기술 스택
 
