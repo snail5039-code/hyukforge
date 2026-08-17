@@ -8,7 +8,8 @@
     "downloads": "Downloads",
     "changelog": "Changelog",
     "about": "About",
-    "shelf": "My shelf"
+    "shelf": "My shelf",
+    "notices": "Notices"
   },
   "home": {
     "eyebrow": "Independent software studio · 2026—",
@@ -31,7 +32,8 @@
     "products": "Products",
     "downloads": "Downloads",
     "changelog": "Changelog",
-    "about": "About"
+    "about": "About",
+    "notices": "Notices"
   },
   "category": {
     "all": "All",
@@ -80,5 +82,17 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "contact": "Contact"
+  },
+  "notice": {
+    "pinned": "Pinned",
+    "backToList": "Back to list"
+  },
+  "preview": {
+    "title": "Preview",
+    "screenshots": "Screenshots",
+    "video": "Video",
+    "demo": "Try it",
+    "demoNote": "You can try it in the browser without installing anything.",
+    "none": "Not ready yet"
   }
 }

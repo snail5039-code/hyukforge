@@ -1,5 +1,6 @@
 import type { Product, Stats } from "@/lib/queries/products";
 import type { ChangelogEntry } from "@/lib/queries/changelog";
+import type { Notice } from "@/lib/queries/notices";
 
 /**
  * 디자인 확인용 예시 데이터.
@@ -25,6 +26,9 @@ const make = (
   tagline: null,
   description: null,
   requirements: null,
+  demoUrl: null,
+  videoUrl: null,
+  images: [],
   latest: null,
   ...p,
 });
@@ -112,7 +116,14 @@ WebP 변환이 느린 건 알고 있고 다음 버전에서 고칩니다.`,
     iconLetter: "출",
     platforms: [],
     externalUrl: "https://commute-battle.vercel.app",
+    // 웹앱이라 받기 전에 그 자리에서 바로 써볼 수 있다
+    demoUrl: "https://commute-battle.vercel.app",
     publishedAt: "2026-08-02",
+    description: `매일 출퇴근 시간을 손으로 적기 싫어서 만들었습니다.
+
+출퇴근을 기록하면 경로와 소요 시간을 정리해 보여줍니다. 같은 회사 사람끼리 워크스페이스를 만들어 쓸 수 있고, 관리자는 근태를 확인할 수 있습니다.
+
+설치할 게 없습니다. 아래 체험 탭에서 바로 눌러보세요.`,
   }),
   make({
     slug: "my-little-restaurant",
@@ -188,4 +199,31 @@ export const WIP: { name: string; note: string }[] = [
   { name: "Pixel Adventure 챕터 2", note: "작업 중" },
   { name: "macOS 빌드", note: "검토 중" },
   { name: "라이선스 키 발급", note: "보류" },
+];
+
+export const NOTICES: Notice[] = [
+  {
+    id: "n1",
+    slug: "all-free",
+    isPinned: true,
+    publishedAt: "2026-08-01",
+    title: "지금 올라온 제품은 모두 무료입니다",
+    body: `당분간 결제 기능을 붙이지 않습니다. 받아서 그냥 쓰시면 됩니다.
+
+나중에 유료 제품이 생기더라도, 지금 무료로 올라온 것들은 계속 무료로 둡니다. 받아두신 버전이 갑자기 잠기는 일은 없습니다.
+
+가입을 요구하는 건 새 버전이 나왔을 때 알려드리기 위한 것뿐입니다. 광고 메일은 보내지 않습니다.`,
+  },
+  {
+    id: "n2",
+    slug: "how-to-report-bugs",
+    isPinned: false,
+    publishedAt: "2026-07-20",
+    title: "버그를 알려주실 때 함께 적어주시면 좋은 것",
+    body: `혼자 만들고 혼자 고치기 때문에, 재현이 안 되면 손을 못 댑니다.
+
+이 세 가지만 있으면 대부분 며칠 안에 고칠 수 있습니다. 사용하신 Windows 버전, 어떤 순서로 눌렀을 때 생겼는지, 그리고 화면 캡처.
+
+메일로 보내주세요. snail5039@gmail.com`,
+  },
 ];

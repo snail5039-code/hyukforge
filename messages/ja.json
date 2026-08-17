@@ -8,7 +8,8 @@
     "downloads": "ダウンロード",
     "changelog": "開発記録",
     "about": "紹介",
-    "shelf": "マイ棚"
+    "shelf": "マイ棚",
+    "notices": "お知らせ"
   },
   "home": {
     "eyebrow": "独立系ソフトウェア工房 · 2026—",
@@ -31,7 +32,8 @@
     "products": "製品",
     "downloads": "ダウンロード",
     "changelog": "開発記録",
-    "about": "紹介"
+    "about": "紹介",
+    "notices": "お知らせ"
   },
   "category": {
     "all": "すべて",
@@ -80,5 +82,17 @@
     "privacy": "プライバシー",
     "terms": "利用規約",
     "contact": "お問い合わせ"
+  },
+  "notice": {
+    "pinned": "固定",
+    "backToList": "一覧へ"
+  },
+  "preview": {
+    "title": "プレビュー",
+    "screenshots": "スクリーンショット",
+    "video": "動画",
+    "demo": "体験",
+    "demoNote": "インストールせずにブラウザでそのまま試せます。",
+    "none": "準備中"
   }
 }

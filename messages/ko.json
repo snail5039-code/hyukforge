@@ -8,7 +8,8 @@
     "downloads": "다운로드",
     "changelog": "기록",
     "about": "소개",
-    "shelf": "내 서랍"
+    "shelf": "내 서랍",
+    "notices": "공지"
   },
   "home": {
     "eyebrow": "독립 소프트웨어 공방 · 2026—",
@@ -31,7 +32,8 @@
     "products": "제품",
     "downloads": "다운로드",
     "changelog": "개발 기록",
-    "about": "소개"
+    "about": "소개",
+    "notices": "공지"
   },
   "category": {
     "all": "전체",
@@ -80,5 +82,17 @@
     "privacy": "개인정보처리방침",
     "terms": "이용약관",
     "contact": "문의"
+  },
+  "notice": {
+    "pinned": "고정",
+    "backToList": "목록으로"
+  },
+  "preview": {
+    "title": "미리보기",
+    "screenshots": "스크린샷",
+    "video": "영상",
+    "demo": "체험",
+    "demoNote": "설치하지 않고 브라우저에서 바로 해볼 수 있습니다",
+    "none": "준비 중"
   }
 }

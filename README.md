@@ -22,7 +22,7 @@
 
 | 영역 | 선택 |
 | --- | --- |
-| 프레임워크 | Next.js 15 (App Router) · React 19 · TypeScript |
+| 프레임워크 | Next.js 16 (App Router) · React 19 · TypeScript |
 | 스타일 | Tailwind CSS 4 |
 | 데이터·인증 | Supabase (Postgres · Auth · Storage) |
 | 파일 배포 | GitHub Releases |

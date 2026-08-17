@@ -99,20 +99,17 @@ next-intl 공식 문서는 아직 `middleware.ts` 기준이다. `proxy.ts`에서
 
 ### 3.2 스키마
 
+실제 SQL은 `supabase/migrations/` 에 있다. 아래는 요약이다.
+
 ```sql
 -- ── 분류 ────────────────────────────────────────────
+-- 이름은 여기 두지 않는다. messages/*.json 의 category.<slug> 를 쓴다.
+-- 분류는 5개 고정이고 이름은 UI 문구라서, DB에 두면 5×10=50행을 이중 관리하게 된다.
 create table categories (
   id          uuid primary key default gen_random_uuid(),
   slug        text unique not null,       -- office | games | utilities | webapps | labs
   sort_order  int  not null default 0,
   created_at  timestamptz not null default now()
-);
-
-create table category_translations (
-  category_id uuid references categories(id) on delete cascade,
-  locale      text not null,
-  name        text not null,
-  primary key (category_id, locale)
 );
 
 -- ── 제품 ────────────────────────────────────────────

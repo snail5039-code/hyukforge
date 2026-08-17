@@ -9,6 +9,7 @@ export async function Nav() {
   const items = [
     { href: "/products", label: t("nav.products") },
     { href: "/downloads", label: t("nav.downloads") },
+    { href: "/notices", label: t("nav.notices") },
     { href: "/changelog", label: t("nav.changelog") },
     { href: "/about", label: t("nav.about") },
   ];

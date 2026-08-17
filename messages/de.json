@@ -8,7 +8,8 @@
     "downloads": "Downloads",
     "changelog": "Änderungen",
     "about": "Über mich",
-    "shelf": "Mein Regal"
+    "shelf": "Mein Regal",
+    "notices": "Hinweise"
   },
   "home": {
     "eyebrow": "Unabhängiges Software-Studio · 2026—",
@@ -31,7 +32,8 @@
     "products": "Produkte",
     "downloads": "Downloads",
     "changelog": "Änderungen",
-    "about": "Über mich"
+    "about": "Über mich",
+    "notices": "Hinweise"
   },
   "category": {
     "all": "Alle",
@@ -80,5 +82,17 @@
     "privacy": "Datenschutz",
     "terms": "Nutzungsbedingungen",
     "contact": "Kontakt"
+  },
+  "notice": {
+    "pinned": "Angepinnt",
+    "backToList": "Zur Liste"
+  },
+  "preview": {
+    "title": "Vorschau",
+    "screenshots": "Screenshots",
+    "video": "Video",
+    "demo": "Ausprobieren",
+    "demoNote": "Du kannst es im Browser ausprobieren, ohne etwas zu installieren.",
+    "none": "In Vorbereitung"
   }
 }

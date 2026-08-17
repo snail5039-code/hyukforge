@@ -36,6 +36,12 @@ export type Product = {
   tagline: string | null;
   description: string | null;
   requirements: string | null;
+  /** 브라우저에서 바로 해볼 수 있는 주소. iframe으로 띄운다. */
+  demoUrl: string | null;
+  /** 동작 영상 (YouTube 또는 mp4). */
+  videoUrl: string | null;
+  /** 스크린샷. sort_order 순. */
+  images: { path: string; alt: string | null }[];
   /** 최신 안정 릴리스. 웹앱이나 아직 배포 전이면 null. */
   latest: Release | null;
 };
@@ -43,8 +49,9 @@ export type Product = {
 // PostgREST 임베드로 한 번에 가져온다. 목록 화면에서 N+1을 만들지 않으려는 것.
 const SELECT = `
   id, slug, kind, icon_letter, platforms, is_free, external_url,
-  download_count, published_at, is_featured,
+  download_count, published_at, is_featured, demo_url, video_url,
   categories ( slug ),
+  product_images ( storage_path, alt_ko, alt_en, sort_order ),
   product_translations ( locale, name, tagline, description, requirements ),
   releases ( id, version, platform, asset_url, file_size, released_at, is_latest, channel )
 `;
@@ -60,7 +67,15 @@ type Raw = {
   download_count: number;
   published_at: string | null;
   is_featured: boolean;
+  demo_url: string | null;
+  video_url: string | null;
   categories: { slug: CategorySlug } | null;
+  product_images: {
+    storage_path: string;
+    alt_ko: string | null;
+    alt_en: string | null;
+    sort_order: number;
+  }[];
   product_translations: {
     locale: string;
     name: string;
@@ -100,6 +115,16 @@ function shape(row: Raw, locale: string): Product {
     tagline: t?.tagline ?? null,
     description: t?.description ?? null,
     requirements: t?.requirements ?? null,
+    demoUrl: row.demo_url,
+    videoUrl: row.video_url,
+    images: (row.product_images ?? [])
+      .slice()
+      .sort((a, b) => a.sort_order - b.sort_order)
+      .map((img) => ({
+        path: img.storage_path,
+        // 대체 텍스트는 ko/en만 둔다. 10개 언어로 늘릴 만한 값이 아니다.
+        alt: (locale === "ko" ? img.alt_ko : img.alt_en) ?? img.alt_en ?? img.alt_ko,
+      })),
     latest: latest
       ? {
           id: latest.id,

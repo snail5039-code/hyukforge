@@ -8,7 +8,8 @@
     "downloads": "下載",
     "changelog": "開發記錄",
     "about": "關於",
-    "shelf": "我的收藏"
+    "shelf": "我的收藏",
+    "notices": "公告"
   },
   "home": {
     "eyebrow": "獨立軟體工作室 · 2026—",
@@ -31,7 +32,8 @@
     "products": "產品",
     "downloads": "下載",
     "changelog": "開發記錄",
-    "about": "關於"
+    "about": "關於",
+    "notices": "公告"
   },
   "category": {
     "all": "全部",
@@ -80,5 +82,17 @@
     "privacy": "隱私權政策",
     "terms": "使用條款",
     "contact": "聯絡"
+  },
+  "notice": {
+    "pinned": "置頂",
+    "backToList": "返回列表"
+  },
+  "preview": {
+    "title": "預覽",
+    "screenshots": "螢幕截圖",
+    "video": "影片",
+    "demo": "試用",
+    "demoNote": "無需安裝，可直接在瀏覽器中試用。",
+    "none": "準備中"
   }
 }

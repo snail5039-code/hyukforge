@@ -8,7 +8,8 @@
     "downloads": "Descargas",
     "changelog": "Registro",
     "about": "Acerca de",
-    "shelf": "Mi estante"
+    "shelf": "Mi estante",
+    "notices": "Avisos"
   },
   "home": {
     "eyebrow": "Estudio de software independiente · 2026—",
@@ -31,7 +32,8 @@
     "products": "Productos",
     "downloads": "Descargas",
     "changelog": "Registro de cambios",
-    "about": "Acerca de"
+    "about": "Acerca de",
+    "notices": "Avisos"
   },
   "category": {
     "all": "Todo",
@@ -80,5 +82,17 @@
     "privacy": "Privacidad",
     "terms": "Términos",
     "contact": "Contacto"
+  },
+  "notice": {
+    "pinned": "Fijado",
+    "backToList": "Volver a la lista"
+  },
+  "preview": {
+    "title": "Vista previa",
+    "screenshots": "Capturas",
+    "video": "Vídeo",
+    "demo": "Probar",
+    "demoNote": "Puedes probarlo en el navegador sin instalar nada.",
+    "none": "En preparación"
   }
 }

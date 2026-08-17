@@ -8,7 +8,8 @@
     "downloads": "下载",
     "changelog": "开发记录",
     "about": "关于",
-    "shelf": "我的收藏"
+    "shelf": "我的收藏",
+    "notices": "公告"
   },
   "home": {
     "eyebrow": "独立软件工作室 · 2026—",
@@ -31,7 +32,8 @@
     "products": "产品",
     "downloads": "下载",
     "changelog": "开发记录",
-    "about": "关于"
+    "about": "关于",
+    "notices": "公告"
   },
   "category": {
     "all": "全部",
@@ -80,5 +82,17 @@
     "privacy": "隐私政策",
     "terms": "使用条款",
     "contact": "联系"
+  },
+  "notice": {
+    "pinned": "置顶",
+    "backToList": "返回列表"
+  },
+  "preview": {
+    "title": "预览",
+    "screenshots": "截图",
+    "video": "视频",
+    "demo": "试用",
+    "demoNote": "无需安装，可直接在浏览器中试用。",
+    "none": "准备中"
   }
 }

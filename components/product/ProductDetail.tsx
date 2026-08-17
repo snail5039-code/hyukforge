@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { AppWindow } from "./AppWindow";
 import { Btn, IconBox, Label, SpecRow, Tag } from "@/components/ui";
+import { ProductPreview } from "./ProductPreview";
 import { fileSize, platformLabel, shortDate } from "@/lib/format";
 import type { Product } from "@/lib/queries/products";
 import type { ChangelogEntry } from "@/lib/queries/changelog";
@@ -116,13 +117,23 @@ export async function ProductDetail({
             title={p.name}
             footLeft={p.latest ? `v${p.latest.version.replace(/^v/, "")}` : undefined}
             footRight={p.kind === "webapp" ? "Web" : platformLabel(p.platforms)}
+            src={p.images[0] ? p.images[0].path : undefined}
+            alt={p.images[0]?.alt ?? p.name}
           >
+            {/* 스크린샷이 아직 없을 때만 이 자리가 쓰인다 */}
             <div className="grid min-h-[300px] place-items-center px-6 py-12 text-center">
-              <Label>스크린샷 준비 중</Label>
+              <Label>{t("preview.none")}</Label>
             </div>
           </AppWindow>
         </div>
       </div>
+
+      <ProductPreview
+        name={p.name}
+        images={p.images}
+        videoUrl={p.videoUrl}
+        demoUrl={p.demoUrl}
+      />
 
       {p.description && (
         <section className="pt-[68px]">
