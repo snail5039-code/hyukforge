@@ -234,3 +234,36 @@ export async function isAdmin(): Promise<boolean> {
 
   return (data as { role?: string } | null)?.role === "admin";
 }
+
+export type AdminRelease = {
+  id: string;
+  version: string;
+  channel: string;
+  platform: string;
+  assetUrl: string;
+  fileSize: number | null;
+  isLatest: boolean;
+  releasedAt: string;
+};
+
+export async function listReleases(productId: string): Promise<AdminRelease[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("releases")
+    .select("id, version, channel, platform, asset_url, file_size, is_latest, released_at")
+    .eq("product_id", productId)
+    .order("released_at", { ascending: false });
+
+  if (error) throw error;
+
+  return (data as unknown as Record<string, unknown>[]).map((r) => ({
+    id: String(r.id),
+    version: String(r.version),
+    channel: String(r.channel),
+    platform: String(r.platform),
+    assetUrl: String(r.asset_url),
+    fileSize: r.file_size == null ? null : Number(r.file_size),
+    isLatest: !!r.is_latest,
+    releasedAt: String(r.released_at),
+  }));
+}
