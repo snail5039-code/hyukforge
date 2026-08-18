@@ -62,6 +62,14 @@ export function Label({
 type BtnProps = {
   href?: string;
   external?: boolean;
+  /**
+   * 언어 접두사를 붙이지 않는다. `[locale]` 밖에 있는 주소에 쓴다.
+   *
+   * next-intl 의 Link 는 내부 주소로 보이는 건 전부 접두사를 붙인다.
+   * `/api/download/...` 가 `/ko/api/download/...` 가 되면서 404 가 났다.
+   * 라우트를 직접 curl 하면 통과하니 화면에서만 깨져 찾기 어렵다.
+   */
+  unlocalized?: boolean;
   variant?: "primary" | "ghost";
   children: ReactNode;
 };
@@ -69,6 +77,7 @@ type BtnProps = {
 export function Btn({
   href,
   external,
+  unlocalized,
   variant = "ghost",
   children,
 }: BtnProps) {
@@ -80,6 +89,12 @@ export function Btn({
       : `${base} border-edge text-ink hover:border-ink`;
 
   if (!href) return <span className={style}>{children}</span>;
+  if (unlocalized)
+    return (
+      <a href={href} className={style}>
+        {children}
+      </a>
+    );
   if (external)
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={style}>

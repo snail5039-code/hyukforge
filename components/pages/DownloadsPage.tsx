@@ -86,12 +86,14 @@ export async function DownloadsPage({ products }: { products: Product[] }) {
                     {shortDate(p.latest!.releasedAt)}
                   </td>
                   <td className="border-b border-line px-3 py-[15px] text-right transition-colors group-hover:bg-panel">
-                    <Link
+                    {/* 언어 접두사를 붙이면 안 된다 — API 라우트는 [locale] 밖에 있다.
+                        next-intl 의 Link 를 쓰면 /ko/api/... 가 되어 404 다. */}
+                    <a
                       href={`/api/download/${p.latest!.id}`}
                       className="whitespace-nowrap font-mono text-[11px] text-amber hover:underline"
                     >
                       {t("product.download")} ↓
-                    </Link>
+                    </a>
                   </td>
                 </tr>
               ))}

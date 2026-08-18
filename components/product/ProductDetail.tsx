@@ -82,7 +82,7 @@ export async function ProductDetail({
                 {t("product.open")} ↗
               </Btn>
             ) : canDownload ? (
-              <Btn href={`/api/download/${p.latest!.id}`} variant="primary">
+              <Btn href={`/api/download/${p.latest!.id}`} unlocalized variant="primary">
                 {t("product.download")} ↓
               </Btn>
             ) : (
