@@ -16,33 +16,29 @@
 | 로그인 | **Google OAuth 동작 확인.** 관리자 1명 지정됨 |
 | 관리자 | 제품 등록·수정, 릴리스 등록(GitHub 자동 가져오기) |
 | 배포 | **Vercel 배포 완료. 환경 변수 반영 확인** |
+| 제품 | `commute-battle` 1개 발행. 릴리스 v0.1.0 (Windows, 217.9MB) 최신 등록 |
+| 다운로드 | **끝까지 검증됨** — 로그인 → 302 → GitHub 자산, 기록·카운터·`/ko/me` 확인 |
 
 ### 아직 없는 것
 
-- **제품 데이터가 0개.** 그래서 로컬과 배포 화면이 똑같이 비어 보인다
-- 실제 다운로드 미검증 — 라우트는 있지만 끝까지 받아본 적이 없다
 - 게시판 **화면** (스키마는 있음) — 자유게시판·요청 게시판, 댓글, 공감
 - 공지·개발 기록 **작성 화면** (관리자 메뉴에 링크만 있고 페이지 없음)
 - 스크린샷 업로드 (Supabase Storage 버킷 `product-media` 미생성)
 - 약관·개인정보처리방침 본문 (틀만 있고 "준비 중" 상태)
 - 모바일 네비게이션 정리 (좁은 화면에서 접힘)
+- `/ko/me` 가 제품 이름 대신 slug 를 보여준다 —
+  조회가 `products ( slug )` 만 가져온다 (`app/[locale]/me/page.tsx`).
+  `product_translations` 를 함께 읽어 요청 언어로 보여줘야 한다
 
 ---
 
 ## 다음에 할 일 (우선순위)
 
-1. **제품 하나 실제 등록하고 다운로드까지 확인**
-   `/ko/admin` → `+ 새 제품` → 주소 `commute-battle`, 종류 **다운로드**, 상태 발행,
-   GitHub 저장소 `snail5039-code/commute-battle`, ko/en 이름.
-   저장하면 아래에 `받을 수 있는 파일` 칸이 생긴다 → `불러오기` →
-   `v0.1.0 · Commute.Battle.Setup.0.1.0.exe · 217.9MB` 를 `최신으로 등록`.
-   그 뒤 `받기` 버튼이 실제로 동작하는지, `/ko/me` 에 기록이 남는지 확인한다.
-   **이게 되면 서버 쪽 DB 연결도 같이 증명된다.**
-2. **게시판 화면** — 목록·상세·작성, 댓글, 공감. 스키마와 RLS 는 이미 있다 (`20260818000002`)
-3. **공지·개발 기록 작성 화면** — 관리자 메뉴에 링크만 있다
-4. **Storage 버킷 `product-media`** — 스크린샷 업로드
-5. **약관·개인정보처리방침 본문** — 회원을 받고 있으므로 법적으로 필요하다
-6. 모바일 네비게이션, `next/font/local` 전환 (lint 경고 1건)
+1. **게시판 화면** — 목록·상세·작성, 댓글, 공감. 스키마와 RLS 는 이미 있다 (`20260818000002`)
+2. **공지·개발 기록 작성 화면** — 관리자 메뉴에 링크만 있다
+3. **Storage 버킷 `product-media`** — 스크린샷 업로드
+4. **약관·개인정보처리방침 본문** — 회원을 받고 있으므로 법적으로 필요하다
+5. 모바일 네비게이션, `next/font/local` 전환 (lint 경고 1건)
 
 ---
 
@@ -89,6 +85,31 @@ npm run build                 # 정적/동적 분포까지 확인
 ```
 
 **RLS 를 건드렸으면 `db-check` 를 반드시 돌린다.** 화면을 만든 뒤에 발견하면 원인 찾기가 훨씬 어렵다.
+
+### 로그인이 필요한 화면을 도구로 검증하기
+
+Google 로그인은 사람이 눌러야 한다. 로그인 뒤 동작(`받기`, `/ko/me`)을
+자동으로 확인해야 할 때는 service_role 키로 매직링크를 만들어 세션을 얻는다.
+
+```
+POST {SUPABASE_URL}/auth/v1/admin/generate_link
+  { "type": "magiclink", "email": "snail5039@gmail.com",
+    "redirect_to": "http://localhost:3000/auth/callback" }
+→ 응답의 hashed_token 을
+POST {SUPABASE_URL}/auth/v1/verify   { "type":"magiclink", "token_hash": ... }
+→ access_token / refresh_token
+```
+
+두 가지를 놓치기 쉽다.
+
+- `redirect_to` 는 **최상위**에 넣는다. JS 클라이언트처럼 `options` 안에 넣으면
+  조용히 무시되고 Site URL 로 대체된다 — 허용 목록 문제로 잘못 진단하기 딱 좋다.
+- 허용 목록은 **정확히 일치**해야 한다. `?next=...` 를 붙이면 거부된다.
+
+쿠키는 직접 만들지 말고 `@supabase/ssr` 의 `createServerClient` 에
+메모리 쿠키 어댑터를 물린 뒤 `auth.setSession()` 을 불러서 받아온다
+(청크 분할·`base64-` 접두사를 알아서 처리한다). 끝나면
+`POST /auth/v1/logout?scope=global` 로 세션을 폐기한다.
 
 ### 배포 환경 변수 확인
 
