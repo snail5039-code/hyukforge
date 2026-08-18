@@ -70,7 +70,11 @@
     "linkSent": "Vérifiez votre boîte de réception. Le lien expire dans une heure.",
     "noPassword": "Pas de mot de passe ici.",
     "or": "ou",
-    "notWired": "Écran seulement · l’authentification n’est pas encore branchée"
+    "notWired": "Écran seulement · l’authentification n’est pas encore branchée",
+    "sending": "Envoi en cours",
+    "failed": "Le lien n’a pas pu être envoyé. Réessayez dans un instant.",
+    "linkExpired": "Ce lien a expiré ou a déjà été utilisé. Demandez-en un nouveau.",
+    "signedIn": "Connecté"
   },
   "common": {
     "viewAll": "Tout voir",

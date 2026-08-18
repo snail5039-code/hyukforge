@@ -70,7 +70,11 @@
     "linkSent": "请查看收件箱。链接一小时后失效。",
     "noPassword": "这里不使用密码。",
     "or": "或",
-    "notWired": "仅界面 · 尚未接入登录"
+    "notWired": "仅界面 · 尚未接入登录",
+    "sending": "发送中",
+    "failed": "链接发送失败，请稍后再试。",
+    "linkExpired": "该链接已过期或已被使用，请重新获取。",
+    "signedIn": "已登录"
   },
   "common": {
     "viewAll": "查看全部",

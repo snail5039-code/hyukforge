@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { AuthButton } from "./AuthButton";
 
 export async function Nav() {
   const t = await getTranslations();
@@ -52,12 +53,7 @@ export async function Nav() {
 
         <LocaleSwitcher />
 
-        <Link
-          href="/login"
-          className="border border-edge px-[14px] py-[7px] font-mono text-[11px] tracking-tag text-mute transition-colors hover:border-amber hover:text-amber"
-        >
-          {t("auth.signIn")}
-        </Link>
+        <AuthButton />
       </div>
     </nav>
   );

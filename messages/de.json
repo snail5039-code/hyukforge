@@ -70,7 +70,11 @@
     "linkSent": "Bitte den Posteingang prüfen. Der Link läuft in einer Stunde ab.",
     "noPassword": "Hier gibt es keine Passwörter.",
     "or": "oder",
-    "notWired": "Nur die Oberfläche · die Anmeldung ist noch nicht angebunden"
+    "notWired": "Nur die Oberfläche · die Anmeldung ist noch nicht angebunden",
+    "sending": "Wird gesendet",
+    "failed": "Der Link konnte nicht gesendet werden. Bitte versuche es gleich noch einmal.",
+    "linkExpired": "Dieser Link ist abgelaufen oder wurde schon benutzt. Fordere einen neuen an.",
+    "signedIn": "Angemeldet"
   },
   "common": {
     "viewAll": "Alle ansehen",

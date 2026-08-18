@@ -70,7 +70,11 @@
     "linkSent": "Check your inbox. The link expires in an hour.",
     "noPassword": "No passwords here.",
     "or": "or",
-    "notWired": "Screen only · authentication is not wired up yet"
+    "notWired": "Screen only · authentication is not wired up yet",
+    "sending": "Sending",
+    "failed": "Could not send the link. Please try again in a moment.",
+    "linkExpired": "That link expired or was already used. Request a new one.",
+    "signedIn": "Signed in"
   },
   "common": {
     "viewAll": "View all",

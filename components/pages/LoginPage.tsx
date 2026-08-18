@@ -1,10 +1,11 @@
+import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
+import { LoginForm } from "@/components/auth/LoginForm";
 
 /**
- * 로그인 화면 — 지금은 모양만이다. 실제 인증은 아직 붙이지 않았다.
+ * 로그인 화면.
  *
- * 비밀번호 칸이 없는 게 의도다. Google과 매직 링크만 받는다.
- * 비밀번호를 안 받으면 유출될 비밀번호도 없다.
+ * 폼은 클라이언트 컴포넌트다 (LoginForm). 여기서는 문구와 틀만 잡는다.
  */
 export async function LoginPage() {
   const t = await getTranslations();
@@ -17,47 +18,15 @@ export async function LoginPage() {
         </h1>
         <p className="mt-3 text-[13.5px] text-mute">{t("home.privacyNote")}</p>
 
-        <div className="mt-8 space-y-[10px]">
-          <button
-            type="button"
-            disabled
-            className="w-full border border-edge py-[13px] font-mono text-[12px] tracking-btn text-ink transition-colors hover:border-ink disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            {t("auth.withGoogle")}
-          </button>
+        <div className="mt-8">
+          {/* useSearchParams를 쓰므로 Suspense로 감싼다 */}
+          <Suspense fallback={null}>
+            <LoginForm />
+          </Suspense>
         </div>
-
-        <div className="my-7 flex items-center gap-4">
-          <span className="flex-1 border-t border-line" />
-          <span className="u-label">{t("auth.or")}</span>
-          <span className="flex-1 border-t border-line" />
-        </div>
-
-        <form className="space-y-[10px]">
-          <label className="block">
-            <span className="u-label">{t("auth.emailPlaceholder")}</span>
-            <input
-              type="email"
-              disabled
-              placeholder="you@example.com"
-              className="mt-2 w-full border border-edge bg-panel px-4 py-[12px] font-mono text-[13px] text-ink placeholder:text-dim focus:border-amber focus:outline-none disabled:cursor-not-allowed disabled:opacity-40"
-            />
-          </label>
-          <button
-            type="submit"
-            disabled
-            className="w-full border border-amber bg-amber py-[13px] font-mono text-[12px] font-semibold tracking-btn text-on-amber transition-colors hover:bg-amber-hi disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            {t("auth.sendLink")}
-          </button>
-        </form>
 
         <p className="mt-6 border-l border-edge pl-3 text-[12.5px] text-dim">
           {t("auth.noPassword")}
-        </p>
-
-        <p className="mt-8 border border-edge px-4 py-3 font-mono text-label text-dim">
-          {t("auth.notWired")}
         </p>
       </div>
     </main>

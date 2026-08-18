@@ -1,0 +1,97 @@
+import { redirect } from "next/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { createClient } from "@/lib/supabase/server";
+import { Label, SpecRow } from "@/components/ui";
+import { shortDate } from "@/lib/format";
+
+/**
+ * 내 서랍.
+ *
+ * 개인 페이지라 캐시하지 않는다. 세션을 읽으므로 요청마다 렌더된다.
+ * 공개 페이지(홈·제품 목록 등)는 반대로 쿠키를 읽지 않아 정적으로 남는다.
+ */
+export const dynamic = "force-dynamic";
+
+export default async function MyShelf({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  // 로그인하지 않았으면 로그인 화면으로. 끝나면 여기로 되돌아온다.
+  if (!user) redirect(`/${locale}/login?next=/${locale}/me`);
+
+  const t = await getTranslations();
+
+  // RLS가 본인 것만 돌려준다
+  const { data: downloads } = await supabase
+    .from("downloads")
+    .select("id, created_at, products ( slug ), releases ( version )")
+    .order("created_at", { ascending: false })
+    .limit(50);
+
+  const rows = (downloads ?? []) as unknown as {
+    id: string;
+    created_at: string;
+    products: { slug: string } | null;
+    releases: { version: string } | null;
+  }[];
+
+  return (
+    <main className="mx-auto max-w-page px-gutter pb-10">
+      <header className="border-b border-line pb-7 pt-[68px]">
+        <h1 className="text-[28px] font-bold tracking-[-0.02em]">
+          {t("nav.shelf")}
+        </h1>
+      </header>
+
+      <div className="max-w-[62ch] pt-9">
+        <div className="border-t border-line">
+          <SpecRow label={t("auth.signedIn")}>{user.email}</SpecRow>
+        </div>
+
+        <section className="pt-10">
+          <div className="mb-5 flex items-baseline gap-4">
+            <h2 className="text-[17px] font-semibold">
+              {t("section.downloads")}
+            </h2>
+            <span className="-translate-y-[3px] flex-1 border-t border-line" />
+          </div>
+
+          {rows.length === 0 ? (
+            <p className="border-y border-line py-10 text-center text-[13.5px] text-dim">
+              {t("common.empty")}
+            </p>
+          ) : (
+            <ul className="border-t border-line">
+              {rows.map((r) => (
+                <li
+                  key={r.id}
+                  className="flex items-baseline justify-between gap-4 border-b border-line py-3"
+                >
+                  <span className="text-[14px] text-ink">
+                    {r.products?.slug ?? "—"}
+                  </span>
+                  <span className="u-data">
+                    {r.releases?.version ?? "—"} · {shortDate(r.created_at)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+
+        <p className="mt-10 border border-edge px-4 py-3 font-mono text-label text-dim">
+          <Label>{t("legal.pending")}</Label>
+        </p>
+      </div>
+    </main>
+  );
+}

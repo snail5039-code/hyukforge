@@ -70,7 +70,11 @@
     "linkSent": "Revisa tu bandeja de entrada. El enlace caduca en una hora.",
     "noPassword": "Aquí no se usan contraseñas.",
     "or": "o",
-    "notWired": "Solo la pantalla · la autenticación aún no está conectada"
+    "notWired": "Solo la pantalla · la autenticación aún no está conectada",
+    "sending": "Enviando",
+    "failed": "No se pudo enviar el enlace. Inténtalo de nuevo en un momento.",
+    "linkExpired": "Ese enlace caducó o ya se usó. Solicita uno nuevo.",
+    "signedIn": "Sesión iniciada"
   },
   "common": {
     "viewAll": "Ver todo",
