@@ -17,6 +17,7 @@
 | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) | 기술 스택, DB 스키마, 다운로드 흐름, 다국어 전략 |
 | [docs/DESIGN.md](./docs/DESIGN.md) | 디자인 시스템 — 워크벤치 톤, 토큰, 컴포넌트 규칙 |
 | [COMMIT_CONVENTION.md](./COMMIT_CONVENTION.md) | 커밋 메시지 규칙 (Conventional Commits) |
+| [docs/HANDOFF.md](./docs/HANDOFF.md) | **이어서 작업하기** — 현재 상태, 남은 일, 반복해서 걸린 함정 |
 
 ## 기술 스택
 
