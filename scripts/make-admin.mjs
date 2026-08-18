@@ -74,5 +74,14 @@ if (!body.length) {
   process.exit(1);
 }
 
-console.log(`${email} → 관리자로 변경했습니다.`);
-console.log(`  role: ${body[0].role}`);
+// 반환된 값을 반드시 확인한다.
+// profiles_protect_role 트리거가 변경을 되돌려도 PATCH 자체는 200을 준다.
+// 검증하지 않으면 "성공"을 찍고 실제로는 안 바뀐 채 넘어간다.
+if (body[0].role !== "admin") {
+  console.error(`실패 — role 이 여전히 '${body[0].role}' 입니다.`);
+  console.error("profiles_protect_role 트리거가 변경을 되돌렸을 가능성이 큽니다.");
+  console.error("supabase/migrations/20260818000001_fix_role_guard.sql 이 적용됐는지 확인하세요.");
+  process.exit(1);
+}
+
+console.log(`${email} → 관리자로 변경했습니다. (role=${body[0].role})`);

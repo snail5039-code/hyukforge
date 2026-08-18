@@ -12,7 +12,8 @@
     "i18n:check": "node scripts/i18n-check.mjs",
     "fonts": "node scripts/fonts.mjs",
     "brand": "node scripts/brand.mjs build",
-    "make-admin": "node scripts/make-admin.mjs"
+    "make-admin": "node scripts/make-admin.mjs",
+    "test:role-guard": "node scripts/test-role-guard.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",
