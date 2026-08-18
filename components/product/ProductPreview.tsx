@@ -168,7 +168,7 @@ export function ProductPreview({
               rel="noopener noreferrer"
               className="font-mono text-[11px] text-amber hover:underline"
             >
-              새 창에서 열기 ↗
+              {t("openInNewTab")} ↗
             </a>
           </p>
         </div>

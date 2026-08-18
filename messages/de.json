@@ -68,7 +68,9 @@
     "emailPlaceholder": "E-Mail-Adresse",
     "sendLink": "Link senden",
     "linkSent": "Bitte den Posteingang prüfen. Der Link läuft in einer Stunde ab.",
-    "noPassword": "Hier gibt es keine Passwörter."
+    "noPassword": "Hier gibt es keine Passwörter.",
+    "or": "oder",
+    "notWired": "Nur die Oberfläche · die Anmeldung ist noch nicht angebunden"
   },
   "common": {
     "viewAll": "Alle ansehen",
@@ -93,6 +95,27 @@
     "video": "Video",
     "demo": "Ausprobieren",
     "demoNote": "Du kannst es im Browser ausprobieren, ohne etwas zu installieren.",
-    "none": "In Vorbereitung"
+    "none": "In Vorbereitung",
+    "openInNewTab": "In neuem Tab öffnen"
+  },
+  "about": {
+    "lead1Strong": "Das ist ein Ein-Personen-Studio.",
+    "lead1": "Eine Person plant, baut und veröffentlicht. Deshalb bin ich langsam, aber wenn du fragst, antwortet die Person, die es gebaut hat.",
+    "lead2": "Ich wollte nichts Großes bauen. Ich habe die Dinge behoben, die mich täglich gestört haben, und es hat sich angesammelt. Ordner aufräumen war mühsam, also habe ich ein Aufräumwerkzeug gebaut. Meinen Arbeitsweg von Hand zu notieren mochte ich nicht, also wurde eine Web-App daraus.",
+    "lead3": "Im Moment ist alles kostenlos. Auch wenn später kostenpflichtige Produkte dazukommen, bleibt das Vorhandene kostenlos.",
+    "contact": "Fehlermeldungen und Vorschläge"
+  },
+  "changelog": {
+    "lead": "Ich schreibe auf, was ich behoben habe und was noch nicht.",
+    "count": "{count}"
+  },
+  "legal": {
+    "pending": "Noch nicht geschrieben",
+    "pendingBody": "Ich habe das noch nicht geschrieben. Es kommt, bevor Konten möglich sind.",
+    "certainHeading": "Bis dahin, was sicher ist",
+    "point1": "Das Konto dient nur dem Download-Verlauf und Update-Hinweisen.",
+    "point2": "Keine Passwörter. Nur Google-Anmeldung und E-Mail-Links.",
+    "point3": "Keine Werbe-E-Mails, und nichts geht an Dritte.",
+    "point4": "Alles hier ist kostenlos. Es werden keine Zahlungsdaten erhoben."
   }
 }

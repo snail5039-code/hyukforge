@@ -29,7 +29,7 @@ export async function ChangelogPage({
           {t("section.changelog")}
         </h1>
         <p className="mt-2 max-w-[52ch] text-[14px] text-mute">
-          고친 것과 아직 못 고친 것을 그대로 적습니다.
+          {t("changelog.lead")}
         </p>
       </header>
 
@@ -45,7 +45,7 @@ export async function ChangelogPage({
                 {month.replace("-", ".")}
               </h2>
               <span className="-translate-y-[3px] flex-1 border-t border-line" />
-              <span className="u-label">{list.length}건</span>
+              <span className="u-label">{t("changelog.count", { count: list.length })}</span>
             </div>
             <ChangelogList entries={list} />
           </section>

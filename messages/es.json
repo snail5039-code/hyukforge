@@ -68,7 +68,9 @@
     "emailPlaceholder": "Correo electrónico",
     "sendLink": "Enviar enlace",
     "linkSent": "Revisa tu bandeja de entrada. El enlace caduca en una hora.",
-    "noPassword": "Aquí no se usan contraseñas."
+    "noPassword": "Aquí no se usan contraseñas.",
+    "or": "o",
+    "notWired": "Solo la pantalla · la autenticación aún no está conectada"
   },
   "common": {
     "viewAll": "Ver todo",
@@ -93,6 +95,27 @@
     "video": "Vídeo",
     "demo": "Probar",
     "demoNote": "Puedes probarlo en el navegador sin instalar nada.",
-    "none": "En preparación"
+    "none": "En preparación",
+    "openInNewTab": "Abrir en una pestaña nueva"
+  },
+  "about": {
+    "lead1Strong": "Es un estudio de una sola persona.",
+    "lead1": "Una persona planifica, construye y publica. Por eso soy lento, pero cuando preguntas algo responde quien lo hizo.",
+    "lead2": "No pretendía hacer nada grandioso. Fui arreglando lo que me molestaba cada día y se acumuló. Ordenar carpetas era pesado, así que hice un organizador de archivos. Odiaba anotar mi trayecto a mano, así que hice una app web.",
+    "lead3": "Ahora todo es gratis. Aunque más adelante haya productos de pago, lo que ya está aquí seguirá siendo gratuito.",
+    "contact": "Errores y sugerencias"
+  },
+  "changelog": {
+    "lead": "Anoto lo que arreglé y lo que aún no.",
+    "count": "{count}"
+  },
+  "legal": {
+    "pending": "Sin redactar",
+    "pendingBody": "Todavía no lo he escrito. Estará antes de abrir las cuentas.",
+    "certainHeading": "Mientras tanto, lo que sí puedo afirmar",
+    "point1": "La cuenta solo se usa para el historial de descargas y los avisos de actualización.",
+    "point2": "Sin contraseñas. Solo inicio con Google y enlaces por correo.",
+    "point3": "Sin correos publicitarios, y nada se cede a terceros.",
+    "point4": "Todo aquí es gratis. No se recogen datos de pago."
   }
 }

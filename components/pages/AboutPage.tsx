@@ -8,6 +8,9 @@ import { Label } from "@/components/ui";
  * 어두운 방의 개발자 스톡 사진과 기술 스택 로고 그리드를 쓰지 않는다.
  * 둘 다 내용이 0이다. 대신 1인칭 문장과 "지금 만들고 있는 것"을 둔다.
  * (docs/DESIGN.md 1장)
+ *
+ * 본문은 messages/*.json 의 about.* 에 있다. 여기 직접 쓰지 않는다 —
+ * 그러면 10개 언어를 깔아놓고 이 페이지만 한국어로 남는다.
  */
 export async function AboutPage({
   wip,
@@ -33,22 +36,14 @@ export async function AboutPage({
         <div className="space-y-[14px] text-[15px] text-mute">
           <p>
             <strong className="font-semibold text-ink">
-              혼자 하는 스튜디오입니다.
+              {t("about.lead1Strong")}
             </strong>{" "}
-            기획도 개발도 배포도 한 사람이 합니다. 그래서 느리지만, 물어보면
-            만든 사람이 직접 답합니다.
+            {t("about.lead1")}
           </p>
-          <p>
-            대단한 걸 만들려던 게 아니라 제가 매일 불편했던 걸 하나씩 고치다
-            보니 쌓였습니다. 파일 정리가 귀찮아서 정리 도구를 만들었고, 출퇴근
-            기록을 손으로 적기 싫어서 웹앱을 만들었습니다.
-          </p>
-          <p>
-            지금은 전부 무료로 공개합니다. 나중에 유료 제품이 생기더라도 지금
-            올라온 것들은 계속 무료입니다.
-          </p>
+          <p>{t("about.lead2")}</p>
+          <p>{t("about.lead3")}</p>
           <p className="pt-2 text-[13px] text-dim">
-            버그 제보·기능 제안 ·{" "}
+            {t("about.contact")} ·{" "}
             <a
               href="mailto:snail5039@gmail.com"
               className="font-mono text-amber hover:underline"

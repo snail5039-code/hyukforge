@@ -29,7 +29,7 @@ export async function LoginPage() {
 
         <div className="my-7 flex items-center gap-4">
           <span className="flex-1 border-t border-line" />
-          <span className="u-label">또는</span>
+          <span className="u-label">{t("auth.or")}</span>
           <span className="flex-1 border-t border-line" />
         </div>
 
@@ -57,7 +57,7 @@ export async function LoginPage() {
         </p>
 
         <p className="mt-8 border border-edge px-4 py-3 font-mono text-label text-dim">
-          화면만 만든 상태 · 인증은 아직 연결하지 않았다
+          {t("auth.notWired")}
         </p>
       </div>
     </main>

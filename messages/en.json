@@ -68,7 +68,9 @@
     "emailPlaceholder": "Email address",
     "sendLink": "Send link",
     "linkSent": "Check your inbox. The link expires in an hour.",
-    "noPassword": "No passwords here."
+    "noPassword": "No passwords here.",
+    "or": "or",
+    "notWired": "Screen only · authentication is not wired up yet"
   },
   "common": {
     "viewAll": "View all",
@@ -93,6 +95,27 @@
     "video": "Video",
     "demo": "Try it",
     "demoNote": "You can try it in the browser without installing anything.",
-    "none": "Not ready yet"
+    "none": "Not ready yet",
+    "openInNewTab": "Open in a new tab"
+  },
+  "about": {
+    "lead1Strong": "This is a one-person studio.",
+    "lead1": "One person does the planning, the building and the releasing. It makes me slow, but when you ask something the person who made it answers.",
+    "lead2": "I wasn't trying to build anything grand. I fixed the things that annoyed me every day and they piled up. Tidying folders was tedious, so I made a file organizer. I hated logging my commute by hand, so I made a web app.",
+    "lead3": "Everything is free right now. Even if paid products show up later, what is already here stays free.",
+    "contact": "Bug reports and feature ideas"
+  },
+  "changelog": {
+    "lead": "I write down what I fixed and what I haven't fixed yet.",
+    "count": "{count}"
+  },
+  "legal": {
+    "pending": "Not written yet",
+    "pendingBody": "I haven't written this yet. It will be up before accounts open.",
+    "certainHeading": "What I can say for certain in the meantime",
+    "point1": "Your account is used only for download history and update notices.",
+    "point2": "No passwords. Only Google sign-in and email links.",
+    "point3": "No marketing email, and nothing is passed to third parties.",
+    "point4": "Everything here is free. No payment details are collected."
   }
 }

@@ -21,7 +21,7 @@ export async function Featured({ product: p }: { product: Product }) {
         >
           {/* 스크린샷이 등록되면 이 자리에 들어간다 */}
           <div className="grid min-h-[220px] place-items-center px-6 py-10 text-center">
-            <span className="u-label">{t("common.loading")} — 스크린샷 준비 중</span>
+            <span className="u-label">{t("preview.none")}</span>
           </div>
         </AppWindow>
       </div>

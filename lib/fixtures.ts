@@ -193,14 +193,6 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
 ];
 
-/** 소개 화면의 "지금 만들고 있는 것" */
-export const WIP: { name: string; note: string }[] = [
-  { name: "클립보드 기록 관리 도구", note: "10월 예정" },
-  { name: "Pixel Adventure 챕터 2", note: "작업 중" },
-  { name: "macOS 빌드", note: "검토 중" },
-  { name: "라이선스 키 발급", note: "보류" },
-];
-
 export const NOTICES: Notice[] = [
   {
     id: "n1",

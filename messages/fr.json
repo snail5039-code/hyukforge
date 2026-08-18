@@ -68,7 +68,9 @@
     "emailPlaceholder": "Adresse courriel",
     "sendLink": "Envoyer le lien",
     "linkSent": "Vérifiez votre boîte de réception. Le lien expire dans une heure.",
-    "noPassword": "Pas de mot de passe ici."
+    "noPassword": "Pas de mot de passe ici.",
+    "or": "ou",
+    "notWired": "Écran seulement · l’authentification n’est pas encore branchée"
   },
   "common": {
     "viewAll": "Tout voir",
@@ -93,6 +95,27 @@
     "video": "Vidéo",
     "demo": "Essayer",
     "demoNote": "Vous pouvez l'essayer dans le navigateur sans rien installer.",
-    "none": "En préparation"
+    "none": "En préparation",
+    "openInNewTab": "Ouvrir dans un nouvel onglet"
+  },
+  "about": {
+    "lead1Strong": "C’est un studio d’une seule personne.",
+    "lead1": "Une personne conçoit, développe et publie. Cela me rend lent, mais quand vous posez une question, c’est celui qui l’a fait qui répond.",
+    "lead2": "Je ne cherchais pas à faire quelque chose de grand. J’ai corrigé ce qui me gênait chaque jour et cela s’est accumulé. Ranger les dossiers était pénible, j’ai donc fait un outil de rangement. Je n’aimais pas noter mes trajets à la main, j’en ai fait une appli web.",
+    "lead3": "Tout est gratuit pour l’instant. Même si des produits payants arrivent plus tard, ce qui est déjà ici reste gratuit.",
+    "contact": "Signalements de bogues et suggestions"
+  },
+  "changelog": {
+    "lead": "Je note ce que j’ai corrigé et ce qui ne l’est pas encore.",
+    "count": "{count}"
+  },
+  "legal": {
+    "pending": "Pas encore rédigé",
+    "pendingBody": "Je ne l’ai pas encore écrit. Ce sera en ligne avant l’ouverture des comptes.",
+    "certainHeading": "En attendant, ce qui est certain",
+    "point1": "Le compte sert uniquement à l’historique des téléchargements et aux avis de mise à jour.",
+    "point2": "Pas de mot de passe. Uniquement Google et les liens par courriel.",
+    "point3": "Aucun courriel publicitaire, et rien n’est transmis à des tiers.",
+    "point4": "Tout ici est gratuit. Aucune donnée de paiement n’est collectée."
   }
 }
