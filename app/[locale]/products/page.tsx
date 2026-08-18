@@ -23,6 +23,7 @@ export default async function Products({
     <ProductsPage
       products={products}
       active={category as CategorySlug | undefined}
+      locale={locale}
     />
   );
 }

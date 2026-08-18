@@ -10,13 +10,15 @@ export default async function PreviewProducts({
   params: Promise<{ locale: string }>;
   searchParams: Promise<{ category?: string }>;
 }) {
-  setRequestLocale((await params).locale);
+  const { locale } = await params;
+  setRequestLocale(locale);
   const { category } = await searchParams;
   return (
     <ProductsPage
       products={PRODUCTS}
       active={category as CategorySlug | undefined}
       basePath="/preview/products"
+      locale={locale}
     />
   );
 }

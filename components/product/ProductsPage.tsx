@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ProductTable } from "./ProductTable";
 import { categoryVar } from "@/lib/format";
+import { AdminLink } from "@/components/admin/AdminOnly";
 import type { CategorySlug, Product } from "@/lib/queries/products";
 
 const CATEGORIES: CategorySlug[] = [
@@ -23,10 +24,12 @@ export async function ProductsPage({
   products,
   active,
   basePath = "/products",
+  locale,
 }: {
   products: Product[];
   active?: CategorySlug;
   basePath?: string;
+  locale: string;
 }) {
   const t = await getTranslations();
 
@@ -42,9 +45,16 @@ export async function ProductsPage({
   return (
     <main className="mx-auto max-w-page px-gutter pb-10">
       <header className="border-b border-line pb-7 pt-[68px]">
-        <h1 className="text-[28px] font-bold tracking-[-0.02em]">
-          {t("section.products")}
-        </h1>
+        <div className="flex flex-wrap items-center gap-4">
+          <h1 className="text-[28px] font-bold tracking-[-0.02em]">
+            {t("section.products")}
+          </h1>
+          {/* 관리자에게만 보인다 */}
+          <span className="ml-auto flex gap-2">
+            <AdminLink href={`/${locale}/admin/products/new`}>+ 새 제품</AdminLink>
+            <AdminLink href={`/${locale}/admin`}>관리</AdminLink>
+          </span>
+        </div>
         <p className="mt-2 text-[14px] text-mute">{t("home.lead")}</p>
       </header>
 

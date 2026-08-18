@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { AppWindow } from "./AppWindow";
 import { Btn, IconBox, Label, SpecRow, Tag } from "@/components/ui";
 import { ProductPreview } from "./ProductPreview";
+import { AdminLink } from "@/components/admin/AdminOnly";
 import { fileSize, platformLabel, shortDate } from "@/lib/format";
 import type { Product } from "@/lib/queries/products";
 import type { ChangelogEntry } from "@/lib/queries/changelog";
@@ -17,9 +18,11 @@ import type { ChangelogEntry } from "@/lib/queries/changelog";
 export async function ProductDetail({
   product: p,
   history = [],
+  locale,
 }: {
   product: Product;
   history?: ChangelogEntry[];
+  locale: string;
 }) {
   const t = await getTranslations();
   const canDownload = p.kind === "download" && p.latest;
@@ -44,6 +47,10 @@ export async function ProductDetail({
           </>
         )}
         <span className="text-mute">{p.name}</span>
+        {/* 관리자에게만 보인다 */}
+        <span className="ml-auto">
+          <AdminLink href={`/${locale}/admin/products/${p.id}`}>수정</AdminLink>
+        </span>
       </nav>
 
       <div className="grid gap-14 lg:grid-cols-[minmax(0,46fr)_minmax(0,54fr)]">

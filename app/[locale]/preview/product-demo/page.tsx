@@ -8,8 +8,9 @@ export default async function PreviewProductDemo({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  setRequestLocale((await params).locale);
+  const { locale } = await params;
+  setRequestLocale(locale);
   const product = PRODUCTS.find((p) => p.slug === "commute-battle")!;
   const history = CHANGELOG.filter((c) => c.productSlug === product.slug);
-  return <ProductDetail product={product} history={history} />;
+  return <ProductDetail product={product} history={history} locale={locale} />;
 }

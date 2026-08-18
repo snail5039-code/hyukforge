@@ -40,5 +40,5 @@ export default async function ProductPage({
     await listChangelog(locale, 50).catch(orEmpty([], "changelog"))
   ).filter((e) => e.productSlug === slug);
 
-  return <ProductDetail product={product} history={history} />;
+  return <ProductDetail product={product} history={history} locale={locale} />;
 }
