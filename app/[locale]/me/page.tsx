@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
+import { pickTranslation } from "@/lib/queries/translation";
 import { Label, SpecRow } from "@/components/ui";
 import { shortDate } from "@/lib/format";
 
@@ -33,14 +34,21 @@ export default async function MyShelf({
   // RLS가 본인 것만 돌려준다
   const { data: downloads } = await supabase
     .from("downloads")
-    .select("id, created_at, products ( slug ), releases ( version )")
+    .select(
+      `id, created_at,
+       products ( slug, product_translations ( locale, name ) ),
+       releases ( version )`,
+    )
     .order("created_at", { ascending: false })
     .limit(50);
 
   const rows = (downloads ?? []) as unknown as {
     id: string;
     created_at: string;
-    products: { slug: string } | null;
+    products: {
+      slug: string;
+      product_translations: { locale: string; name: string }[];
+    } | null;
     releases: { version: string } | null;
   }[];
 
@@ -77,7 +85,7 @@ export default async function MyShelf({
                   className="flex items-baseline justify-between gap-4 border-b border-line py-3"
                 >
                   <span className="text-[14px] text-ink">
-                    {r.products?.slug ?? "—"}
+                    {productName(r.products, locale)}
                   </span>
                   <span className="u-data">
                     {r.releases?.version ?? "—"} · {shortDate(r.created_at)}
@@ -94,4 +102,22 @@ export default async function MyShelf({
       </div>
     </main>
   );
+}
+
+/**
+ * 받은 제품의 이름. 다른 화면과 같은 폴백을 쓴다 (요청 언어 → en → ko).
+ *
+ * 번역이 하나도 없으면 slug 를 그대로 보여준다. 보관 처리된 제품은
+ * RLS 가 번역을 돌려주지 않으므로 여기로 떨어진다 —
+ * 받은 기록 자체는 남아 있어야 하니 행을 감추지는 않는다.
+ */
+function productName(
+  product: {
+    slug: string;
+    product_translations: { locale: string; name: string }[];
+  } | null,
+  locale: string,
+): string {
+  if (!product) return "—";
+  return pickTranslation(product.product_translations, locale)?.name ?? product.slug;
 }
