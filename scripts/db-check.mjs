@@ -103,10 +103,20 @@ console.log("\n접근 제어 — anon이 볼 수 있는 범위\n");
     console.log(`      ${JSON.parse(r.body).map((c) => c.slug).join(", ")}`);
 }
 
-// 발행된 제품이 없으니 0행이어야 한다. 오류가 아니라 빈 결과여야 정상.
+// anon 에게는 발행된 제품만 보여야 한다.
+// 개수를 박아두지 않는다 — 제품이 늘어도 이 검사는 계속 뜻이 있어야 한다.
 {
-  const r = await query("products", ANON);
-  ok(fetched(r.status) && r.count === 0, "제품 목록은 조회되나 발행분이 없어 0행", `${r.count}행`);
+  const all = await query("products", SERVICE, "select=id&status=eq.published&limit=1");
+  const seen = await query("products", ANON, "select=id&limit=1");
+  ok(
+    fetched(seen.status) && seen.count === all.count,
+    "anon 에게 발행된 제품만 보임",
+    `발행 ${all.count}개 / anon ${seen.count}개`,
+  );
+
+  // 초안·보관은 한 건도 새어나가면 안 된다
+  const hidden = await query("products", ANON, "select=id&status=neq.published&limit=1");
+  ok(hidden.count === 0, "초안·보관 제품은 anon 에게 0행", `${hidden.count}행`);
 }
 
 // 개인 데이터는 anon에게 보이면 안 된다.
