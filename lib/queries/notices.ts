@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import { pickTranslation } from "./translation";
 
 /**
@@ -46,7 +46,7 @@ export async function listNotices(
   locale: string,
   limit = 30,
 ): Promise<Notice[]> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
 
   const { data, error } = await supabase
     .from("notices")
@@ -68,7 +68,7 @@ export async function getNotice(
   slug: string,
   locale: string,
 ): Promise<Notice | null> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
 
   const { data, error } = await supabase
     .from("notices")

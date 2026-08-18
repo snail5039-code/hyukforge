@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import { pickTranslation } from "./translation";
 
 export type CategorySlug =
@@ -147,7 +147,7 @@ export async function listProducts(
   locale: string,
   options: { category?: CategorySlug; limit?: number } = {},
 ): Promise<Product[]> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
 
   let query = supabase
     .from("products")
@@ -173,7 +173,7 @@ export async function getProduct(
   slug: string,
   locale: string,
 ): Promise<Product | null> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
 
   const { data, error } = await supabase
     .from("products")
@@ -202,7 +202,7 @@ export type Stats = {
  * RLS가 남의 다운로드 기록을 막아서, 비로그인 방문자가 직접 세면 언제나 0이 나온다.
  */
 export async function getStats(): Promise<Stats> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
 
   const { data, error } = await supabase.rpc("public_stats").single();
   if (error) throw error;

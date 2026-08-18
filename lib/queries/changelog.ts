@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import { pickTranslation } from "./translation";
 
 export type ChangelogEntry = {
@@ -24,7 +24,7 @@ export async function listChangelog(
   locale: string,
   limit = 20,
 ): Promise<ChangelogEntry[]> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
 
   const { data, error } = await supabase
     .from("changelog_entries")
