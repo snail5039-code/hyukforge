@@ -168,6 +168,14 @@
     "save": "Enregistrer",
     "saved": "Enregistré",
     "nicknameTaken": "Ce nom est déjà pris",
-    "nicknameInvalid": "2 à 20 caractères, sans espace au début, à la fin ni répété, et ne peut pas commencer par #"
+    "nicknameInvalid": "2 à 20 caractères, sans espace au début, à la fin ni répété, et ne peut pas commencer par #",
+    "deleteAccount": "Supprimer le compte",
+    "deleteWhatGoes": "Supprimer le compte efface aussi l'historique de téléchargement, les messages, les commentaires, les soutiens et le pseudo. C'est irréversible.",
+    "deleteConfirmHint": "Saisissez votre adresse e-mail pour confirmer",
+    "deleteButton": "Supprimer définitivement",
+    "deleting": "Suppression",
+    "deleteMismatch": "Cette adresse e-mail ne correspond pas",
+    "deleteFailed": "Suppression impossible. Réessayez dans un instant ou écrivez-moi.",
+    "deleteAsk": "Voulez-vous vraiment supprimer votre compte ?\n\nLe compte et tout son contenu disparaîtront, et c'est irréversible."
   }
 }

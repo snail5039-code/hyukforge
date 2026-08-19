@@ -168,6 +168,14 @@
     "save": "Speichern",
     "saved": "Gespeichert",
     "nicknameTaken": "Diesen Namen benutzt schon jemand",
-    "nicknameInvalid": "2–20 Zeichen, keine Leerzeichen am Anfang, am Ende oder doppelt, und nicht mit # beginnend"
+    "nicknameInvalid": "2–20 Zeichen, keine Leerzeichen am Anfang, am Ende oder doppelt, und nicht mit # beginnend",
+    "deleteAccount": "Konto löschen",
+    "deleteWhatGoes": "Mit dem Konto verschwinden auch Download-Verlauf, Beiträge, Kommentare, Stimmen und Anzeigename. Das lässt sich nicht rückgängig machen.",
+    "deleteConfirmHint": "Zur Bestätigung die E-Mail-Adresse eingeben",
+    "deleteButton": "Endgültig löschen",
+    "deleting": "Wird gelöscht",
+    "deleteMismatch": "Diese E-Mail-Adresse stimmt nicht",
+    "deleteFailed": "Löschen fehlgeschlagen. Bitte gleich noch einmal versuchen oder mir schreiben.",
+    "deleteAsk": "Konto wirklich löschen?\n\nDas Konto und alles darin verschwindet, und das lässt sich nicht rückgängig machen."
   }
 }

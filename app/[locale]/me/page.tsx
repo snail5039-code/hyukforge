@@ -2,8 +2,9 @@ import { redirect } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { pickTranslation } from "@/lib/queries/translation";
-import { Label, SpecRow } from "@/components/ui";
+import { SpecRow } from "@/components/ui";
 import { NicknameForm } from "@/components/me/NicknameForm";
+import { DeleteAccount } from "@/components/me/DeleteAccount";
 import { shortDate } from "@/lib/format";
 
 /**
@@ -109,9 +110,7 @@ export default async function MyShelf({
           )}
         </section>
 
-        <p className="mt-10 border border-edge px-4 py-3 font-mono text-label text-dim">
-          <Label>{t("legal.pending")}</Label>
-        </p>
+        <DeleteAccount email={user.email ?? ""} locale={locale} />
       </div>
     </main>
   );

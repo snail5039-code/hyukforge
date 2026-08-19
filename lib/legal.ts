@@ -9,7 +9,7 @@
  *
  * 내용은 실제 동작에 맞춰 적었다. 지어낸 조항이 없어야 한다 —
  * 없는 기능을 있다고 쓰면 그게 곧 위반이다.
- * (예: 탈퇴 화면이 아직 없으므로 "이메일로 요청"이라고 적었다)
+ * 기능이 생기거나 사라지면 이 파일부터 고친다.
  *
  * 고칠 때는 EFFECTIVE 도 함께 올린다.
  */
@@ -94,7 +94,7 @@ const PRIVACY_KO: LegalDoc = {
         "· 내가 받은 기록은 내 서랍에서 바로 볼 수 있습니다.",
         "· 닉네임은 내 서랍에서 직접 고치거나 지울 수 있습니다.",
         "· 글과 댓글은 본인이 직접 지울 수 있습니다.",
-        "· 계정 삭제는 아직 화면이 없습니다. 이메일로 요청해 주시면 확인 후 지웁니다.",
+        "· 계정 삭제는 내 서랍에서 직접 할 수 있습니다. 지우면 되돌릴 수 없습니다.",
       ],
     },
     {
@@ -284,7 +284,7 @@ const PRIVACY_EN: LegalDoc = {
         "· Your download history is visible on your shelf.",
         "· Your nickname can be changed or cleared on your shelf.",
         "· Your posts and comments can be deleted by you.",
-        "· Account deletion has no screen yet. Ask by email and it will be done.",
+        "· You can delete your account yourself, on your shelf. It cannot be undone.",
       ],
     },
     {

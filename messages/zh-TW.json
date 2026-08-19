@@ -168,6 +168,14 @@
     "save": "儲存",
     "saved": "已儲存",
     "nicknameTaken": "這個名字已被使用",
-    "nicknameInvalid": "2～20 個字元，首尾和連續空格不可用，且不能以 # 開頭"
+    "nicknameInvalid": "2～20 個字元，首尾和連續空格不可用，且不能以 # 開頭",
+    "deleteAccount": "刪除帳號",
+    "deleteWhatGoes": "刪除帳號會一併清除下載紀錄、文章、留言、認同與暱稱，且無法復原。",
+    "deleteConfirmHint": "請輸入電子郵件地址以確認",
+    "deleteButton": "永久刪除",
+    "deleting": "刪除中",
+    "deleteMismatch": "電子郵件地址不一致",
+    "deleteFailed": "刪除失敗。請稍後再試，或來信告知。",
+    "deleteAsk": "確定要刪除帳號嗎？\n\n帳號與所有紀錄都會被刪除，無法復原。"
   }
 }

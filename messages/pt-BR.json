@@ -168,6 +168,14 @@
     "save": "Salvar",
     "saved": "Salvo",
     "nicknameTaken": "Alguém já usa esse nome",
-    "nicknameInvalid": "De 2 a 20 caracteres, sem espaços no início, no fim ou repetidos, e não pode começar com #"
+    "nicknameInvalid": "De 2 a 20 caracteres, sem espaços no início, no fim ou repetidos, e não pode começar com #",
+    "deleteAccount": "Excluir conta",
+    "deleteWhatGoes": "Excluir a conta também remove seu histórico de downloads, publicações, comentários, votos e apelido. Não dá para desfazer.",
+    "deleteConfirmHint": "Digite seu e-mail para confirmar",
+    "deleteButton": "Excluir definitivamente",
+    "deleting": "Excluindo",
+    "deleteMismatch": "Esse e-mail não confere",
+    "deleteFailed": "Não foi possível excluir. Tente daqui a pouco ou me escreva.",
+    "deleteAsk": "Tem certeza de que quer excluir sua conta?\n\nA conta e tudo que há nela serão apagados, e não dá para desfazer."
   }
 }

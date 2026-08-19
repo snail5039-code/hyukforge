@@ -168,6 +168,14 @@
     "save": "Save",
     "saved": "Saved",
     "nicknameTaken": "Someone already uses that name",
-    "nicknameInvalid": "2–20 characters, no leading, trailing or repeated spaces, and it cannot start with #"
+    "nicknameInvalid": "2–20 characters, no leading, trailing or repeated spaces, and it cannot start with #",
+    "deleteAccount": "Delete account",
+    "deleteWhatGoes": "Deleting your account also removes your download history, posts, comments, upvotes and nickname. This cannot be undone.",
+    "deleteConfirmHint": "Type your email address to confirm",
+    "deleteButton": "Delete permanently",
+    "deleting": "Deleting",
+    "deleteMismatch": "That email address does not match",
+    "deleteFailed": "Could not delete. Try again shortly, or email me.",
+    "deleteAsk": "Really delete your account?\n\nThe account and everything on it will be gone, and this cannot be undone."
   }
 }
