@@ -4,16 +4,27 @@ import { AppWindow } from "@/components/product/AppWindow";
 import { platformLabel } from "@/lib/format";
 import { imageUrl, isUnoptimized } from "@/lib/images";
 import type { Product } from "@/lib/queries/products";
+import type { Notice } from "@/lib/queries/notices";
+import { NoticePanel } from "./NoticePanel";
 
 /**
  * 히어로. 비대칭 44:56으로 나눈다 — 반반은 기계적으로 보인다.
  * 오른쪽은 3D 렌더가 아니라 실제 앱 화면이 들어갈 자리다.
  *
- * 스크린샷이 있으면 그것을 쓰고, 없으면 CSS 로 만든 모형(HeroWindow)을 쓴다.
- * 사이트 첫 화면에 지어낸 제품이 걸려 있으면 "숫자는 진짜만" 이라고
- * 써둔 것과 어긋난다 (docs/DESIGN.md 글쓰기 규칙).
+ * 오른쪽에 무엇이 오는지는 있는 것 중에서 고른다.
+ *   1. 공지 — 홈에 공지가 들어갈 자리가 여기뿐이다 (제품·개발 기록은 아래에 있다)
+ *   2. 대표 제품 스크린샷
+ *   3. CSS 로 만든 모형 — 둘 다 없을 때만
+ * 지어낸 제품을 첫 화면에 크게 걸어두면 "숫자는 진짜만" 이라고 써둔 것과
+ * 어긋난다 (docs/DESIGN.md 글쓰기 규칙). 그래서 모형은 마지막 수단이다.
  */
-export async function Hero({ product }: { product?: Product | null }) {
+export async function Hero({
+  product,
+  notices = [],
+}: {
+  product?: Product | null;
+  notices?: Notice[];
+}) {
   const t = await getTranslations();
   const shot = product?.images[0];
 
@@ -43,7 +54,9 @@ export async function Hero({ product }: { product?: Product | null }) {
         </p>
       </div>
 
-      {shot && product ? (
+      {notices.length > 0 ? (
+        <NoticePanel notices={notices} />
+      ) : shot && product ? (
         <AppWindow
           title={product.name}
           footLeft={

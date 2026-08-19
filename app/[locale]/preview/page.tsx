@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { HomeSections } from "@/components/home/HomeSections";
-import { CHANGELOG, PRODUCTS, STATS } from "@/lib/fixtures";
+import { CHANGELOG, NOTICES, PRODUCTS, STATS } from "@/lib/fixtures";
 
 export default async function Preview({
   params,
@@ -13,6 +13,7 @@ export default async function Preview({
       products={PRODUCTS.slice(0, 6)}
       stats={STATS}
       changelog={CHANGELOG.slice(0, 4)}
+      notices={NOTICES.slice(0, 3)}
     />
   );
 }

@@ -7,6 +7,7 @@ import { Hero } from "./Hero";
 import { Stats } from "./Stats";
 import type { Product, Stats as StatsData } from "@/lib/queries/products";
 import type { ChangelogEntry } from "@/lib/queries/changelog";
+import type { Notice } from "@/lib/queries/notices";
 
 /**
  * 홈 화면 본문.
@@ -18,10 +19,12 @@ export async function HomeSections({
   products,
   stats,
   changelog,
+  notices = [],
 }: {
   products: Product[];
   stats: StatsData;
   changelog: ChangelogEntry[];
+  notices?: Notice[];
 }) {
   const t = await getTranslations();
 
@@ -31,8 +34,8 @@ export async function HomeSections({
 
   return (
     <main className="mx-auto max-w-page px-gutter">
-      {/* 히어로에 대표 제품의 첫 스크린샷이 들어간다 */}
-      <Hero product={featured} />
+      {/* 공지가 있으면 공지, 없으면 대표 제품 스크린샷 (Hero 주석 참고) */}
+      <Hero product={featured} notices={notices} />
       <Stats data={stats} />
 
       <Section
