@@ -35,6 +35,16 @@ cpSync(`${SRC}/woff2-dynamic-subset`, `${OUT}/woff2-dynamic-subset`, {
   recursive: true,
 });
 
+// OG 이미지용 정적 폰트.
+// satori(next/og)는 woff2 를 못 읽는다 — otf/ttf/woff 만 된다.
+// 동적 서브셋은 unicode-range 로 나뉜 92조각이라 그쪽도 쓸 수 없어서
+// 통짜 OTF 두 벌을 따로 둔다. 브라우저에는 안 나가고 OG 생성 때만 읽는다.
+const OG_SRC = "node_modules/pretendard/dist/public/static";
+mkdirSync(`${OUT}/og`, { recursive: true });
+for (const face of ["Pretendard-Regular.otf", "Pretendard-Bold.otf"]) {
+  copyFileSync(`${OG_SRC}/${face}`, `${OUT}/og/${face}`);
+}
+
 const files = readdirSync(`${OUT}/woff2-dynamic-subset`);
 const total = files.reduce(
   (sum, f) => sum + statSync(`${OUT}/woff2-dynamic-subset/${f}`).size,
@@ -45,3 +55,4 @@ console.log(
   `Pretendard 복사 완료 — 서브셋 ${files.length}개, 합계 ${(total / 1048576).toFixed(1)}MB`,
 );
 console.log(`  ${OUT}/pretendard.css`);
+console.log(`  ${OUT}/og/ — OG 이미지용 OTF 2벌`);
