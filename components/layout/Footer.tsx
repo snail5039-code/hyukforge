@@ -5,7 +5,7 @@ export async function Footer() {
   const t = await getTranslations();
 
   return (
-    <footer className="mx-auto mt-[86px] flex max-w-page flex-wrap justify-between gap-5 border-t border-line px-gutter pb-14 pt-[30px] font-mono text-[11px] text-dim">
+    <footer className="mx-auto mt-[86px] flex max-w-page flex-wrap justify-between gap-5 border-t border-line px-gutter pb-14 pt-[30px] font-mono text-[12px] text-dim">
       <span>{t("footer.rights", { year: new Date().getFullYear() })}</span>
       <div className="flex gap-[18px]">
         <a

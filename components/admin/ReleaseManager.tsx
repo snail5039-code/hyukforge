@@ -114,7 +114,7 @@ export function ReleaseManager({
                 {["버전", "환경", "채널", "용량", "배포일", "최신", ""].map((h, i) => (
                   <th
                     key={i}
-                    className="border-b border-edge px-3 py-[9px] text-left font-mono text-[10px] font-normal uppercase tracking-label text-dim"
+                    className="border-b border-edge px-3 py-[9px] text-left font-mono text-[11px] font-normal uppercase tracking-label text-dim"
                   >
                     {h}
                   </th>
@@ -153,7 +153,7 @@ export function ReleaseManager({
                       type="button"
                       onClick={() => remove(r.id, r.version)}
                       disabled={pending}
-                      className="font-mono text-[11px] text-dim transition-colors hover:text-games disabled:opacity-50"
+                      className="font-mono text-[12px] text-dim transition-colors hover:text-games disabled:opacity-50"
                     >
                       삭제
                     </button>
@@ -168,7 +168,7 @@ export function ReleaseManager({
       {/* ── GitHub 에서 가져오기 ────────────────── */}
       <div className="border border-edge p-6">
         <span className="u-label">GitHub Releases 에서 가져오기</span>
-        <p className="mt-2 text-[12.5px] text-dim">
+        <p className="mt-2 text-[13px] text-dim">
           GitHub 에 릴리스를 만들고 설치파일을 첨부한 뒤 여기서 불러오면
           버전·주소·용량이 자동으로 채워집니다.
         </p>
@@ -220,7 +220,7 @@ export function ReleaseManager({
                           {a.platform}
                         </span>
                         {already ? (
-                          <span className="font-mono text-[11px] text-dim">
+                          <span className="font-mono text-[12px] text-dim">
                             등록됨
                           </span>
                         ) : (
@@ -229,7 +229,7 @@ export function ReleaseManager({
                               type="button"
                               onClick={() => add(rel, a, true)}
                               disabled={pending}
-                              className="border border-amber bg-amber px-3 py-[6px] font-mono text-[11px] font-semibold tracking-btn text-on-amber transition-colors hover:bg-amber-hi disabled:opacity-50"
+                              className="border border-amber bg-amber px-3 py-[6px] font-mono text-[12px] font-semibold tracking-btn text-on-amber transition-colors hover:bg-amber-hi disabled:opacity-50"
                             >
                               최신으로 등록
                             </button>
@@ -237,7 +237,7 @@ export function ReleaseManager({
                               type="button"
                               onClick={() => add(rel, a, false)}
                               disabled={pending}
-                              className="border border-edge px-3 py-[6px] font-mono text-[11px] tracking-btn text-mute transition-colors hover:border-ink hover:text-ink disabled:opacity-50"
+                              className="border border-edge px-3 py-[6px] font-mono text-[12px] tracking-btn text-mute transition-colors hover:border-ink hover:text-ink disabled:opacity-50"
                             >
                               지난 버전으로
                             </button>

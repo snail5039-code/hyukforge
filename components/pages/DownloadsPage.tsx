@@ -48,7 +48,7 @@ export async function DownloadsPage({ products }: { products: Product[] }) {
                 {heads.map((h, i) => (
                   <th
                     key={i}
-                    className="border-b border-edge px-3 py-[10px] text-left font-mono text-[10px] font-normal uppercase tracking-label text-dim"
+                    className="border-b border-edge px-3 py-[10px] text-left font-mono text-[11px] font-normal uppercase tracking-label text-dim"
                   >
                     {h}
                   </th>
@@ -90,7 +90,7 @@ export async function DownloadsPage({ products }: { products: Product[] }) {
                         next-intl 의 Link 를 쓰면 /ko/api/... 가 되어 404 다. */}
                     <a
                       href={`/api/download/${p.latest!.id}`}
-                      className="whitespace-nowrap font-mono text-[11px] text-amber hover:underline"
+                      className="whitespace-nowrap font-mono text-[12px] text-amber hover:underline"
                     >
                       {t("product.download")} ↓
                     </a>

@@ -98,7 +98,7 @@ function FilterLink({
   return (
     <Link
       href={href}
-      className={`border px-[15px] py-2 font-mono text-[11px] tracking-tag transition-colors ${
+      className={`border px-[15px] py-2 font-mono text-[12px] tracking-tag transition-colors ${
         on ? "border-edge text-ink" : "border-transparent text-dim hover:text-ink"
       }`}
       style={on && color ? { color: `var(${color})`, borderColor: `var(${color})` } : undefined}

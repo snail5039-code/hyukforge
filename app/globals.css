@@ -14,12 +14,16 @@
   --color-bg: #060606;
   --color-panel: #0b0b0a;
   --color-ink: #edeae4; /* 순백이 아니라 살짝 따뜻하게 */
-  --color-mute: #8a857d;
-  --color-dim: #5b574f;
+  /* 보조 글자. 바탕 대비 mute 8.0:1, dim 5.0:1 — 둘 다 WCAG AA 를 넘긴다.
+     예전 값(#8a857d / #5b574f)은 dim 이 2.8:1 이라 라벨이 사실상 안 보였다.
+     작은 모노 글자에 넓은 자간까지 겹치면 더 불리하다. */
+  --color-mute: #a8a29a;
+  --color-dim: #837e75;
 
-  /* 선 */
-  --color-line: #1e1c19;
-  --color-edge: #2a2723; /* 강한 테두리 */
+  /* 선 — 장식용 실선이라 글자 기준(AA)을 적용하지 않는다.
+     다만 예전 값은 거의 보이지 않아 구조가 읽히지 않았다. 한 단계씩 올렸다. */
+  --color-line: #2a2723;
+  --color-edge: #3b3630; /* 강한 테두리 */
 
   /* 유일한 강조색 — 로고 앰버에서 뽑았다 (scripts/brand.mjs analyze).
      중앙값 #E29B2E, 밝은쪽 #EEA430. bg 대비 8.4:1로 본문 크기에도 안전. */
@@ -43,9 +47,9 @@
     Consolas, monospace;
 
   /* 반복되는 크기 */
-  --text-label: 0.656rem; /* 10.5px — mono 대문자 라벨 */
-  --text-data: 0.719rem; /* 11.5px — 버전·용량·날짜 */
-  --text-tag: 0.625rem; /* 10px  — 분류 태그 */
+  --text-label: 0.6875rem; /* 11px — mono 대문자 라벨 */
+  --text-data: 0.75rem; /* 12px — 버전·용량·날짜 */
+  --text-tag: 0.6875rem; /* 11px — 분류 태그 */
 
   --tracking-label: 0.14em;
   --tracking-tag: 0.1em;

@@ -73,7 +73,7 @@ export function ProductPreview({
               role="tab"
               aria-selected={tab === x.key}
               onClick={() => setTab(x.key)}
-              className={`border px-[15px] py-2 font-mono text-[11px] tracking-tag transition-colors ${
+              className={`border px-[15px] py-2 font-mono text-[12px] tracking-tag transition-colors ${
                 tab === x.key
                   ? "border-amber text-amber"
                   : "border-transparent text-dim hover:text-ink"
@@ -147,7 +147,7 @@ export function ProductPreview({
 
       {tab === "demo" && demoUrl && (
         <div>
-          <p className="mb-3 border-l border-edge pl-3 text-[12.5px] text-dim">
+          <p className="mb-3 border-l border-edge pl-3 text-[13px] text-dim">
             {t("demoNote")}
           </p>
           <div className="border border-edge bg-panel">
@@ -166,7 +166,7 @@ export function ProductPreview({
               href={demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[11px] text-amber hover:underline"
+              className="font-mono text-[12px] text-amber hover:underline"
             >
               {t("openInNewTab")} ↗
             </a>

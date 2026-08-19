@@ -8,7 +8,7 @@ export async function NoticeDetail({ notice: n }: { notice: Notice }) {
 
   return (
     <main className="mx-auto max-w-page px-gutter pb-10">
-      <nav className="flex items-center gap-2 pb-6 pt-[52px] font-mono text-[11px] text-dim">
+      <nav className="flex items-center gap-2 pb-6 pt-[52px] font-mono text-[12px] text-dim">
         <Link href="/notices" className="transition-colors hover:text-amber">
           {t("section.notices")}
         </Link>
@@ -45,7 +45,7 @@ export async function NoticeDetail({ notice: n }: { notice: Notice }) {
       <p className="mt-12 border-t border-line pt-6">
         <Link
           href="/notices"
-          className="font-mono text-[11px] text-dim transition-colors hover:text-amber"
+          className="font-mono text-[12px] text-dim transition-colors hover:text-amber"
         >
           ← {t("notice.backToList")}
         </Link>

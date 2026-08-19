@@ -25,7 +25,7 @@ export async function LoginPage() {
           </Suspense>
         </div>
 
-        <p className="mt-6 border-l border-edge pl-3 text-[12.5px] text-dim">
+        <p className="mt-6 border-l border-edge pl-3 text-[13px] text-dim">
           {t("auth.noPassword")}
         </p>
       </div>

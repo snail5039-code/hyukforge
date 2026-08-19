@@ -32,7 +32,7 @@ export function AuthButton() {
   }, []);
 
   const cls =
-    "border px-[14px] py-[7px] font-mono text-[11px] tracking-tag transition-colors";
+    "border px-[14px] py-[7px] font-mono text-[12px] tracking-tag transition-colors";
 
   // 확인이 끝나기 전에는 자리만 잡아둔다. 로그인 버튼이 번쩍 나타났다
   // 사라지는 것보다 낫다.
@@ -71,7 +71,7 @@ export function AuthButton() {
         <input type="hidden" name="locale" value={locale} />
         <button
           type="submit"
-          className="font-mono text-[11px] tracking-tag text-dim transition-colors hover:text-ink"
+          className="font-mono text-[12px] tracking-tag text-dim transition-colors hover:text-ink"
         >
           {t("auth.signOut")}
         </button>

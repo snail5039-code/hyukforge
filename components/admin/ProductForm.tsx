@@ -98,7 +98,7 @@ export function ProductForm({
           {d.id ? "제품 수정" : "새 제품"}
         </h2>
         <span className="-translate-y-[3px] min-w-10 flex-1 border-t border-line" />
-        <span className="font-mono text-[11px] text-dim">
+        <span className="font-mono text-[12px] text-dim">
           번역 {filled}/{locales.length}
         </span>
       </div>
@@ -309,7 +309,7 @@ export function ProductForm({
                 key={l}
                 type="button"
                 onClick={() => setTab(l)}
-                className={`border px-3 py-2 font-mono text-[11px] tracking-tag transition-colors ${
+                className={`border px-3 py-2 font-mono text-[12px] tracking-tag transition-colors ${
                   tab === l
                     ? "border-amber text-amber"
                     : has
@@ -390,7 +390,7 @@ export function ProductForm({
             href={`/${locale}/products/${d.slug}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-auto font-mono text-[11px] text-dim transition-colors hover:text-amber"
+            className="ml-auto font-mono text-[12px] text-dim transition-colors hover:text-amber"
           >
             공개 화면 보기 ↗
           </a>

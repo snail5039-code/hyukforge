@@ -59,7 +59,7 @@ export default async function AdminLayout({
             </Link>
           ))}
         </nav>
-        <span className="ml-auto font-mono text-[11px] text-dim">
+        <span className="ml-auto font-mono text-[12px] text-dim">
           {user.email}
         </span>
       </header>

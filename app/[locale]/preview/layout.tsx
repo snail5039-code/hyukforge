@@ -37,12 +37,12 @@ export default function PreviewLayout({
             <Link
               key={path}
               href={`/preview${path}`}
-              className="font-mono text-[11px] text-dim transition-colors hover:text-ink"
+              className="font-mono text-[12px] text-dim transition-colors hover:text-ink"
             >
               {label}
             </Link>
           ))}
-          <span className="ml-auto font-mono text-[10px] text-dim">
+          <span className="ml-auto font-mono text-[11px] text-dim">
             예시 데이터 · DB에 없음
           </span>
         </div>

@@ -30,7 +30,7 @@ export async function Hero() {
           <Btn href="/changelog">{t("home.ctaChangelog")}</Btn>
         </div>
 
-        <p className="mt-5 border-l border-edge pl-3 text-[12.5px] text-dim">
+        <p className="mt-5 border-l border-edge pl-3 text-[13px] text-dim">
           {t("home.privacyNote")}
         </p>
       </div>
@@ -70,7 +70,7 @@ function HeroWindow() {
             (label, i) => (
               <span
                 key={label}
-                className={`block border-l-2 px-[14px] py-[6px] font-mono text-[11px] ${
+                className={`block border-l-2 px-[14px] py-[6px] font-mono text-[12px] ${
                   i === 0
                     ? "border-l-amber bg-[#141210] text-amber"
                     : "border-l-transparent text-mute"
@@ -83,7 +83,7 @@ function HeroWindow() {
         </div>
 
         <div>
-          <table className="w-full border-collapse font-mono text-[11px]">
+          <table className="w-full border-collapse font-mono text-[12px]">
             <thead>
               <tr>
                 {["이름", "분류 결과", "크기"].map((h) => (

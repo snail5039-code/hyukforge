@@ -30,7 +30,7 @@ export async function ProductDetail({
   return (
     <main className="mx-auto max-w-page px-gutter pb-10">
       {/* 어디에 있는지 — 목록으로 돌아가는 길을 항상 열어둔다 */}
-      <nav className="flex items-center gap-2 pb-6 pt-[52px] font-mono text-[11px] text-dim">
+      <nav className="flex items-center gap-2 pb-6 pt-[52px] font-mono text-[12px] text-dim">
         <Link href="/products" className="transition-colors hover:text-amber">
           {t("section.products")}
         </Link>
@@ -91,7 +91,7 @@ export async function ProductDetail({
           </div>
 
           {canDownload && (
-            <p className="mt-4 text-[12.5px] text-dim">
+            <p className="mt-4 text-[13px] text-dim">
               {t("product.loginRequired")}
             </p>
           )}

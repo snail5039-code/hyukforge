@@ -41,7 +41,7 @@ export function SectionLink({
   return (
     <Link
       href={href}
-      className="font-mono text-[11px] text-dim transition-colors hover:text-amber"
+      className="font-mono text-[12px] text-dim transition-colors hover:text-amber"
     >
       {children} →
     </Link>

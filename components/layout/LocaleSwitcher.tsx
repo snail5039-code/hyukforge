@@ -31,7 +31,7 @@ export function LocaleSwitcher() {
         aria-expanded={open}
         aria-haspopup="listbox"
         disabled={pending}
-        className="border border-transparent px-2 py-[6px] font-mono text-[11px] tracking-tag text-dim transition-colors hover:text-ink disabled:opacity-50"
+        className="border border-transparent px-2 py-[6px] font-mono text-[12px] tracking-tag text-dim transition-colors hover:text-ink disabled:opacity-50"
       >
         {localeNames[active as keyof typeof localeNames] ?? active}
         <span className="ml-2 text-[8px]">▼</span>
@@ -58,7 +58,7 @@ export function LocaleSwitcher() {
                   role="option"
                   aria-selected={l === active}
                   onClick={() => go(l)}
-                  className={`flex w-full items-baseline justify-between gap-4 px-3 py-2 text-left font-mono text-[11px] transition-colors hover:bg-panel hover:text-ink ${
+                  className={`flex w-full items-baseline justify-between gap-4 px-3 py-2 text-left font-mono text-[12px] transition-colors hover:bg-panel hover:text-ink ${
                     l === active ? "text-amber" : "text-mute"
                   }`}
                 >

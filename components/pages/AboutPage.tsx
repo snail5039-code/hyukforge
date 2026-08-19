@@ -62,7 +62,7 @@ export async function AboutPage({
                 className="flex justify-between gap-4 border-b border-line py-[10px] text-[13.5px] last:border-b-0"
               >
                 <span className="text-ink">{w.name}</span>
-                <span className="font-mono text-[11px] text-dim">{w.note}</span>
+                <span className="font-mono text-[12px] text-dim">{w.note}</span>
               </div>
             ))}
           </div>

@@ -22,7 +22,7 @@ export default async function AdminProducts() {
         <span className="-translate-y-[3px] flex-1 border-t border-line" />
         <Link
           href="/admin/products/new"
-          className="border border-amber bg-amber px-4 py-[9px] font-mono text-[11px] font-semibold tracking-btn text-on-amber transition-colors hover:bg-amber-hi"
+          className="border border-amber bg-amber px-4 py-[9px] font-mono text-[12px] font-semibold tracking-btn text-on-amber transition-colors hover:bg-amber-hi"
         >
           + 새 제품
         </Link>
@@ -41,7 +41,7 @@ export default async function AdminProducts() {
                   (h, i) => (
                     <th
                       key={i}
-                      className="border-b border-edge px-3 py-[10px] text-left font-mono text-[10px] font-normal uppercase tracking-label text-dim"
+                      className="border-b border-edge px-3 py-[10px] text-left font-mono text-[11px] font-normal uppercase tracking-label text-dim"
                     >
                       {h}
                     </th>
@@ -55,7 +55,7 @@ export default async function AdminProducts() {
                   <td className="border-b border-line px-3 py-[13px] transition-colors group-hover:bg-panel">
                     <Link href={`/admin/products/${p.id}`} className="block">
                       <b className="text-[14.5px] font-semibold">{p.name}</b>
-                      <small className="block font-mono text-[11px] text-dim">
+                      <small className="block font-mono text-[12px] text-dim">
                         {p.slug}
                       </small>
                     </Link>
@@ -78,7 +78,7 @@ export default async function AdminProducts() {
                       {p.filled}/{p.total}
                     </span>
                     {p.reviewed > 0 && (
-                      <span className="ml-2 font-mono text-[10px] text-dim">
+                      <span className="ml-2 font-mono text-[11px] text-dim">
                         검수 {p.reviewed}
                       </span>
                     )}
@@ -95,7 +95,7 @@ export default async function AdminProducts() {
                   <td className="border-b border-line px-3 py-[13px] text-right transition-colors group-hover:bg-panel">
                     <Link
                       href={`/admin/products/${p.id}`}
-                      className="whitespace-nowrap font-mono text-[11px] text-amber hover:underline"
+                      className="whitespace-nowrap font-mono text-[12px] text-amber hover:underline"
                     >
                       수정
                     </Link>

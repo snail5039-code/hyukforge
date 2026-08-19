@@ -63,7 +63,7 @@ export function AdminLink({
     <AdminOnly>
       <a
         href={href}
-        className="border border-dashed border-amber px-3 py-[6px] font-mono text-[11px] tracking-tag text-amber transition-colors hover:bg-amber hover:text-on-amber"
+        className="border border-dashed border-amber px-3 py-[6px] font-mono text-[12px] tracking-tag text-amber transition-colors hover:bg-amber hover:text-on-amber"
       >
         {children}
       </a>

@@ -38,7 +38,7 @@ export async function ProductTable({ products }: { products: Product[] }) {
             {heads.map((h, i) => (
               <th
                 key={i}
-                className="border-b border-edge px-3 py-[10px] text-left font-mono text-[10px] font-normal uppercase tracking-label text-dim"
+                className="border-b border-edge px-3 py-[10px] text-left font-mono text-[11px] font-normal uppercase tracking-label text-dim"
               >
                 {h}
               </th>
@@ -94,7 +94,7 @@ export async function ProductTable({ products }: { products: Product[] }) {
 
 async function DownloadCell({ product: p }: { product: Product }) {
   const t = await getTranslations();
-  const cls = "whitespace-nowrap font-mono text-[11px]";
+  const cls = "whitespace-nowrap font-mono text-[12px]";
 
   // 웹앱은 받는 게 아니라 여는 것이다. 다운로드 기록을 남기지 않는다.
   if (p.kind === "webapp" && p.externalUrl) {
