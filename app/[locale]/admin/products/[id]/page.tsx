@@ -1,7 +1,13 @@
 import { notFound } from "next/navigation";
 import { ProductForm } from "@/components/admin/ProductForm";
 import { ReleaseManager } from "@/components/admin/ReleaseManager";
-import { getProductDraft, listCategories, listReleases } from "@/lib/queries/admin";
+import { ImageManager } from "@/components/admin/ImageManager";
+import {
+  getProductDraft,
+  listCategories,
+  listProductImages,
+  listReleases,
+} from "@/lib/queries/admin";
 
 export default async function EditProduct({
   params,
@@ -10,10 +16,11 @@ export default async function EditProduct({
 }) {
   const { locale, id } = await params;
 
-  const [draft, categories, releases] = await Promise.all([
+  const [draft, categories, releases, images] = await Promise.all([
     getProductDraft(id),
     listCategories(),
     listReleases(id),
+    listProductImages(id),
   ]);
 
   if (!draft) notFound();
@@ -21,6 +28,8 @@ export default async function EditProduct({
   return (
     <>
       <ProductForm initial={draft} categories={categories} locale={locale} />
+
+      <ImageManager productId={id} slug={draft.slug} images={images} />
       {/* 웹앱은 받을 파일이 없다 — 주소를 여는 것이라 릴리스가 필요 없다 */}
       {draft.kind !== "webapp" && (
         <ReleaseManager

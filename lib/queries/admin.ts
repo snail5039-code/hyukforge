@@ -267,3 +267,29 @@ export async function listReleases(productId: string): Promise<AdminRelease[]> {
     releasedAt: String(r.released_at),
   }));
 }
+
+/** 제품 수정 화면의 스크린샷 목록. 관리자라 초안 제품의 것도 보인다. */
+export async function listProductImages(productId: string): Promise<
+  { id: string; path: string; altKo: string | null; altEn: string | null }[]
+> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("product_images")
+    .select("id, storage_path, alt_ko, alt_en")
+    .eq("product_id", productId)
+    .order("sort_order");
+
+  if (error) throw error;
+
+  return (data as unknown as {
+    id: string;
+    storage_path: string;
+    alt_ko: string | null;
+    alt_en: string | null;
+  }[]).map((r) => ({
+    id: r.id,
+    path: r.storage_path,
+    altKo: r.alt_ko,
+    altEn: r.alt_en,
+  }));
+}
