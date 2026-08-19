@@ -33,20 +33,3 @@ export const PRIVATE_PATHS = [
   // 디자인 확인용 목업이다. 실제 내용이 아니라 색인되면 안 된다.
   "/preview",
 ] as const;
-
-/**
- * 서버가 자기 자신을 부를 때 쓰는 origin.
- *
- * siteUrl() 과 다르다. 저건 검색엔진에 보여줄 정식 주소라 로컬에서도
- * 프로덕션 주소를 준다. 그 주소로 자기 파일을 받으러 가면 로컬 개발 중에는
- * 아직 배포되지 않은 파일을 받으려다 404 HTML 을 받는다.
- * (OG 폰트를 그렇게 받으려다 "Unsupported OpenType signature <!DO" 를 봤다)
- *
- * 여기서는 지금 돌고 있는 서버의 주소가 필요하다.
- */
-export function selfOrigin(): string {
-  // Vercel 이 배포마다 넣어준다. 미리보기 배포에서도 자기 주소가 맞다.
-  const vercel = process.env.VERCEL_URL?.trim();
-  if (vercel) return `https://${vercel}`;
-  return `http://localhost:${process.env.PORT ?? 3000}`;
-}
