@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { JetBrains_Mono } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { routing } from "@/i18n/routing";
+import { routing, locales } from "@/i18n/routing";
+import { siteUrl } from "@/lib/site";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import "../globals.css";
@@ -31,9 +32,30 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
 
+  const base = siteUrl();
+
   return {
+    // 상대 주소로 적은 OG·canonical 을 절대 주소로 펼치는 기준이다.
+    // 없으면 Next 가 경고를 내고 localhost 로 붙는다.
+    metadataBase: new URL(base),
     title: { default: t("title"), template: `%s · ${t("title")}` },
     description: t("description"),
+    alternates: {
+      canonical: `${base}/${locale}`,
+      // 같은 문서의 번역본끼리 서로를 가리키게 한다 (sitemap 과 같은 규칙)
+      languages: {
+        ...Object.fromEntries(locales.map((l) => [l, `${base}/${l}`])),
+        "x-default": `${base}/${routing.defaultLocale}`,
+      },
+    },
+    openGraph: {
+      type: "website",
+      siteName: t("title"),
+      locale,
+      url: `${base}/${locale}`,
+      title: t("title"),
+      description: t("description"),
+    },
   };
 }
 
