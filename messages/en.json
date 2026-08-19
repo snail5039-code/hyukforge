@@ -117,12 +117,13 @@
   },
   "legal": {
     "pending": "Not written yet",
-    "pendingBody": "I haven't written this yet. It will be up before accounts open.",
-    "certainHeading": "What I can say for certain in the meantime",
     "point1": "Your account is used only for download history and update notices.",
     "point2": "No passwords. Only Google sign-in and email links.",
     "point3": "No marketing email, and nothing is passed to third parties.",
-    "point4": "Everything here is free. No payment details are collected."
+    "point4": "Everything here is free. No payment details are collected.",
+    "summary": "In short",
+    "effective": "Effective",
+    "authoritative": "The Korean version governs. Other languages are provided for convenience."
   },
   "board": {
     "free": "Open board",

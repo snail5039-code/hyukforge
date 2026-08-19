@@ -117,12 +117,13 @@
   },
   "legal": {
     "pending": "Pas encore rédigé",
-    "pendingBody": "Je ne l’ai pas encore écrit. Ce sera en ligne avant l’ouverture des comptes.",
-    "certainHeading": "En attendant, ce qui est certain",
     "point1": "Le compte sert uniquement à l’historique des téléchargements et aux avis de mise à jour.",
     "point2": "Pas de mot de passe. Uniquement Google et les liens par courriel.",
     "point3": "Aucun courriel publicitaire, et rien n’est transmis à des tiers.",
-    "point4": "Tout ici est gratuit. Aucune donnée de paiement n’est collectée."
+    "point4": "Tout ici est gratuit. Aucune donnée de paiement n’est collectée.",
+    "summary": "En bref",
+    "effective": "En vigueur depuis",
+    "authoritative": "La version coréenne fait foi. Les autres langues sont fournies à titre indicatif."
   },
   "board": {
     "free": "Forum libre",

@@ -1,78 +1,112 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Label } from "@/components/ui";
+import {
+  AUTHORITATIVE_LOCALE,
+  LEGAL_DOCS,
+  getLegalDoc,
+  isLegalDoc,
+} from "@/lib/legal";
 
 /**
  * 개인정보처리방침 · 이용약관.
  *
- * 아직 '초안'이 아니라 '없는 상태'다. 법적 효력이 있는 문서라
- * 그럴듯한 문장으로 채워두는 건 오히려 위험하다.
- * 대신 지금 확실히 말할 수 있는 것만 적고, 준비 중임을 밝힌다.
+ * 본문은 lib/legal.ts 에 있다. 화면 문구가 아니라 문서라서
+ * messages/*.json 에 넣지 않았다 — 이유는 그 파일 주석에 적어뒀다.
  *
- * 회원 가입을 받기 시작하는 순간부터 개인정보처리방침은 법적으로 요구된다.
- * 공개 전에 반드시 채워야 한다.
+ * 위에 요약을 먼저 놓는다. 아무도 안 읽는 문서를 놓고 "동의한 것으로 본다"고
+ * 하는 대신, 중요한 네 가지는 먼저 눈에 들어오게 한다.
  */
+export const revalidate = 3600;
 
-const DOCS = ["privacy", "terms"] as const;
-type Doc = (typeof DOCS)[number];
+type Params = { locale: string; doc: string };
 
 export function generateStaticParams() {
-  return DOCS.map((doc) => ({ doc }));
+  return LEGAL_DOCS.map((doc) => ({ doc }));
 }
 
-export default async function LegalPage({
+export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string; doc: string }>;
-}) {
+  params: Promise<Params>;
+}): Promise<Metadata> {
   const { locale, doc } = await params;
-  if (!DOCS.includes(doc as Doc)) notFound();
+  if (!isLegalDoc(doc)) return {};
+  return { title: getLegalDoc(doc, locale).title };
+}
+
+export default async function LegalPage({ params }: { params: Promise<Params> }) {
+  const { locale, doc } = await params;
+  if (!isLegalDoc(doc)) notFound();
 
   setRequestLocale(locale);
   const t = await getTranslations();
+  const document = getLegalDoc(doc, locale);
 
-  const title = doc === "privacy" ? t("footer.privacy") : t("footer.terms");
-  const points = [
-    t("legal.point1"),
-    t("legal.point2"),
-    t("legal.point3"),
-    t("legal.point4"),
-  ];
+  const summary = [t("legal.point1"), t("legal.point2"), t("legal.point3"), t("legal.point4")];
 
   return (
-    <main className="mx-auto max-w-page px-gutter pb-10">
+    <main className="mx-auto max-w-page px-gutter pb-16">
       <header className="border-b border-line pb-7 pt-[68px]">
-        <h1 className="text-[28px] font-bold tracking-[-0.02em]">{title}</h1>
+        <h1 className="text-[28px] font-bold tracking-[-0.02em]">
+          {document.title}
+        </h1>
+        <p className="mt-3 font-mono text-[12px] text-dim">
+          {t("legal.effective")} {document.effective}
+        </p>
       </header>
 
-      <div className="max-w-[62ch] pt-9">
-        <div className="border border-edge px-5 py-4">
-          <Label>{t("legal.pending")}</Label>
-          <p className="mt-2 text-[14px] text-mute">{t("legal.pendingBody")}</p>
-        </div>
+      <div className="max-w-[68ch] pt-9">
+        {/* 기준본이 아닌 언어로 보고 있으면 그 사실을 먼저 알린다 */}
+        {locale !== AUTHORITATIVE_LOCALE && (
+          <p className="mb-8 border border-edge px-5 py-4 text-[13.5px] text-mute">
+            {t("legal.authoritative")}
+          </p>
+        )}
 
-        <section className="pt-9">
-          <h2 className="text-[15px] font-semibold">
-            {t("legal.certainHeading")}
-          </h2>
-          <ul className="mt-4 space-y-3 text-[14.5px] text-mute">
-            {points.map((p) => (
-              <li key={p} className="border-l border-edge pl-3">
-                {p}
+        <section className="border border-edge px-5 py-5">
+          <Label>{t("legal.summary")}</Label>
+          <ul className="mt-3 space-y-2 text-[14px] text-mute">
+            {summary.map((s) => (
+              <li key={s} className="border-l border-edge pl-3">
+                {s}
               </li>
             ))}
           </ul>
-
-          <p className="mt-8 text-[13px] text-dim">
-            {t("footer.contact")} ·{" "}
-            <a
-              href="mailto:snail5039@gmail.com"
-              className="font-mono text-amber hover:underline"
-            >
-              snail5039@gmail.com
-            </a>
-          </p>
         </section>
+
+        {document.sections.map((s) => (
+          <section key={s.heading} className="pt-10">
+            <h2 className="text-[16px] font-semibold">{s.heading}</h2>
+            <div className="mt-3 space-y-[10px]">
+              {s.body.map((line, i) =>
+                line.startsWith("· ") ? (
+                  <p
+                    key={i}
+                    className="border-l border-edge pl-3 text-[14.5px] leading-[1.75] text-mute"
+                  >
+                    {line.slice(2)}
+                  </p>
+                ) : (
+                  <p key={i} className="text-[14.5px] leading-[1.75] text-mute">
+                    {line}
+                  </p>
+                ),
+              )}
+            </div>
+          </section>
+        ))}
+
+        <p className="mt-12 border-t border-line pt-6 text-[13px] text-dim">
+          {t("footer.contact")} ·{" "}
+          <a
+            href="mailto:snail5039@gmail.com"
+            className="font-mono text-amber hover:underline"
+          >
+            snail5039@gmail.com
+          </a>
+        </p>
       </div>
     </main>
   );

@@ -117,12 +117,13 @@
   },
   "legal": {
     "pending": "Noch nicht geschrieben",
-    "pendingBody": "Ich habe das noch nicht geschrieben. Es kommt, bevor Konten möglich sind.",
-    "certainHeading": "Bis dahin, was sicher ist",
     "point1": "Das Konto dient nur dem Download-Verlauf und Update-Hinweisen.",
     "point2": "Keine Passwörter. Nur Google-Anmeldung und E-Mail-Links.",
     "point3": "Keine Werbe-E-Mails, und nichts geht an Dritte.",
-    "point4": "Alles hier ist kostenlos. Es werden keine Zahlungsdaten erhoben."
+    "point4": "Alles hier ist kostenlos. Es werden keine Zahlungsdaten erhoben.",
+    "summary": "Kurz gefasst",
+    "effective": "Gültig ab",
+    "authoritative": "Maßgeblich ist die koreanische Fassung. Andere Sprachen dienen dem Verständnis."
   },
   "board": {
     "free": "Offenes Forum",

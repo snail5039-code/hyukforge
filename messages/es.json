@@ -117,12 +117,13 @@
   },
   "legal": {
     "pending": "Sin redactar",
-    "pendingBody": "Todavía no lo he escrito. Estará antes de abrir las cuentas.",
-    "certainHeading": "Mientras tanto, lo que sí puedo afirmar",
     "point1": "La cuenta solo se usa para el historial de descargas y los avisos de actualización.",
     "point2": "Sin contraseñas. Solo inicio con Google y enlaces por correo.",
     "point3": "Sin correos publicitarios, y nada se cede a terceros.",
-    "point4": "Todo aquí es gratis. No se recogen datos de pago."
+    "point4": "Todo aquí es gratis. No se recogen datos de pago.",
+    "summary": "En resumen",
+    "effective": "Vigente desde",
+    "authoritative": "La versión en coreano es la que rige. Los demás idiomas son traducciones de cortesía."
   },
   "board": {
     "free": "Foro abierto",
