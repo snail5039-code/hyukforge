@@ -19,7 +19,7 @@
     "lead": "Faço sozinho e conserto sozinho. Ferramentas de trabalho, jogos pequenos, utilitários variados. Tudo aqui é gratuito. Se você avisar de um erro, geralmente publico a correção em poucos dias.",
     "ctaProducts": "Ver produtos",
     "ctaChangelog": "Registro de mudanças",
-    "privacyNote": "A conta serve apenas para o histórico de downloads e avisos de atualização. Sem e-mails de marketing.",
+    "privacyNote": "A conta serve apenas para o histórico de downloads. Sem e-mails de marketing.",
     "featured": "Mais baixado desta semana",
     "wip": "No que estou trabalhando"
   },
@@ -117,7 +117,7 @@
   },
   "legal": {
     "pending": "Ainda não escrito",
-    "point1": "A conta serve apenas para o histórico de downloads e avisos de atualização.",
+    "point1": "A conta serve apenas para o histórico de downloads.",
     "point2": "Sem senhas. Só login com Google e links por e-mail.",
     "point3": "Sem e-mails de marketing, e nada é passado a terceiros.",
     "point4": "Tudo aqui é gratuito. Nenhum dado de pagamento é coletado.",

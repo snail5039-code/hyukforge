@@ -19,7 +19,7 @@
     "lead": "Je les fabrique seul et je les répare seul. Outils de bureau, petits jeux, utilitaires divers. Tout ici est gratuit. Si vous me signalez un bogue, je publie généralement le correctif en quelques jours.",
     "ctaProducts": "Voir les produits",
     "ctaChangelog": "Journal des modifications",
-    "privacyNote": "Le compte sert uniquement à l'historique des téléchargements et aux avis de mise à jour. Aucun courriel publicitaire.",
+    "privacyNote": "Le compte sert uniquement à l'historique des téléchargements. Aucun courriel publicitaire.",
     "featured": "Le plus téléchargé cette semaine",
     "wip": "Ce sur quoi je travaille"
   },
@@ -117,7 +117,7 @@
   },
   "legal": {
     "pending": "Pas encore rédigé",
-    "point1": "Le compte sert uniquement à l’historique des téléchargements et aux avis de mise à jour.",
+    "point1": "Le compte sert uniquement à l'historique des téléchargements.",
     "point2": "Pas de mot de passe. Uniquement Google et les liens par courriel.",
     "point3": "Aucun courriel publicitaire, et rien n’est transmis à des tiers.",
     "point4": "Tout ici est gratuit. Aucune donnée de paiement n’est collectée.",

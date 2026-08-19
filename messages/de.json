@@ -19,7 +19,7 @@
     "lead": "Allein gebaut, allein repariert. Werkzeuge fürs Büro, kleine Spiele, allerlei Hilfsprogramme. Alles hier ist kostenlos. Wer mir einen Fehler meldet, bekommt die Korrektur meist innerhalb weniger Tage.",
     "ctaProducts": "Produkte ansehen",
     "ctaChangelog": "Änderungen",
-    "privacyNote": "Das Konto dient nur dem Download-Verlauf und Update-Hinweisen. Keine Werbe-E-Mails.",
+    "privacyNote": "Das Konto dient nur dem Download-Verlauf. Keine Werbe-E-Mails.",
     "featured": "Diese Woche am häufigsten geladen",
     "wip": "Woran ich gerade arbeite"
   },
@@ -117,7 +117,7 @@
   },
   "legal": {
     "pending": "Noch nicht geschrieben",
-    "point1": "Das Konto dient nur dem Download-Verlauf und Update-Hinweisen.",
+    "point1": "Das Konto dient nur dem Download-Verlauf.",
     "point2": "Keine Passwörter. Nur Google-Anmeldung und E-Mail-Links.",
     "point3": "Keine Werbe-E-Mails, und nichts geht an Dritte.",
     "point4": "Alles hier ist kostenlos. Es werden keine Zahlungsdaten erhoben.",

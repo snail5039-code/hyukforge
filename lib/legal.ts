@@ -55,7 +55,6 @@ const PRIVACY_KO: LegalDoc = {
       body: [
         "· 로그인 상태 유지",
         "· 받은 제품 목록을 내 서랍에 보여주기",
-        "· 받은 제품에 새 버전이 올라왔을 때 알리기 (설정에서 끌 수 있습니다)",
         "· 게시판 운영 — 글쓴이 표시, 도배 제동",
         "· 제품별 다운로드 수 집계. 이 숫자는 개인을 식별하지 않는 합계로만 공개됩니다.",
         "광고나 마케팅에 쓰지 않습니다. 프로필을 만들어 분석하지 않습니다.",
@@ -245,7 +244,6 @@ const PRIVACY_EN: LegalDoc = {
       body: [
         "· Keeping you signed in",
         "· Showing what you downloaded, on your shelf",
-        "· Telling you when something you downloaded has a new version (you can turn this off)",
         "· Running the board — showing an author name, slowing down flooding",
         "· Counting downloads per product. Only the aggregate is published; it does not identify anyone.",
         "None of it is used for advertising or marketing, and no profiling is done.",

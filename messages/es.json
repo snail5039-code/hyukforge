@@ -19,7 +19,7 @@
     "lead": "Los hago solo y los arreglo solo. Herramientas de oficina, juegos pequeños, utilidades varias. Todo lo que hay aquí es gratis. Si me avisas de un error, suelo publicar el arreglo en pocos días.",
     "ctaProducts": "Ver productos",
     "ctaChangelog": "Registro de cambios",
-    "privacyNote": "La cuenta solo sirve para el historial de descargas y los avisos de actualización. Nada de correos publicitarios.",
+    "privacyNote": "La cuenta solo sirve para el historial de descargas. Nada de correos publicitarios.",
     "featured": "Lo más descargado esta semana",
     "wip": "En lo que estoy trabajando"
   },
@@ -117,7 +117,7 @@
   },
   "legal": {
     "pending": "Sin redactar",
-    "point1": "La cuenta solo se usa para el historial de descargas y los avisos de actualización.",
+    "point1": "La cuenta solo se usa para el historial de descargas.",
     "point2": "Sin contraseñas. Solo inicio con Google y enlaces por correo.",
     "point3": "Sin correos publicitarios, y nada se cede a terceros.",
     "point4": "Todo aquí es gratis. No se recogen datos de pago.",

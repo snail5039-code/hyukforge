@@ -19,7 +19,7 @@
     "lead": "I build them alone and I fix them alone. Office tools, small games, odd utilities. Everything here is free right now, and if you report a bug I usually ship a fix within a few days.",
     "ctaProducts": "Browse products",
     "ctaChangelog": "Changelog",
-    "privacyNote": "Your account is only used for download history and update notices. No marketing email.",
+    "privacyNote": "Your account is only used for download history. No marketing email.",
     "featured": "Most downloaded this week",
     "wip": "What I'm working on"
   },
@@ -117,7 +117,7 @@
   },
   "legal": {
     "pending": "Not written yet",
-    "point1": "Your account is used only for download history and update notices.",
+    "point1": "Your account is used only for download history.",
     "point2": "No passwords. Only Google sign-in and email links.",
     "point3": "No marketing email, and nothing is passed to third parties.",
     "point4": "Everything here is free. No payment details are collected.",
