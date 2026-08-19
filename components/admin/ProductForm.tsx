@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { locales, localeNames } from "@/i18n/routing";
 import { saveProduct, deleteProduct } from "@/app/[locale]/admin/products/actions";
 import type { ProductDraft } from "@/lib/queries/admin";
+import { Field, Toggle, inputCls } from "./fields";
 
 /**
  * 제품 등록·수정 폼.
@@ -397,53 +398,5 @@ export function ProductForm({
         )}
       </div>
     </div>
-  );
-}
-
-const inputCls =
-  "w-full border border-edge bg-panel px-3 py-[10px] font-mono text-[13px] text-ink placeholder:text-dim focus:border-amber focus:outline-none";
-
-function Field({
-  label,
-  hint,
-  children,
-}: {
-  label: string;
-  hint?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <label className="block">
-      <span className="u-label">{label}</span>
-      <div className="mt-2">{children}</div>
-      {hint && <span className="mt-[6px] block text-[12px] text-dim">{hint}</span>}
-    </label>
-  );
-}
-
-function Toggle({
-  label,
-  hint,
-  checked,
-  onChange,
-}: {
-  label: string;
-  hint?: string;
-  checked: boolean;
-  onChange: (v: boolean) => void;
-}) {
-  return (
-    <label className="block cursor-pointer">
-      <span className="flex items-center gap-2 text-[13.5px] text-ink">
-        <input
-          type="checkbox"
-          checked={checked}
-          onChange={(e) => onChange(e.target.checked)}
-          className="accent-amber"
-        />
-        {label}
-      </span>
-      {hint && <span className="mt-1 block pl-6 text-[12px] text-dim">{hint}</span>}
-    </label>
   );
 }
