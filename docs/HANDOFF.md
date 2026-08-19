@@ -158,6 +158,12 @@ done
 
 같은 실수를 두 번 하지 않기 위해 적어둔다. 자세한 설명은 `docs/ARCHITECTURE.md` 에 있다.
 
+**날짜는 서버 시간대로 찍힌다** — `getFullYear()`·`getMonth()` 류는 실행 환경의 시간대를 쓴다.
+로컬은 KST 라서 맞았는데 Vercel 은 UTC 라, 밤 9시 이후에 올린 것이 배포본에서 하루 앞으로 보였다.
+오늘 올린 공지가 어제 것으로 뜨는 식이다. 로컬에서는 절대 재현되지 않는다.
+`lib/format.ts` 는 `Intl.DateTimeFormat` 에 `timeZone: 'Asia/Seoul'` 을 박아 고정했다.
+날짜를 새로 찍는 코드를 쓸 때는 `shortDate`·`monthDay` 를 쓴다.
+
 **함수 실행 권한** — Postgres 는 함수를 만들 때 `EXECUTE` 를 `PUBLIC` 에 자동으로 준다.
 `revoke ... from anon` 만으로는 아무 효과가 없고 `revoke ... from public` 부터 해야 한다.
 그런데 전부 잠그면 안 된다 — `is_admin()` 은 RLS 정책 자신이 부르므로 `anon` 에게도 권한이 필요하다.
