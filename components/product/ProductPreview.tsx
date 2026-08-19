@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { imageUrl, isUnoptimized } from "@/lib/images";
 
 /**
  * 받기 전에 확인하는 자리.
@@ -14,13 +15,6 @@ import { useTranslations } from "next-intl";
  */
 
 type Img = { path: string; alt: string | null };
-
-/** Storage 경로면 공개 URL로, 이미 전체 주소면 그대로 쓴다. */
-function imageUrl(path: string) {
-  if (/^https?:\/\//.test(path)) return path;
-  const base = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  return `${base}/storage/v1/object/public/product-media/${path}`;
-}
 
 /** YouTube 주소는 임베드 형태로 바꾼다. */
 function youtubeEmbed(url: string): string | null {
@@ -94,7 +88,7 @@ export function ProductPreview({
               width={1280}
               height={800}
               className="w-full"
-              unoptimized={!/^https?:\/\//.test(images[shot].path)}
+              unoptimized={isUnoptimized(images[shot].path)}
             />
           </div>
 
@@ -115,7 +109,7 @@ export function ProductPreview({
                     width={168}
                     height={104}
                     className="h-full w-full object-cover"
-                    unoptimized={!/^https?:\/\//.test(img.path)}
+                    unoptimized={isUnoptimized(img.path)}
                   />
                 </button>
               ))}

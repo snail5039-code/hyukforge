@@ -14,6 +14,7 @@ export function AppWindow({
   footLeft,
   footRight,
   src,
+  unoptimized,
   alt,
   children,
 }: {
@@ -21,6 +22,8 @@ export function AppWindow({
   footLeft?: string;
   footRight?: string;
   src?: string;
+  /** Storage 에서 온 이미지면 켠다 (lib/images.ts) */
+  unoptimized?: boolean;
   alt?: string;
   children?: React.ReactNode;
 }) {
@@ -41,6 +44,7 @@ export function AppWindow({
           alt={alt ?? title}
           width={1280}
           height={800}
+          unoptimized={unoptimized}
           className="w-full"
         />
       ) : (

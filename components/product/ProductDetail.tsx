@@ -5,6 +5,7 @@ import { Btn, IconBox, Label, SpecRow, Tag } from "@/components/ui";
 import { ProductPreview } from "./ProductPreview";
 import { AdminLink } from "@/components/admin/AdminOnly";
 import { fileSize, platformLabel, shortDate } from "@/lib/format";
+import { imageUrl, isUnoptimized } from "@/lib/images";
 import type { Product } from "@/lib/queries/products";
 import type { ChangelogEntry } from "@/lib/queries/changelog";
 
@@ -124,7 +125,8 @@ export async function ProductDetail({
             title={p.name}
             footLeft={p.latest ? `v${p.latest.version.replace(/^v/, "")}` : undefined}
             footRight={p.kind === "webapp" ? "Web" : platformLabel(p.platforms)}
-            src={p.images[0] ? p.images[0].path : undefined}
+            src={p.images[0] ? imageUrl(p.images[0].path) : undefined}
+            unoptimized={p.images[0] ? isUnoptimized(p.images[0].path) : undefined}
             alt={p.images[0]?.alt ?? p.name}
           >
             {/* 스크린샷이 아직 없을 때만 이 자리가 쓰인다 */}
