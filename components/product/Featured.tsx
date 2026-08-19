@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Btn, Label, SpecRow } from "@/components/ui";
 import { AppWindow } from "./AppWindow";
 import { fileSize, platformLabel, shortDate } from "@/lib/format";
+import { imageUrl, isUnoptimized } from "@/lib/images";
 import type { Product } from "@/lib/queries/products";
 
 /**
@@ -10,6 +11,9 @@ import type { Product } from "@/lib/queries/products";
  */
 export async function Featured({ product: p }: { product: Product }) {
   const t = await getTranslations();
+  // 상세와 같은 규칙으로 첫 스크린샷을 쓴다. 이걸 안 넘겨서 스크린샷을 올려도
+  // 홈은 계속 "준비 중" 이었다. (lib/images.ts)
+  const shot = p.images[0];
 
   return (
     <article className="mb-[2px] grid border border-edge lg:grid-cols-[minmax(0,58fr)_minmax(0,42fr)]">
@@ -18,8 +22,11 @@ export async function Featured({ product: p }: { product: Product }) {
           title={p.name}
           footLeft={p.latest ? `v${p.latest.version.replace(/^v/, "")}` : undefined}
           footRight={p.platforms.length ? platformLabel(p.platforms) : undefined}
+          src={shot ? imageUrl(shot.path) : undefined}
+          unoptimized={shot ? isUnoptimized(shot.path) : undefined}
+          alt={shot?.alt ?? p.name}
         >
-          {/* 스크린샷이 등록되면 이 자리에 들어간다 */}
+          {/* 스크린샷이 없을 때만 이 자리가 쓰인다 */}
           <div className="grid min-h-[220px] place-items-center px-6 py-10 text-center">
             <span className="u-label">{t("preview.none")}</span>
           </div>
