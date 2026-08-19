@@ -28,6 +28,7 @@ const make = (
   requirements: null,
   demoUrl: null,
   videoUrl: null,
+  repoUrl: null,
   images: [],
   latest: null,
   ...p,
@@ -50,6 +51,7 @@ WebP 변환이 느린 건 알고 있고 다음 버전에서 고칩니다.`,
     requirements: `Windows 10 이상 · 64비트
 메모리 4GB 이상
 설치 공간 60MB`,
+    repoUrl: "https://github.com/snail5039-code/file-organizer",
     latest: {
       id: "r1",
       version: "1.2.0",

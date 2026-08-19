@@ -4,7 +4,7 @@ import { AppWindow } from "./AppWindow";
 import { Btn, IconBox, Label, SpecRow, Tag } from "@/components/ui";
 import { ProductPreview } from "./ProductPreview";
 import { AdminLink } from "@/components/admin/AdminOnly";
-import { fileSize, platformLabel, shortDate } from "@/lib/format";
+import { fileSize, linkLabel, platformLabel, shortDate } from "@/lib/format";
 import { imageUrl, isUnoptimized } from "@/lib/images";
 import type { Product } from "@/lib/queries/products";
 import type { ChangelogEntry } from "@/lib/queries/changelog";
@@ -117,6 +117,19 @@ export async function ProductDetail({
             <SpecRow label={t("product.price")} accent={p.isFree}>
               {p.isFree ? t("product.free") : "—"}
             </SpecRow>
+            {/* 소스가 열려 있으면 사양표에서 바로 저장소로 보낸다 */}
+            {p.repoUrl && (
+              <SpecRow label={t("product.source")}>
+                <a
+                  href={p.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-amber"
+                >
+                  {linkLabel(p.repoUrl)} ↗
+                </a>
+              </SpecRow>
+            )}
           </div>
         </div>
 

@@ -67,3 +67,32 @@ export const categoryVar: Record<string, string> = {
   webapps: "--color-webapp",
   labs: "--color-labs",
 };
+
+/**
+ * 링크로 찍을 주소의 표시용 이름.
+ *
+ * 사양표 한 칸에 들어가야 하니 프로토콜과 github.com 은 떼어낸다.
+ * 남는 것은 'snail5039-code/lastcall' 처럼 저장소 이름 그대로다.
+ */
+export function linkLabel(url: string): string {
+  return url
+    .replace(/^https?:\/\//, "")
+    .replace(/^www\./, "")
+    .replace(/^github\.com\//, "")
+    .replace(/\/$/, "");
+}
+
+/**
+ * 표 한 칸에 들어갈 만큼 짧게 — 어디로 가는지만.
+ *
+ * 목록 표에서는 저장소 이름을 그대로 쓰지 않는다. 계정이 늘 같아서
+ * 'snail5039-code/' 가 줄마다 반복되고, 그만큼 표가 옆으로 늘어난다.
+ * 저장소 이름은 상세 화면 사양표에서 본다.
+ */
+export function repoHost(url: string): string {
+  const host = url
+    .replace(/^https?:\/\//, "")
+    .replace(/^www\./, "")
+    .split("/")[0];
+  return host === "github.com" ? "GitHub" : host;
+}

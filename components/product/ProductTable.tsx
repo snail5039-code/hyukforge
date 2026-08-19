@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { IconBox, Tag } from "@/components/ui";
-import { fileSize, platformLabel, shortDate } from "@/lib/format";
+import { fileSize, platformLabel, repoHost, shortDate } from "@/lib/format";
 import type { Product } from "@/lib/queries/products";
 
 /**
@@ -27,12 +27,13 @@ export async function ProductTable({ products }: { products: Product[] }) {
     t("product.version"),
     t("product.size"),
     t("product.updated"),
+    t("product.source"),
     "",
   ];
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full min-w-[680px] border-collapse">
+      <table className="w-full min-w-[780px] border-collapse">
         <thead>
           <tr>
             {heads.map((h, i) => (
@@ -79,6 +80,21 @@ export async function ProductTable({ products }: { products: Product[] }) {
 
               <td className="u-data border-b border-line px-3 py-[15px] transition-colors group-hover:bg-panel">
                 {shortDate(p.latest?.releasedAt ?? p.publishedAt)}
+              </td>
+
+              <td className="u-data border-b border-line px-3 py-[15px] transition-colors group-hover:bg-panel">
+                {p.repoUrl ? (
+                  <a
+                    href={p.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="whitespace-nowrap text-dim transition-colors hover:text-amber"
+                  >
+                    {repoHost(p.repoUrl)} ↗
+                  </a>
+                ) : (
+                  "—"
+                )}
               </td>
 
               <td className="border-b border-line px-3 py-[15px] text-right transition-colors group-hover:bg-panel">

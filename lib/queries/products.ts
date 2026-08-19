@@ -1,4 +1,5 @@
 import { createPublicClient } from "@/lib/supabase/public";
+import { normalizeRepo } from "@/lib/github";
 import { pickTranslation } from "./translation";
 import { ilikeAny, likeSafe } from "./safe";
 
@@ -41,6 +42,12 @@ export type Product = {
   demoUrl: string | null;
   /** 동작 영상 (YouTube 또는 mp4). */
   videoUrl: string | null;
+  /**
+   * 소스 저장소 주소.
+   * DB 에는 'snail5039-code/lastcall' 처럼 저장하니 여기서 주소로 펴둔다.
+   * GitHub 이 아닌 소스는 source_url 을 그대로 쓴다.
+   */
+  repoUrl: string | null;
   /** 스크린샷. sort_order 순. */
   images: { path: string; alt: string | null }[];
   /** 최신 안정 릴리스. 웹앱이나 아직 배포 전이면 null. */
@@ -51,6 +58,7 @@ export type Product = {
 const SELECT = `
   id, slug, kind, icon_letter, platforms, is_free, external_url,
   download_count, published_at, is_featured, demo_url, video_url,
+  github_repo, source_url,
   categories ( slug ),
   product_images ( storage_path, alt_ko, alt_en, sort_order ),
   product_translations ( locale, name, tagline, description, requirements ),
@@ -70,6 +78,8 @@ type Raw = {
   is_featured: boolean;
   demo_url: string | null;
   video_url: string | null;
+  github_repo: string | null;
+  source_url: string | null;
   categories: { slug: CategorySlug } | null;
   product_images: {
     storage_path: string;
@@ -99,6 +109,8 @@ type Raw = {
 function shape(row: Raw, locale: string): Product {
   const t = pickTranslation(row.product_translations, locale);
   const latest = row.releases?.find((r) => r.is_latest && r.channel === "stable");
+  // 관리 화면에서는 '계정/저장소'와 GitHub 주소를 모두 받는다. 어느 쪽이 들어와도 같은 주소가 나오게.
+  const repo = row.github_repo ? normalizeRepo(row.github_repo) : null;
 
   return {
     id: row.id,
@@ -118,6 +130,7 @@ function shape(row: Raw, locale: string): Product {
     requirements: t?.requirements ?? null,
     demoUrl: row.demo_url,
     videoUrl: row.video_url,
+    repoUrl: repo ? `https://github.com/${repo}` : row.source_url,
     images: (row.product_images ?? [])
       .slice()
       .sort((a, b) => a.sort_order - b.sort_order)

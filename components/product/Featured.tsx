@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Btn, Label, SpecRow } from "@/components/ui";
 import { AppWindow } from "./AppWindow";
-import { fileSize, platformLabel, shortDate } from "@/lib/format";
+import { fileSize, linkLabel, platformLabel, shortDate } from "@/lib/format";
 import { imageUrl, isUnoptimized } from "@/lib/images";
 import type { Product } from "@/lib/queries/products";
 
@@ -68,6 +68,18 @@ export async function Featured({
           <SpecRow label={t("product.price")} accent={p.isFree}>
             {p.isFree ? t("product.free") : "—"}
           </SpecRow>
+          {p.repoUrl && (
+            <SpecRow label={t("product.source")}>
+              <a
+                href={p.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-amber"
+              >
+                {linkLabel(p.repoUrl)} ↗
+              </a>
+            </SpecRow>
+          )}
         </div>
 
         <div className="mt-[30px] flex flex-wrap gap-[10px]">

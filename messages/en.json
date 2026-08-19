@@ -58,6 +58,7 @@
     "platform": "Platform",
     "updated": "Updated",
     "price": "Price",
+    "source": "Source",
     "free": "Free",
     "requirements": "System requirements",
     "comingSoon": "Coming soon",
