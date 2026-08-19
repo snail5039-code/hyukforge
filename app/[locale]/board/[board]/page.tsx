@@ -13,6 +13,7 @@ import { orEmpty } from "@/lib/queries/safe";
 export const dynamic = "force-dynamic";
 
 type Params = { locale: string; board: string };
+type Search = { page?: string };
 
 export async function generateMetadata({
   params,
@@ -25,11 +26,23 @@ export async function generateMetadata({
   return { title: t(`board.${board}`) };
 }
 
-export default async function Board({ params }: { params: Promise<Params> }) {
+export default async function Board({
+  params,
+  searchParams,
+}: {
+  params: Promise<Params>;
+  searchParams: Promise<Search>;
+}) {
   const { locale, board } = await params;
+  const { page } = await searchParams;
   setRequestLocale(locale);
   if (!isBoard(board)) notFound();
 
-  const posts = await listPosts(board).catch(orEmpty([], "board"));
-  return <BoardPage board={board} posts={posts} />;
+  const parsed = Number(page);
+  const wanted = Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : 1;
+
+  const result = await listPosts(board, wanted).catch(
+    orEmpty({ posts: [], total: 0, page: 1, pageCount: 1 }, "board"),
+  );
+  return <BoardPage board={board} result={result} />;
 }

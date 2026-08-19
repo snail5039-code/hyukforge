@@ -23,19 +23,19 @@ const STATE_LABEL: Record<string, string> = {
 export default async function AdminBoards() {
   // 언어 접두사는 i18n/navigation 의 Link 가 붙인다 — locale 을 받을 필요가 없다.
   const lists = await Promise.all(
-    BOARDS.map(async (b) => ({ board: b, posts: await listPosts(b, 100) })),
+    BOARDS.map(async (b) => ({ board: b, ...(await listPosts(b, 1, 200)) })),
   );
 
   return (
     <main className="pt-8">
-      {lists.map(({ board, posts }) => (
+      {lists.map(({ board, posts, total }) => (
         <section key={board} className="mb-12">
           <div className="mb-4 flex items-baseline gap-4">
             <h2 className="text-[19px] font-semibold">
               {board === "free" ? "자유게시판" : "요청 게시판"}
             </h2>
             <span className="-translate-y-[3px] flex-1 border-t border-line" />
-            <span className="u-label">{posts.length}건</span>
+            <span className="u-label">{total}건</span>
           </div>
 
           {posts.length === 0 ? (

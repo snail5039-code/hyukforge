@@ -2,7 +2,8 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Btn, Label } from "@/components/ui";
 import { shortDate } from "@/lib/format";
-import { BOARDS, STATE_KEY, type BoardSlug, type Post } from "@/lib/board";
+import { BOARDS, STATE_KEY, type BoardSlug } from "@/lib/board";
+import type { PostPage } from "@/lib/queries/board";
 
 /**
  * 게시판 목록.
@@ -13,13 +14,14 @@ import { BOARDS, STATE_KEY, type BoardSlug, type Post } from "@/lib/board";
  */
 export async function BoardPage({
   board,
-  posts,
+  result,
 }: {
   board: BoardSlug;
-  posts: Post[];
+  result: PostPage;
 }) {
   const t = await getTranslations();
   const isRequest = board === "request";
+  const { posts, total, page, pageCount } = result;
 
   return (
     <main className="mx-auto max-w-page px-gutter pb-10">
@@ -111,11 +113,52 @@ export async function BoardPage({
         </ul>
       )}
 
+      {pageCount > 1 && (
+        <nav className="flex flex-wrap items-center justify-center gap-[6px] pt-8">
+          {/* 쪽 번호를 다 늘어놓지 않는다. 지금 쪽 둘레와 양 끝만 낸다. */}
+          {pageNumbers(page, pageCount).map((n, i) =>
+            n === null ? (
+              <span key={`gap-${i}`} className="px-2 font-mono text-[12px] text-dim">
+                …
+              </span>
+            ) : (
+              <Link
+                key={n}
+                href={n === 1 ? `/board/${board}` : `/board/${board}?page=${n}`}
+                aria-current={n === page ? "page" : undefined}
+                className={
+                  n === page
+                    ? "border border-amber px-3 py-[6px] font-mono text-[12px] text-amber"
+                    : "border border-edge px-3 py-[6px] font-mono text-[12px] text-mute transition-colors hover:border-ink hover:text-ink"
+                }
+              >
+                {n}
+              </Link>
+            ),
+          )}
+        </nav>
+      )}
+
       <p className="pt-6">
         <Label>
-          {posts.length} · {t(`board.${board}`)}
+          {total} · {t(`board.${board}`)}
         </Label>
       </p>
     </main>
   );
+}
+
+/**
+ * 보여줄 쪽 번호. null 은 생략 표시(…) 자리다.
+ * 쪽이 많아져도 버튼이 줄바꿈으로 쏟아지지 않게 앞뒤 한 칸씩만 낸다.
+ */
+function pageNumbers(page: number, pageCount: number): (number | null)[] {
+  const out: (number | null)[] = [];
+  for (let n = 1; n <= pageCount; n++) {
+    const near = Math.abs(n - page) <= 1;
+    const edge = n === 1 || n === pageCount;
+    if (near || edge) out.push(n);
+    else if (out[out.length - 1] !== null) out.push(null);
+  }
+  return out;
 }

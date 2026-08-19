@@ -87,26 +87,66 @@ async function currentUserId(): Promise<string | null> {
   return user?.id ?? null;
 }
 
-export async function listPosts(board: BoardSlug, limit = 50): Promise<Post[]> {
+export const PAGE_SIZE = 20;
+
+export type PostPage = {
+  posts: Post[];
+  /** RLS 를 통과한 전체 글 수. 마지막 쪽 번호를 알아야 해서 함께 센다. */
+  total: number;
+  page: number;
+  pageCount: number;
+};
+
+/**
+ * 게시판 한 쪽.
+ *
+ * 전에는 limit 50 으로 자르고 끝이었다. 51번째 글부터는 볼 방법이 아예 없었다.
+ * 글이 늘면 조용히 사라지는 종류의 문제라 눈에 띄지 않는다.
+ *
+ * count: "exact" 로 전체 수를 함께 받는다. RLS 가 적용된 뒤의 수라
+ * 숨겨진 남의 글은 세지 않는다.
+ */
+export async function listPosts(
+  board: BoardSlug,
+  page = 1,
+  pageSize = PAGE_SIZE,
+): Promise<PostPage> {
   const supabase = await createClient();
   const me = await currentUserId();
 
+  const current = Math.max(1, Math.floor(page));
+  const from = (current - 1) * pageSize;
+
   // RLS 가 발행된 글 + 내 숨겨진 글만 돌려준다.
   // 요청 게시판은 공감이 많은 것부터 — 그러라고 만든 게시판이다.
-  let q = supabase.from("posts").select(POST_COLUMNS).eq("board", board);
+  let q = supabase
+    .from("posts")
+    .select(POST_COLUMNS, { count: "exact" })
+    .eq("board", board);
   q =
     board === "request"
       ? q.order("is_pinned", { ascending: false }).order("vote_count", { ascending: false })
       : q.order("is_pinned", { ascending: false });
 
-  const { data, error } = await q
+  const { data, error, count } = await q
     .order("created_at", { ascending: false })
-    .limit(limit);
+    // 같은 시각에 들어온 글이 있으면 정렬이 흔들려 한 글이 두 쪽에 나오거나
+    // 어느 쪽에도 안 나온다. id 로 마지막 순서를 못박는다.
+    .order("id", { ascending: false })
+    .range(from, from + pageSize - 1);
 
   if (error) throw error;
-  const rows = data as unknown as RawPost[];
+
+  const rows = (data ?? []) as unknown as RawPost[];
   const names = await nicknamesFor(rows.map((r) => r.author_id));
-  return rows.map((r) => shapePost(r, me, names));
+  const total = count ?? rows.length;
+
+  return {
+    posts: rows.map((r) => shapePost(r, me, names)),
+    total,
+    page: current,
+    pageCount: Math.max(1, Math.ceil(total / pageSize)),
+  };
 }
 
 export async function getPost(id: string): Promise<Post | null> {
