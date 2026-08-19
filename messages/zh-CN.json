@@ -11,7 +11,8 @@
     "shelf": "我的收藏",
     "notices": "公告",
     "board": "论坛",
-    "menu": "菜单"
+    "menu": "菜单",
+    "notifications": "通知"
   },
   "home": {
     "eyebrow": "独立软件工作室 · 2026—",
@@ -177,5 +178,16 @@
     "deleteMismatch": "邮箱地址不一致",
     "deleteFailed": "删除失败。请稍后重试，或发邮件告知。",
     "deleteAsk": "确定要注销账号吗？\n\n账号和全部记录都会被删除，无法恢复。"
+  },
+  "notif": {
+    "title": "通知",
+    "empty": "还没有通知",
+    "markAll": "全部标为已读",
+    "unread": "未读",
+    "commentOnPost": "{actor} 评论了你的帖子",
+    "newPost": "{actor} 发布了新帖子",
+    "newComment": "{actor} 发表了评论",
+    "deleted": "已删除的帖子",
+    "someone": "某人"
   }
 }

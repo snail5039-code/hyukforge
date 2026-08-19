@@ -11,7 +11,8 @@
     "shelf": "Mein Regal",
     "notices": "Hinweise",
     "board": "Forum",
-    "menu": "Menü"
+    "menu": "Menü",
+    "notifications": "Mitteilungen"
   },
   "home": {
     "eyebrow": "Unabhängiges Software-Studio · 2026—",
@@ -177,5 +178,16 @@
     "deleteMismatch": "Diese E-Mail-Adresse stimmt nicht",
     "deleteFailed": "Löschen fehlgeschlagen. Bitte gleich noch einmal versuchen oder mir schreiben.",
     "deleteAsk": "Konto wirklich löschen?\n\nDas Konto und alles darin verschwindet, und das lässt sich nicht rückgängig machen."
+  },
+  "notif": {
+    "title": "Mitteilungen",
+    "empty": "Noch nichts da",
+    "markAll": "Alle als gelesen markieren",
+    "unread": "Ungelesen",
+    "commentOnPost": "{actor} hat deinen Beitrag kommentiert",
+    "newPost": "{actor} hat einen neuen Beitrag geschrieben",
+    "newComment": "{actor} hat kommentiert",
+    "deleted": "Gelöschter Beitrag",
+    "someone": "Jemand"
   }
 }

@@ -11,7 +11,8 @@
     "shelf": "Minha prateleira",
     "notices": "Avisos",
     "board": "Fórum",
-    "menu": "Menu"
+    "menu": "Menu",
+    "notifications": "Avisos"
   },
   "home": {
     "eyebrow": "Estúdio de software independente · 2026—",
@@ -177,5 +178,16 @@
     "deleteMismatch": "Esse e-mail não confere",
     "deleteFailed": "Não foi possível excluir. Tente daqui a pouco ou me escreva.",
     "deleteAsk": "Tem certeza de que quer excluir sua conta?\n\nA conta e tudo que há nela serão apagados, e não dá para desfazer."
+  },
+  "notif": {
+    "title": "Avisos",
+    "empty": "Nada ainda",
+    "markAll": "Marcar tudo como lido",
+    "unread": "Não lido",
+    "commentOnPost": "{actor} comentou na sua publicação",
+    "newPost": "{actor} escreveu uma publicação",
+    "newComment": "{actor} deixou um comentário",
+    "deleted": "Publicação excluída",
+    "someone": "Alguém"
   }
 }

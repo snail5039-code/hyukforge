@@ -11,7 +11,8 @@
     "shelf": "マイ棚",
     "notices": "お知らせ",
     "board": "掲示板",
-    "menu": "メニュー"
+    "menu": "メニュー",
+    "notifications": "お知らせ"
   },
   "home": {
     "eyebrow": "独立系ソフトウェア工房 · 2026—",
@@ -177,5 +178,16 @@
     "deleteMismatch": "メールアドレスが一致しません",
     "deleteFailed": "削除できませんでした。少し経ってから、またはメールでご連絡ください。",
     "deleteAsk": "本当に退会しますか？\n\nアカウントとすべての記録が削除され、元に戻せません。"
+  },
+  "notif": {
+    "title": "お知らせ",
+    "empty": "まだ何もありません",
+    "markAll": "すべて既読",
+    "unread": "未読",
+    "commentOnPost": "{actor} さんが自分の投稿にコメントしました",
+    "newPost": "{actor} さんが新しい投稿をしました",
+    "newComment": "{actor} さんがコメントしました",
+    "deleted": "削除された投稿",
+    "someone": "どなたか"
   }
 }

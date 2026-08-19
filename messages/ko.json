@@ -11,7 +11,8 @@
     "shelf": "내 서랍",
     "notices": "공지",
     "board": "게시판",
-    "menu": "메뉴"
+    "menu": "메뉴",
+    "notifications": "알림"
   },
   "home": {
     "eyebrow": "독립 소프트웨어 공방 · 2026—",
@@ -177,5 +178,16 @@
     "deleteMismatch": "이메일 주소가 다릅니다",
     "deleteFailed": "지우지 못했습니다. 잠시 뒤 다시 시도하거나 메일로 알려주세요.",
     "deleteAsk": "정말로 탈퇴하시겠습니까?\n\n계정과 모든 기록이 지워지고 되돌릴 수 없습니다."
+  },
+  "notif": {
+    "title": "알림",
+    "empty": "아직 알림이 없습니다",
+    "markAll": "모두 읽음",
+    "unread": "안 읽음",
+    "commentOnPost": "{actor} 님이 내 글에 댓글을 남겼습니다",
+    "newPost": "{actor} 님이 새 글을 올렸습니다",
+    "newComment": "{actor} 님이 댓글을 남겼습니다",
+    "deleted": "지워진 글",
+    "someone": "누군가"
   }
 }

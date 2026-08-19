@@ -11,7 +11,8 @@
     "shelf": "My shelf",
     "notices": "Notices",
     "board": "Board",
-    "menu": "Menu"
+    "menu": "Menu",
+    "notifications": "Notifications"
   },
   "home": {
     "eyebrow": "Independent software studio · 2026—",
@@ -177,5 +178,16 @@
     "deleteMismatch": "That email address does not match",
     "deleteFailed": "Could not delete. Try again shortly, or email me.",
     "deleteAsk": "Really delete your account?\n\nThe account and everything on it will be gone, and this cannot be undone."
+  },
+  "notif": {
+    "title": "Notifications",
+    "empty": "Nothing yet",
+    "markAll": "Mark all read",
+    "unread": "Unread",
+    "commentOnPost": "{actor} commented on your post",
+    "newPost": "{actor} wrote a new post",
+    "newComment": "{actor} left a comment",
+    "deleted": "Deleted post",
+    "someone": "Someone"
   }
 }

@@ -5,6 +5,8 @@ import { pickTranslation } from "@/lib/queries/translation";
 import { SpecRow } from "@/components/ui";
 import { NicknameForm } from "@/components/me/NicknameForm";
 import { DeleteAccount } from "@/components/me/DeleteAccount";
+import { NotificationList } from "@/components/me/NotificationList";
+import { listNotifications } from "@/lib/queries/notifications";
 import { shortDate } from "@/lib/format";
 
 /**
@@ -43,6 +45,8 @@ export default async function MyShelf({
     .maybeSingle();
   const nickname = (profile as { nickname?: string | null } | null)?.nickname ?? null;
 
+  const notifications = await listNotifications().catch(() => []);
+
   // RLS가 본인 것만 돌려준다
   const { data: downloads } = await supabase
     .from("downloads")
@@ -78,6 +82,8 @@ export default async function MyShelf({
         </div>
 
         <NicknameForm userId={user.id} initial={nickname} />
+
+        <NotificationList items={notifications} />
 
         <section className="pt-10">
           <div className="mb-5 flex items-baseline gap-4">

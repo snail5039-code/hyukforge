@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { AuthButton } from "./AuthButton";
 import { MobileMenu } from "./MobileMenu";
+import { NotificationBell } from "./NotificationBell";
 
 export async function Nav() {
   const t = await getTranslations();
@@ -52,6 +53,8 @@ export async function Nav() {
             </li>
           ))}
         </ul>
+
+        <NotificationBell />
 
         <MobileMenu items={items} />
 

@@ -11,7 +11,8 @@
     "shelf": "Mon étagère",
     "notices": "Annonces",
     "board": "Forum",
-    "menu": "Menu"
+    "menu": "Menu",
+    "notifications": "Notifications"
   },
   "home": {
     "eyebrow": "Studio logiciel indépendant · 2026—",
@@ -177,5 +178,16 @@
     "deleteMismatch": "Cette adresse e-mail ne correspond pas",
     "deleteFailed": "Suppression impossible. Réessayez dans un instant ou écrivez-moi.",
     "deleteAsk": "Voulez-vous vraiment supprimer votre compte ?\n\nLe compte et tout son contenu disparaîtront, et c'est irréversible."
+  },
+  "notif": {
+    "title": "Notifications",
+    "empty": "Rien pour l'instant",
+    "markAll": "Tout marquer comme lu",
+    "unread": "Non lu",
+    "commentOnPost": "{actor} a commenté votre message",
+    "newPost": "{actor} a publié un message",
+    "newComment": "{actor} a laissé un commentaire",
+    "deleted": "Message supprimé",
+    "someone": "Quelqu'un"
   }
 }
