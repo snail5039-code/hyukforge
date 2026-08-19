@@ -47,6 +47,8 @@ export async function generateMetadata({
         ...Object.fromEntries(locales.map((l) => [l, `${base}/${l}`])),
         "x-default": `${base}/${routing.defaultLocale}`,
       },
+      // 피드 리더가 주소만 보고 찾을 수 있게 head 에 걸어둔다
+      types: { "application/rss+xml": `${base}/rss.xml` },
     },
     openGraph: {
       type: "website",
