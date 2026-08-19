@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { IconBox, Tag } from "@/components/ui";
+import { SearchBox } from "@/components/search/SearchBox";
 import { fileSize, platformLabel, shortDate } from "@/lib/format";
 import type { Product } from "@/lib/queries/products";
 
@@ -9,7 +10,14 @@ import type { Product } from "@/lib/queries/products";
  * 제품 목록과 달리 설명을 덜어내고 버전·용량·환경을 앞세운다 —
  * 여기 오는 사람은 이미 뭘 받을지 정한 상태다.
  */
-export async function DownloadsPage({ products }: { products: Product[] }) {
+export async function DownloadsPage({
+  products,
+  search = "",
+}: {
+  products: Product[];
+  /** 검색어. 목록은 이미 걸러진 채로 온다 — 여기서는 표시에만 쓴다 */
+  search?: string;
+}) {
   const t = await getTranslations();
 
   // 웹앱은 받는 게 아니라 여는 것이라 여기 나오지 않는다.
@@ -36,12 +44,18 @@ export async function DownloadsPage({ products }: { products: Product[] }) {
         </p>
       </header>
 
+      <div className="flex flex-wrap items-center gap-3 py-6">
+        <span className="ml-auto">
+          <SearchBox path="/downloads" initial={search} />
+        </span>
+      </div>
+
       {downloadable.length === 0 ? (
         <p className="border-b border-line py-16 text-center text-[13.5px] text-dim">
-          {t("common.empty")}
+          {search ? t("search.none", { term: search }) : t("common.empty")}
         </p>
       ) : (
-        <div className="overflow-x-auto pt-8">
+        <div className="overflow-x-auto">
           <table className="w-full min-w-[760px] border-collapse">
             <thead>
               <tr>

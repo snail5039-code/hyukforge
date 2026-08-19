@@ -1,5 +1,6 @@
 import { createPublicClient } from "@/lib/supabase/public";
 import { pickTranslation } from "./translation";
+import { ilikeAny, likeSafe } from "./safe";
 
 export type CategorySlug =
   | "office"
@@ -139,23 +140,40 @@ function shape(row: Raw, locale: string): Product {
 }
 
 /**
+ * 검색어와 맞은 번역만 골라내는 임베드.
+ *
+ * 화면에 쓸 번역은 SELECT 가 이미 10개 언어 전부 가져온다. 여기 하나를 더
+ * 붙이는 것은 거르기 위한 것이다 — `!inner` 라서 맞은 번역이 하나도 없는
+ * 제품은 결과에서 빠진다. 어느 언어로 맞아도 찾되 보여줄 때는 보고 있는
+ * 언어로 고르는 규칙을 한 번의 조회로 지키려는 것.
+ * (사이트 전체 검색 lib/queries/search.ts 와 같은 방식)
+ */
+const HIT = `, hit:product_translations!inner ( locale )`;
+
+/**
  * 발행된 제품 목록.
  * RLS가 발행분만 돌려주므로 여기서 status를 다시 거를 필요는 없지만,
  * 관리자가 볼 때도 목록 화면은 발행분만 보여야 해서 명시한다.
  */
 export async function listProducts(
   locale: string,
-  options: { category?: CategorySlug; limit?: number } = {},
+  options: { category?: CategorySlug; limit?: number; term?: string } = {},
 ): Promise<Product[]> {
   const supabase = createPublicClient();
+  const term = likeSafe(options.term ?? "");
 
   let query = supabase
     .from("products")
-    .select(SELECT)
+    .select(term ? SELECT + HIT : SELECT)
     .eq("status", "published")
     .order("is_featured", { ascending: false })
     .order("published_at", { ascending: false, nullsFirst: false });
 
+  if (term) {
+    query = query.or(ilikeAny(["name", "tagline", "description"], term), {
+      referencedTable: "hit",
+    });
+  }
   if (options.category) {
     query = query.eq("categories.slug", options.category);
   }

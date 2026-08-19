@@ -1,6 +1,6 @@
 import { createPublicClient } from "@/lib/supabase/public";
 import { pickTranslation } from "./translation";
-import { likeSafe } from "./safe";
+import { ilikeAny, likeSafe } from "./safe";
 import { BOARDS, type BoardSlug } from "@/lib/board";
 
 /**
@@ -71,11 +71,6 @@ export function excerpt(
   const from = Math.max(0, at - AROUND);
   const to = Math.min(flat.length, at + term.length + AROUND);
   return `${from > 0 ? "…" : ""}${flat.slice(from, to)}${to < flat.length ? "…" : ""}`;
-}
-
-/** `a.ilike.%검색어%,b.ilike.%검색어%` 형태의 or 필터를 만든다. */
-function ilikeAny(columns: string[], term: string): string {
-  return columns.map((c) => `${c}.ilike.%${term}%`).join(",");
 }
 
 type ProductRow = {

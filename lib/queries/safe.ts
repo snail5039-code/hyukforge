@@ -37,6 +37,14 @@ export function likeSafe(term: string): string {
     .trim();
 }
 
+/**
+ * `a.ilike.%검색어%,b.ilike.%검색어%` 형태의 or 필터를 만든다.
+ * 검색어는 이미 likeSafe 를 거친 값이어야 한다.
+ */
+export function ilikeAny(columns: string[], term: string): string {
+  return columns.map((c) => `${c}.ilike.%${term}%`).join(",");
+}
+
 export const EMPTY_STATS: Stats = {
   productCount: 0,
   monthlyDownloads: 0,

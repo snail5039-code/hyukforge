@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Btn, Label } from "@/components/ui";
-import { BoardSearch } from "./BoardSearch";
+import { SearchBox } from "@/components/search/SearchBox";
 import { shortDate } from "@/lib/format";
 import { BOARDS, STATE_KEY, type BoardSlug } from "@/lib/board";
 import type { PostPage } from "@/lib/queries/board";
@@ -64,7 +64,7 @@ export async function BoardPage({
         </ul>
 
         <span className="ml-auto flex flex-wrap items-center gap-3">
-          <BoardSearch board={board} initial={search} />
+          <SearchBox path={`/board/${board}`} initial={search} />
           <Btn href={`/board/${board}/new`}>{t("board.write")}</Btn>
         </span>
       </div>

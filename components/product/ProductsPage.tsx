@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ProductTable } from "./ProductTable";
+import { SearchBox } from "@/components/search/SearchBox";
 import { categoryVar } from "@/lib/format";
 import { AdminLink } from "@/components/admin/AdminOnly";
 import type { CategorySlug, Product } from "@/lib/queries/products";
@@ -25,13 +26,25 @@ export async function ProductsPage({
   active,
   basePath = "/products",
   locale,
+  search = "",
 }: {
   products: Product[];
   active?: CategorySlug;
   basePath?: string;
   locale: string;
+  /** 검색어. 목록은 이미 걸러진 채로 온다 — 여기서는 표시와 링크에만 쓴다 */
+  search?: string;
 }) {
   const t = await getTranslations();
+
+  // 분류를 바꿔도 검색어가 풀리면 안 된다 (게시판의 쪽 넘기기와 같은 이유)
+  const href = (category?: CategorySlug) => {
+    const p = new URLSearchParams();
+    if (category) p.set("category", category);
+    if (search) p.set("q", search);
+    const qs = p.toString();
+    return qs ? `${basePath}?${qs}` : basePath;
+  };
 
   const counts = CATEGORIES.map((c) => ({
     slug: c,
@@ -58,26 +71,42 @@ export async function ProductsPage({
         <p className="mt-2 text-[14px] text-mute">{t("home.lead")}</p>
       </header>
 
-      <nav className="flex flex-wrap gap-[2px] py-6">
-        <FilterLink
-          href={basePath}
-          label={t("category.all")}
-          count={products.length}
-          on={!active}
-        />
-        {counts.map(({ slug, count }) => (
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-3 py-6">
+        <nav className="flex flex-wrap gap-[2px]">
           <FilterLink
-            key={slug}
-            href={`${basePath}?category=${slug}`}
-            label={t(`category.${slug}`)}
-            count={count}
-            on={active === slug}
-            color={categoryVar[slug]}
+            href={href()}
+            label={t("category.all")}
+            count={products.length}
+            on={!active}
           />
-        ))}
-      </nav>
+          {counts.map(({ slug, count }) => (
+            <FilterLink
+              key={slug}
+              href={href(slug)}
+              label={t(`category.${slug}`)}
+              count={count}
+              on={active === slug}
+              color={categoryVar[slug]}
+            />
+          ))}
+        </nav>
 
-      <ProductTable products={shown} />
+        <span className="ml-auto">
+          <SearchBox
+            path={basePath}
+            initial={search}
+            keep={{ category: active }}
+          />
+        </span>
+      </div>
+
+      {search && shown.length === 0 ? (
+        <p className="border-y border-line py-10 text-center text-[13.5px] text-dim">
+          {t("search.none", { term: search })}
+        </p>
+      ) : (
+        <ProductTable products={shown} />
+      )}
     </main>
   );
 }

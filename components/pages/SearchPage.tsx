@@ -34,7 +34,7 @@ export async function SearchPage({ result }: { result: SearchResult }) {
           {t("search.lead")}
         </p>
         <div className="mt-6">
-          <SearchBox initial={term} />
+          <SearchBox path="/search" initial={term} variant="page" />
         </div>
       </header>
 
