@@ -11,6 +11,7 @@
     "shelf": "Mi estante",
     "notices": "Avisos",
     "board": "Foro",
+    "search": "Buscar",
     "menu": "Menú",
     "notifications": "Avisos"
   },
@@ -166,6 +167,22 @@
     "searchClear": "Borrar",
     "searchNone": "Sin resultados",
     "searchFound": "Resultados"
+  },
+  "search": {
+    "title": "Buscar",
+    "lead": "Busca productos, avisos, registro de cambios y mensajes a la vez.",
+    "placeholder": "Escribe lo que buscas",
+    "clear": "Borrar",
+    "prompt": "Escribe algo para ver resultados",
+    "none": "Nada coincide con «{term}»",
+    "found": "{count} resultados para «{term}»",
+    "count": "{count}",
+    "kind": {
+      "product": "Productos",
+      "notice": "Avisos",
+      "changelog": "Registro de cambios",
+      "post": "Mensajes"
+    }
   },
   "shelf": {
     "nickname": "Apodo",

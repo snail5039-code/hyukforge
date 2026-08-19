@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { likeSafe } from "./safe";
 import { authorTag, type BoardSlug, type Comment, type Post, type RequestState } from "@/lib/board";
 
 /**
@@ -108,22 +109,6 @@ export type PostPage = {
  * count: "exact" 로 전체 수를 함께 받는다. RLS 가 적용된 뒤의 수라
  * 숨겨진 남의 글은 세지 않는다.
  */
-/**
- * 검색어를 ilike 패턴에 넣어도 안전한 꼴로 바꾼다.
- *
- * 두 가지를 막는다.
- *   · `%` `_` — LIKE 의 와일드카드다. 그대로 두면 "100%" 검색이 전부와 맞는다.
- *   · `,` `(` `)` `"` — PostgREST 가 or 필터를 쪼갤 때 쓰는 문자다.
- *     값에 섞이면 필터 구문 자체가 어긋난다.
- */
-function likeSafe(term: string): string {
-  return term
-    // 백슬래시가 ilike 의 기본 이스케이프 문자다. 그래서 자기 자신도 먼저 escape 한다.
-    .replace(/[\\%_]/g, (m) => "\\" + m)
-    .replace(/[(),"]/g, " ")
-    .trim();
-}
-
 export async function listPosts(
   board: BoardSlug,
   page = 1,

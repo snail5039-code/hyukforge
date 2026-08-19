@@ -11,6 +11,7 @@
     "shelf": "내 서랍",
     "notices": "공지",
     "board": "게시판",
+    "search": "검색",
     "menu": "메뉴",
     "notifications": "알림"
   },
@@ -166,6 +167,22 @@
     "searchClear": "지우기",
     "searchNone": "찾은 글이 없습니다",
     "searchFound": "검색 결과"
+  },
+  "search": {
+    "title": "검색",
+    "lead": "제품·공지·개발 기록·게시글을 한 번에 찾습니다.",
+    "placeholder": "찾을 말을 입력하세요",
+    "clear": "지우기",
+    "prompt": "찾을 말을 입력하면 결과가 나옵니다",
+    "none": "‘{term}’ 에 맞는 것이 없습니다",
+    "found": "‘{term}’ 검색 결과 {count}건",
+    "count": "{count}건",
+    "kind": {
+      "product": "제품",
+      "notice": "공지",
+      "changelog": "개발 기록",
+      "post": "게시글"
+    }
   },
   "shelf": {
     "nickname": "닉네임",

@@ -11,6 +11,7 @@
     "shelf": "Minha prateleira",
     "notices": "Avisos",
     "board": "Fórum",
+    "search": "Buscar",
     "menu": "Menu",
     "notifications": "Avisos"
   },
@@ -166,6 +167,22 @@
     "searchClear": "Limpar",
     "searchNone": "Nada encontrado",
     "searchFound": "Resultados"
+  },
+  "search": {
+    "title": "Buscar",
+    "lead": "Busque produtos, avisos, registro de mudanças e posts de uma vez.",
+    "placeholder": "Digite o que você procura",
+    "clear": "Limpar",
+    "prompt": "Digite algo para ver resultados",
+    "none": "Nada corresponde a “{term}”",
+    "found": "{count} resultados para “{term}”",
+    "count": "{count}",
+    "kind": {
+      "product": "Produtos",
+      "notice": "Avisos",
+      "changelog": "Registro de mudanças",
+      "post": "Posts"
+    }
   },
   "shelf": {
     "nickname": "Apelido",

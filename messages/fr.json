@@ -11,6 +11,7 @@
     "shelf": "Mon étagère",
     "notices": "Annonces",
     "board": "Forum",
+    "search": "Rechercher",
     "menu": "Menu",
     "notifications": "Notifications"
   },
@@ -166,6 +167,22 @@
     "searchClear": "Effacer",
     "searchNone": "Aucun résultat",
     "searchFound": "Résultats"
+  },
+  "search": {
+    "title": "Rechercher",
+    "lead": "Cherchez produits, annonces, journal des modifications et messages d’un coup.",
+    "placeholder": "Saisissez ce que vous cherchez",
+    "clear": "Effacer",
+    "prompt": "Saisissez quelque chose pour voir les résultats",
+    "none": "Rien ne correspond à « {term} »",
+    "found": "{count} résultats pour « {term} »",
+    "count": "{count}",
+    "kind": {
+      "product": "Produits",
+      "notice": "Annonces",
+      "changelog": "Journal des modifications",
+      "post": "Messages"
+    }
   },
   "shelf": {
     "nickname": "Pseudo",

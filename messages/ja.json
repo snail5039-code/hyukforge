@@ -11,6 +11,7 @@
     "shelf": "マイ棚",
     "notices": "お知らせ",
     "board": "掲示板",
+    "search": "検索",
     "menu": "メニュー",
     "notifications": "お知らせ"
   },
@@ -166,6 +167,22 @@
     "searchClear": "クリア",
     "searchNone": "見つかりませんでした",
     "searchFound": "検索結果"
+  },
+  "search": {
+    "title": "検索",
+    "lead": "製品・お知らせ・開発記録・投稿をまとめて探します。",
+    "placeholder": "探したい言葉を入力してください",
+    "clear": "クリア",
+    "prompt": "言葉を入力すると結果が出ます",
+    "none": "「{term}」に一致するものはありません",
+    "found": "「{term}」の検索結果 {count}件",
+    "count": "{count}件",
+    "kind": {
+      "product": "製品",
+      "notice": "お知らせ",
+      "changelog": "開発記録",
+      "post": "投稿"
+    }
   },
   "shelf": {
     "nickname": "ニックネーム",

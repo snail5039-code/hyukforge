@@ -11,6 +11,7 @@
     "shelf": "Mein Regal",
     "notices": "Hinweise",
     "board": "Forum",
+    "search": "Suchen",
     "menu": "Menü",
     "notifications": "Mitteilungen"
   },
@@ -166,6 +167,22 @@
     "searchClear": "Löschen",
     "searchNone": "Nichts gefunden",
     "searchFound": "Treffer"
+  },
+  "search": {
+    "title": "Suchen",
+    "lead": "Produkte, Hinweise, Änderungen und Beiträge auf einmal durchsuchen.",
+    "placeholder": "Suchbegriff eingeben",
+    "clear": "Löschen",
+    "prompt": "Gib etwas ein, um Treffer zu sehen",
+    "none": "Nichts passt zu „{term}“",
+    "found": "{count} Treffer für „{term}“",
+    "count": "{count}",
+    "kind": {
+      "product": "Produkte",
+      "notice": "Hinweise",
+      "changelog": "Änderungen",
+      "post": "Beiträge"
+    }
   },
   "shelf": {
     "nickname": "Anzeigename",

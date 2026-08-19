@@ -11,6 +11,7 @@
     "shelf": "My shelf",
     "notices": "Notices",
     "board": "Board",
+    "search": "Search",
     "menu": "Menu",
     "notifications": "Notifications"
   },
@@ -166,6 +167,22 @@
     "searchClear": "Clear",
     "searchNone": "Nothing found",
     "searchFound": "Results"
+  },
+  "search": {
+    "title": "Search",
+    "lead": "Search products, notices, the changelog and board posts at once.",
+    "placeholder": "Type what you are looking for",
+    "clear": "Clear",
+    "prompt": "Type something to see results",
+    "none": "Nothing matches “{term}”",
+    "found": "{count} results for “{term}”",
+    "count": "{count}",
+    "kind": {
+      "product": "Products",
+      "notice": "Notices",
+      "changelog": "Changelog",
+      "post": "Posts"
+    }
   },
   "shelf": {
     "nickname": "Nickname",

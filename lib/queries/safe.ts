@@ -18,6 +18,25 @@ export function orEmpty<T>(fallback: T, label: string) {
   };
 }
 
+/**
+ * 검색어를 ilike 패턴에 넣어도 안전한 꼴로 바꾼다.
+ *
+ * 두 가지를 막는다.
+ *   · `%` `_` — LIKE 의 와일드카드다. 그대로 두면 "100%" 검색이 전부와 맞는다.
+ *   · `,` `(` `)` `"` — PostgREST 가 or 필터를 쪼갤 때 쓰는 문자다.
+ *     값에 섞이면 필터 구문 자체가 어긋난다.
+ *
+ * 게시판 검색과 전체 검색이 같은 규칙을 써야 해서 여기 둔다.
+ * 한쪽만 고치면 같은 검색어가 화면마다 다르게 동작한다.
+ */
+export function likeSafe(term: string): string {
+  return term
+    // 백슬래시가 ilike 의 기본 이스케이프 문자다. 그래서 자기 자신도 먼저 escape 한다.
+    .replace(/[\\%_]/g, (m) => "\\" + m)
+    .replace(/[(),"]/g, " ")
+    .trim();
+}
+
 export const EMPTY_STATS: Stats = {
   productCount: 0,
   monthlyDownloads: 0,

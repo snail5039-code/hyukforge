@@ -11,6 +11,7 @@
     "shelf": "我的收藏",
     "notices": "公告",
     "board": "討論區",
+    "search": "搜尋",
     "menu": "選單",
     "notifications": "通知"
   },
@@ -166,6 +167,22 @@
     "searchClear": "清除",
     "searchNone": "沒有找到",
     "searchFound": "搜尋結果"
+  },
+  "search": {
+    "title": "搜尋",
+    "lead": "一次搜尋產品、公告、開發記錄和貼文。",
+    "placeholder": "請輸入要尋找的內容",
+    "clear": "清除",
+    "prompt": "輸入內容後顯示結果",
+    "none": "沒有找到與「{term}」相符的內容",
+    "found": "「{term}」的搜尋結果 {count} 筆",
+    "count": "{count}",
+    "kind": {
+      "product": "產品",
+      "notice": "公告",
+      "changelog": "開發記錄",
+      "post": "貼文"
+    }
   },
   "shelf": {
     "nickname": "暱稱",

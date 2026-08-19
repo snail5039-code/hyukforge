@@ -25,6 +25,9 @@ export default function robots(): MetadataRoute.Robots {
           (p) => `/*${p}/`,
         ),
         "/*/board/*/new",
+        // 검색 결과. 검색어마다 다른 주소가 생기는데 내용은 다른 화면의 조각들이다.
+        // 색인되면 같은 내용이 중복 등록된다 (app/[locale]/search/page.tsx 의 noindex 와 같은 이유).
+        "/*/search",
       ],
     },
     sitemap: `${base}/sitemap.xml`,

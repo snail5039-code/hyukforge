@@ -11,6 +11,7 @@
     "shelf": "我的收藏",
     "notices": "公告",
     "board": "论坛",
+    "search": "搜索",
     "menu": "菜单",
     "notifications": "通知"
   },
@@ -166,6 +167,22 @@
     "searchClear": "清除",
     "searchNone": "没有找到",
     "searchFound": "搜索结果"
+  },
+  "search": {
+    "title": "搜索",
+    "lead": "一次搜索产品、公告、开发记录和帖子。",
+    "placeholder": "请输入要查找的内容",
+    "clear": "清除",
+    "prompt": "输入内容后显示结果",
+    "none": "没有找到与“{term}”匹配的内容",
+    "found": "“{term}”的搜索结果 {count} 条",
+    "count": "{count}",
+    "kind": {
+      "product": "产品",
+      "notice": "公告",
+      "changelog": "开发记录",
+      "post": "帖子"
+    }
   },
   "shelf": {
     "nickname": "昵称",
