@@ -11,6 +11,7 @@ export async function Nav() {
     { href: "/products", label: t("nav.products") },
     { href: "/downloads", label: t("nav.downloads") },
     { href: "/notices", label: t("nav.notices") },
+    { href: "/board/free", label: t("nav.board") },
     { href: "/changelog", label: t("nav.changelog") },
     { href: "/about", label: t("nav.about") },
   ];

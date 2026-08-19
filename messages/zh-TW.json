@@ -9,7 +9,8 @@
     "changelog": "開發記錄",
     "about": "關於",
     "shelf": "我的收藏",
-    "notices": "公告"
+    "notices": "公告",
+    "board": "討論區"
   },
   "home": {
     "eyebrow": "獨立軟體工作室 · 2026—",
@@ -121,5 +122,50 @@
     "point2": "不使用密碼。只用 Google 登入與郵件連結。",
     "point3": "不寄送行銷郵件，也不會把資訊交給第三方。",
     "point4": "現在這裡的東西全部免費，不收取任何付款資訊。"
+  },
+  "board": {
+    "free": "自由版",
+    "request": "需求版",
+    "freeLead": "想寫什麼就寫什麼。也歡迎回報問題。",
+    "requestLead": "說說你希望我做什麼。認同多的會先看。",
+    "write": "發文",
+    "empty": "還沒有文章",
+    "pinned": "置頂",
+    "comments": "留言",
+    "votes": "認同",
+    "vote": "認同",
+    "unvote": "取消認同",
+    "backToList": "返回列表",
+    "formTitle": "標題",
+    "formBody": "內文",
+    "submit": "發布",
+    "submitting": "發布中",
+    "cancel": "取消",
+    "loginToWrite": "發文需要登入",
+    "loginToComment": "留言需要登入",
+    "loginToVote": "認同需要登入",
+    "commentEmpty": "來寫第一則留言吧",
+    "delete": "刪除",
+    "deleteAsk": "將刪除這篇文章，無法復原。",
+    "deleteCommentAsk": "將刪除這則留言。",
+    "notFound": "文章不存在",
+    "tooFast": "太快了，請稍後再試。",
+    "failed": "儲存失敗",
+    "mine": "我的文章",
+    "state": {
+      "open": "審核中",
+      "planned": "計畫中",
+      "inProgress": "進行中",
+      "done": "已完成",
+      "declined": "不做"
+    }
+  },
+  "shelf": {
+    "nickname": "暱稱",
+    "nicknameHint": "討論區會顯示這個名字。留空則顯示為 →",
+    "save": "儲存",
+    "saved": "已儲存",
+    "nicknameTaken": "這個名字已被使用",
+    "nicknameInvalid": "2～20 個字元，首尾和連續空格不可用，且不能以 # 開頭"
   }
 }

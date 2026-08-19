@@ -9,7 +9,8 @@
     "changelog": "开发记录",
     "about": "关于",
     "shelf": "我的收藏",
-    "notices": "公告"
+    "notices": "公告",
+    "board": "论坛"
   },
   "home": {
     "eyebrow": "独立软件工作室 · 2026—",
@@ -121,5 +122,50 @@
     "point2": "不使用密码。只用 Google 登录和邮件链接。",
     "point3": "不发送营销邮件，也不会把信息交给第三方。",
     "point4": "现在这里的东西全部免费，不收取任何支付信息。"
+  },
+  "board": {
+    "free": "自由版",
+    "request": "需求版",
+    "freeLead": "想写什么就写什么。也欢迎报告问题。",
+    "requestLead": "说说你希望我做什么。赞同多的会先看。",
+    "write": "发帖",
+    "empty": "还没有帖子",
+    "pinned": "置顶",
+    "comments": "评论",
+    "votes": "赞同",
+    "vote": "赞同",
+    "unvote": "取消赞同",
+    "backToList": "返回列表",
+    "formTitle": "标题",
+    "formBody": "正文",
+    "submit": "发布",
+    "submitting": "发布中",
+    "cancel": "取消",
+    "loginToWrite": "发帖需要登录",
+    "loginToComment": "评论需要登录",
+    "loginToVote": "赞同需要登录",
+    "commentEmpty": "来写第一条评论吧",
+    "delete": "删除",
+    "deleteAsk": "将删除这篇帖子，无法恢复。",
+    "deleteCommentAsk": "将删除这条评论。",
+    "notFound": "帖子不存在",
+    "tooFast": "太快了，请稍后再试。",
+    "failed": "保存失败",
+    "mine": "我的帖子",
+    "state": {
+      "open": "审核中",
+      "planned": "计划中",
+      "inProgress": "进行中",
+      "done": "已完成",
+      "declined": "不做"
+    }
+  },
+  "shelf": {
+    "nickname": "昵称",
+    "nicknameHint": "论坛中会显示这个名字。留空则显示为 →",
+    "save": "保存",
+    "saved": "已保存",
+    "nicknameTaken": "这个名字已被使用",
+    "nicknameInvalid": "2～20 个字符，首尾和连续空格不可用，且不能以 # 开头"
   }
 }

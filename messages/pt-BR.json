@@ -9,7 +9,8 @@
     "changelog": "Registro",
     "about": "Sobre",
     "shelf": "Minha prateleira",
-    "notices": "Avisos"
+    "notices": "Avisos",
+    "board": "Fórum"
   },
   "home": {
     "eyebrow": "Estúdio de software independente · 2026—",
@@ -121,5 +122,50 @@
     "point2": "Sem senhas. Só login com Google e links por e-mail.",
     "point3": "Sem e-mails de marketing, e nada é passado a terceiros.",
     "point4": "Tudo aqui é gratuito. Nenhum dado de pagamento é coletado."
+  },
+  "board": {
+    "free": "Fórum aberto",
+    "request": "Pedidos",
+    "freeLead": "Escreva o que quiser. Relatos de bugs também são bem-vindos.",
+    "requestLead": "Diga o que eu devo construir. Os mais votados são vistos primeiro.",
+    "write": "Escrever",
+    "empty": "Ainda não há nada",
+    "pinned": "Fixado",
+    "comments": "Comentários",
+    "votes": "Votos",
+    "vote": "Votar",
+    "unvote": "Remover voto",
+    "backToList": "Voltar à lista",
+    "formTitle": "Título",
+    "formBody": "Conteúdo",
+    "submit": "Publicar",
+    "submitting": "Publicando",
+    "cancel": "Cancelar",
+    "loginToWrite": "Entre para escrever",
+    "loginToComment": "Entre para comentar",
+    "loginToVote": "Entre para votar",
+    "commentEmpty": "Seja o primeiro a comentar",
+    "delete": "Excluir",
+    "deleteAsk": "Isto exclui a publicação. Não dá para desfazer.",
+    "deleteCommentAsk": "Isto exclui o comentário.",
+    "notFound": "Essa publicação não existe",
+    "tooFast": "Rápido demais. Tente de novo daqui a pouco.",
+    "failed": "Não foi possível salvar",
+    "mine": "Meu",
+    "state": {
+      "open": "Em análise",
+      "planned": "Planejado",
+      "inProgress": "Em andamento",
+      "done": "Concluído",
+      "declined": "Recusado"
+    }
+  },
+  "shelf": {
+    "nickname": "Apelido",
+    "nicknameHint": "É assim que você aparece no fórum. Se deixar vazio, aparece como →",
+    "save": "Salvar",
+    "saved": "Salvo",
+    "nicknameTaken": "Alguém já usa esse nome",
+    "nicknameInvalid": "De 2 a 20 caracteres, sem espaços no início, no fim ou repetidos, e não pode começar com #"
   }
 }

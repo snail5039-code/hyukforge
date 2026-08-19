@@ -9,7 +9,8 @@
     "changelog": "Registro",
     "about": "Acerca de",
     "shelf": "Mi estante",
-    "notices": "Avisos"
+    "notices": "Avisos",
+    "board": "Foro"
   },
   "home": {
     "eyebrow": "Estudio de software independiente · 2026—",
@@ -121,5 +122,50 @@
     "point2": "Sin contraseñas. Solo inicio con Google y enlaces por correo.",
     "point3": "Sin correos publicitarios, y nada se cede a terceros.",
     "point4": "Todo aquí es gratis. No se recogen datos de pago."
+  },
+  "board": {
+    "free": "Foro abierto",
+    "request": "Peticiones",
+    "freeLead": "Escribe lo que quieras. Los informes de errores también son bienvenidos.",
+    "requestLead": "Cuéntame qué construir. Miro primero lo más votado.",
+    "write": "Escribir",
+    "empty": "Aún no hay nada",
+    "pinned": "Fijado",
+    "comments": "Comentarios",
+    "votes": "Votos",
+    "vote": "Votar",
+    "unvote": "Quitar voto",
+    "backToList": "Volver a la lista",
+    "formTitle": "Título",
+    "formBody": "Contenido",
+    "submit": "Publicar",
+    "submitting": "Publicando",
+    "cancel": "Cancelar",
+    "loginToWrite": "Inicia sesión para escribir",
+    "loginToComment": "Inicia sesión para comentar",
+    "loginToVote": "Inicia sesión para votar",
+    "commentEmpty": "Sé el primero en comentar",
+    "delete": "Eliminar",
+    "deleteAsk": "Esto elimina la publicación. No se puede deshacer.",
+    "deleteCommentAsk": "Esto elimina el comentario.",
+    "notFound": "Esa publicación no existe",
+    "tooFast": "Demasiado rápido. Inténtalo de nuevo en un momento.",
+    "failed": "No se pudo guardar",
+    "mine": "Mío",
+    "state": {
+      "open": "En revisión",
+      "planned": "Planeado",
+      "inProgress": "En curso",
+      "done": "Hecho",
+      "declined": "Descartado"
+    }
+  },
+  "shelf": {
+    "nickname": "Apodo",
+    "nicknameHint": "Así apareces en el foro. Si lo dejas vacío, se te verá como →",
+    "save": "Guardar",
+    "saved": "Guardado",
+    "nicknameTaken": "Ese nombre ya está en uso",
+    "nicknameInvalid": "De 2 a 20 caracteres, sin espacios al principio, al final ni repetidos, y no puede empezar por #"
   }
 }

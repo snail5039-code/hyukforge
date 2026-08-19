@@ -9,7 +9,8 @@
     "changelog": "Journal",
     "about": "À propos",
     "shelf": "Mon étagère",
-    "notices": "Annonces"
+    "notices": "Annonces",
+    "board": "Forum"
   },
   "home": {
     "eyebrow": "Studio logiciel indépendant · 2026—",
@@ -121,5 +122,50 @@
     "point2": "Pas de mot de passe. Uniquement Google et les liens par courriel.",
     "point3": "Aucun courriel publicitaire, et rien n’est transmis à des tiers.",
     "point4": "Tout ici est gratuit. Aucune donnée de paiement n’est collectée."
+  },
+  "board": {
+    "free": "Forum libre",
+    "request": "Demandes",
+    "freeLead": "Écrivez ce que vous voulez. Les rapports de bugs sont aussi les bienvenus.",
+    "requestLead": "Dites-moi quoi construire. Je regarde d'abord les plus soutenues.",
+    "write": "Écrire",
+    "empty": "Rien pour l'instant",
+    "pinned": "Épinglé",
+    "comments": "Commentaires",
+    "votes": "Soutiens",
+    "vote": "Soutenir",
+    "unvote": "Retirer le soutien",
+    "backToList": "Retour à la liste",
+    "formTitle": "Titre",
+    "formBody": "Contenu",
+    "submit": "Publier",
+    "submitting": "Publication",
+    "cancel": "Annuler",
+    "loginToWrite": "Connectez-vous pour écrire",
+    "loginToComment": "Connectez-vous pour commenter",
+    "loginToVote": "Connectez-vous pour soutenir",
+    "commentEmpty": "Soyez le premier à commenter",
+    "delete": "Supprimer",
+    "deleteAsk": "Cela supprime le message. C'est irréversible.",
+    "deleteCommentAsk": "Cela supprime le commentaire.",
+    "notFound": "Ce message n'existe pas",
+    "tooFast": "Trop rapide. Réessayez dans un instant.",
+    "failed": "Enregistrement impossible",
+    "mine": "À moi",
+    "state": {
+      "open": "À l'étude",
+      "planned": "Prévu",
+      "inProgress": "En cours",
+      "done": "Terminé",
+      "declined": "Refusé"
+    }
+  },
+  "shelf": {
+    "nickname": "Pseudo",
+    "nicknameHint": "C'est ainsi que vous apparaissez sur le forum. Si vous le laissez vide, vous apparaissez comme →",
+    "save": "Enregistrer",
+    "saved": "Enregistré",
+    "nicknameTaken": "Ce nom est déjà pris",
+    "nicknameInvalid": "2 à 20 caractères, sans espace au début, à la fin ni répété, et ne peut pas commencer par #"
   }
 }

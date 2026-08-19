@@ -9,7 +9,8 @@
     "changelog": "기록",
     "about": "소개",
     "shelf": "내 서랍",
-    "notices": "공지"
+    "notices": "공지",
+    "board": "게시판"
   },
   "home": {
     "eyebrow": "독립 소프트웨어 공방 · 2026—",
@@ -121,5 +122,50 @@
     "point2": "비밀번호를 받지 않습니다. Google 로그인과 이메일 링크만 씁니다.",
     "point3": "광고 메일을 보내지 않고, 제3자에게 정보를 넘기지 않습니다.",
     "point4": "지금 올라온 제품은 전부 무료입니다. 결제 정보를 받지 않습니다."
+  },
+  "board": {
+    "free": "자유게시판",
+    "request": "요청 게시판",
+    "freeLead": "쓰고 싶은 이야기를 씁니다. 버그 제보도 환영합니다.",
+    "requestLead": "만들었으면 하는 것을 올려주세요. 공감이 많은 것부터 봅니다.",
+    "write": "글쓰기",
+    "empty": "아직 글이 없습니다",
+    "pinned": "고정",
+    "comments": "댓글",
+    "votes": "공감",
+    "vote": "공감하기",
+    "unvote": "공감 취소",
+    "backToList": "목록으로",
+    "formTitle": "제목",
+    "formBody": "내용",
+    "submit": "올리기",
+    "submitting": "올리는 중",
+    "cancel": "취소",
+    "loginToWrite": "글을 쓰려면 로그인이 필요합니다",
+    "loginToComment": "댓글을 쓰려면 로그인이 필요합니다",
+    "loginToVote": "공감하려면 로그인이 필요합니다",
+    "commentEmpty": "첫 댓글을 남겨보세요",
+    "delete": "삭제",
+    "deleteAsk": "이 글을 지웁니다. 되돌릴 수 없습니다.",
+    "deleteCommentAsk": "이 댓글을 지웁니다.",
+    "notFound": "없는 글입니다",
+    "tooFast": "너무 빠릅니다. 잠시 뒤에 다시 시도해 주세요.",
+    "failed": "저장하지 못했습니다",
+    "mine": "내 글",
+    "state": {
+      "open": "검토 중",
+      "planned": "만들 예정",
+      "inProgress": "만드는 중",
+      "done": "완료",
+      "declined": "반려"
+    }
+  },
+  "shelf": {
+    "nickname": "닉네임",
+    "nicknameHint": "게시판에 이 이름으로 보입니다. 비우면 다음처럼 보입니다 →",
+    "save": "저장",
+    "saved": "저장했습니다",
+    "nicknameTaken": "이미 쓰고 있는 이름입니다",
+    "nicknameInvalid": "2~20자, 앞뒤 공백과 연속 공백은 쓸 수 없고 # 로 시작할 수 없습니다"
   }
 }

@@ -9,7 +9,8 @@
     "changelog": "Changelog",
     "about": "About",
     "shelf": "My shelf",
-    "notices": "Notices"
+    "notices": "Notices",
+    "board": "Board"
   },
   "home": {
     "eyebrow": "Independent software studio · 2026—",
@@ -121,5 +122,50 @@
     "point2": "No passwords. Only Google sign-in and email links.",
     "point3": "No marketing email, and nothing is passed to third parties.",
     "point4": "Everything here is free. No payment details are collected."
+  },
+  "board": {
+    "free": "Open board",
+    "request": "Requests",
+    "freeLead": "Write whatever you like. Bug reports are welcome too.",
+    "requestLead": "Tell me what to build. The most-upvoted ones get looked at first.",
+    "write": "Write",
+    "empty": "Nothing here yet",
+    "pinned": "Pinned",
+    "comments": "Comments",
+    "votes": "Upvotes",
+    "vote": "Upvote",
+    "unvote": "Remove upvote",
+    "backToList": "Back to list",
+    "formTitle": "Title",
+    "formBody": "Body",
+    "submit": "Post",
+    "submitting": "Posting",
+    "cancel": "Cancel",
+    "loginToWrite": "Sign in to write a post",
+    "loginToComment": "Sign in to comment",
+    "loginToVote": "Sign in to upvote",
+    "commentEmpty": "Be the first to comment",
+    "delete": "Delete",
+    "deleteAsk": "This deletes the post. It cannot be undone.",
+    "deleteCommentAsk": "This deletes the comment.",
+    "notFound": "That post does not exist",
+    "tooFast": "Too fast. Please try again in a moment.",
+    "failed": "Could not save",
+    "mine": "Mine",
+    "state": {
+      "open": "Under review",
+      "planned": "Planned",
+      "inProgress": "In progress",
+      "done": "Done",
+      "declined": "Declined"
+    }
+  },
+  "shelf": {
+    "nickname": "Nickname",
+    "nicknameHint": "This is how you appear on the board. Leave it empty and you show as →",
+    "save": "Save",
+    "saved": "Saved",
+    "nicknameTaken": "Someone already uses that name",
+    "nicknameInvalid": "2–20 characters, no leading, trailing or repeated spaces, and it cannot start with #"
   }
 }

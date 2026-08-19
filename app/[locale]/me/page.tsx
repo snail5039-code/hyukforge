@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { pickTranslation } from "@/lib/queries/translation";
 import { Label, SpecRow } from "@/components/ui";
+import { NicknameForm } from "@/components/me/NicknameForm";
 import { shortDate } from "@/lib/format";
 
 /**
@@ -30,6 +31,16 @@ export default async function MyShelf({
   if (!user) redirect(`/${locale}/login?next=/${locale}/me`);
 
   const t = await getTranslations();
+
+  // 본인 프로필이라 기존 "프로필은 본인만" 정책으로 읽힌다.
+  // nickname 컬럼이 아직 없는 환경(마이그레이션 전)에서는 조회가 실패하므로,
+  // 화면 전체를 죽이지 않고 빈 값으로 넘긴다.
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("nickname")
+    .eq("id", user.id)
+    .maybeSingle();
+  const nickname = (profile as { nickname?: string | null } | null)?.nickname ?? null;
 
   // RLS가 본인 것만 돌려준다
   const { data: downloads } = await supabase
@@ -64,6 +75,8 @@ export default async function MyShelf({
         <div className="border-t border-line">
           <SpecRow label={t("auth.signedIn")}>{user.email}</SpecRow>
         </div>
+
+        <NicknameForm userId={user.id} initial={nickname} />
 
         <section className="pt-10">
           <div className="mb-5 flex items-baseline gap-4">
