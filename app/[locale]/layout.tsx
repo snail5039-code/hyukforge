@@ -59,7 +59,16 @@ export default async function LocaleLayout({
       <head>
         {/* Pretendard는 구글 폰트에 없어 직접 호스팅한다.
             scripts/fonts.mjs 가 node_modules 에서 public/fonts 로 복사한다.
-            동적 서브셋이라 브라우저가 실제로 쓰는 글자 범위만 받는다. */}
+            동적 서브셋이라 브라우저가 실제로 쓰는 글자 범위만 받는다.
+
+            next/font/local 로 바꾸지 않는다. 재보고 내린 결론이다.
+            이 CSS 는 unicode-range 가 붙은 @font-face 92개고, 한글 페이지 하나가
+            그중 16개 약 375KB 만 받는다. next/font/local 의 src 는 unicode-range 를
+            표현할 수 없어서 통짜 변수 폰트(2.0MB)를 통째로 넘기게 된다 — 5배 이상 손해다.
+            (next/font/google 과 달리 로컬 폰트는 자동 서브셋도 하지 않는다)
+
+            그래서 규칙을 끈다. 규칙이 틀린 게 아니라 이 경우가 예외다. */}
+        {/* eslint-disable-next-line @next/next/no-css-tags */}
         <link rel="stylesheet" href="/fonts/pretendard/pretendard.css" />
       </head>
       <body>

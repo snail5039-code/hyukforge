@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { AuthButton } from "./AuthButton";
+import { MobileMenu } from "./MobileMenu";
 
 export async function Nav() {
   const t = await getTranslations();
@@ -18,7 +19,7 @@ export async function Nav() {
 
   return (
     <nav className="sticky top-0 z-30 border-b border-line bg-bg">
-      <div className="mx-auto flex h-[58px] max-w-page items-center gap-7 px-gutter">
+      <div className="relative mx-auto flex h-[58px] max-w-page items-center gap-5 px-gutter sm:gap-7">
         {/* 마크는 28px 미만으로 줄이지 않는다 — 사선 디테일이 뭉개진다 */}
         <Link href="/" className="mr-auto flex items-center gap-[10px]">
           <Image
@@ -51,6 +52,8 @@ export async function Nav() {
             </li>
           ))}
         </ul>
+
+        <MobileMenu items={items} />
 
         <LocaleSwitcher />
 
