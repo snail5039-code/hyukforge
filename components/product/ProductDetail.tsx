@@ -117,9 +117,10 @@ export async function ProductDetail({
             <SpecRow label={t("product.price")} accent={p.isFree}>
               {p.isFree ? t("product.free") : "—"}
             </SpecRow>
-            {/* 소스가 열려 있으면 사양표에서 바로 저장소로 보낸다 */}
-            {p.repoUrl && (
-              <SpecRow label={t("product.source")}>
+            {/* 열린 소스는 저장소로 보내고, 아니면 아니라고 적는다.
+                줄을 숨기면 "안 적어둔 것"과 구분이 안 된다. */}
+            <SpecRow label={t("product.source")}>
+              {p.repoUrl ? (
                 <a
                   href={p.repoUrl}
                   target="_blank"
@@ -128,8 +129,10 @@ export async function ProductDetail({
                 >
                   {linkLabel(p.repoUrl)} ↗
                 </a>
-              </SpecRow>
-            )}
+              ) : (
+                <span className="text-dim">{t("product.sourcePrivate")}</span>
+              )}
+            </SpecRow>
           </div>
         </div>
 

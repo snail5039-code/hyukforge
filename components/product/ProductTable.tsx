@@ -93,7 +93,7 @@ export async function ProductTable({ products }: { products: Product[] }) {
                     {repoHost(p.repoUrl)} ↗
                   </a>
                 ) : (
-                  "—"
+                  <span className="text-dim">{t("product.sourcePrivate")}</span>
                 )}
               </td>
 

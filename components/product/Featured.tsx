@@ -68,8 +68,8 @@ export async function Featured({
           <SpecRow label={t("product.price")} accent={p.isFree}>
             {p.isFree ? t("product.free") : "—"}
           </SpecRow>
-          {p.repoUrl && (
-            <SpecRow label={t("product.source")}>
+          <SpecRow label={t("product.source")}>
+            {p.repoUrl ? (
               <a
                 href={p.repoUrl}
                 target="_blank"
@@ -78,8 +78,10 @@ export async function Featured({
               >
                 {linkLabel(p.repoUrl)} ↗
               </a>
-            </SpecRow>
-          )}
+            ) : (
+              <span className="text-dim">{t("product.sourcePrivate")}</span>
+            )}
+          </SpecRow>
         </div>
 
         <div className="mt-[30px] flex flex-wrap gap-[10px]">
