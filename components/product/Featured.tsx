@@ -9,11 +9,18 @@ import type { Product } from "@/lib/queries/products";
  * 대표 제품 하나만 크게. 나머지는 아래 표로 간다.
  * 모든 카드를 같은 크기로 두면 위계가 사라진다. (docs/DESIGN.md 5장)
  */
-export async function Featured({ product: p }: { product: Product }) {
+export async function Featured({
+  product: p,
+  shotIndex = 0,
+}: {
+  product: Product;
+  /** 몇 번째 스크린샷을 쓸지. 홈은 히어로가 첫 장을 쓰므로 다음 장을 넘긴다. */
+  shotIndex?: number;
+}) {
   const t = await getTranslations();
-  // 상세와 같은 규칙으로 첫 스크린샷을 쓴다. 이걸 안 넘겨서 스크린샷을 올려도
+  // 상세와 같은 규칙으로 스크린샷을 쓴다. 이걸 안 넘겨서 스크린샷을 올려도
   // 홈은 계속 "준비 중" 이었다. (lib/images.ts)
-  const shot = p.images[0];
+  const shot = p.images[shotIndex] ?? p.images[0];
 
   return (
     <article className="mb-[2px] grid border border-edge lg:grid-cols-[minmax(0,58fr)_minmax(0,42fr)]">

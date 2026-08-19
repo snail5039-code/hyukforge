@@ -1,13 +1,21 @@
 import { getTranslations } from "next-intl/server";
 import { Btn, Label } from "@/components/ui";
 import { AppWindow } from "@/components/product/AppWindow";
+import { platformLabel } from "@/lib/format";
+import { imageUrl, isUnoptimized } from "@/lib/images";
+import type { Product } from "@/lib/queries/products";
 
 /**
  * 히어로. 비대칭 44:56으로 나눈다 — 반반은 기계적으로 보인다.
  * 오른쪽은 3D 렌더가 아니라 실제 앱 화면이 들어갈 자리다.
+ *
+ * 스크린샷이 있으면 그것을 쓰고, 없으면 CSS 로 만든 모형(HeroWindow)을 쓴다.
+ * 사이트 첫 화면에 지어낸 제품이 걸려 있으면 "숫자는 진짜만" 이라고
+ * 써둔 것과 어긋난다 (docs/DESIGN.md 글쓰기 규칙).
  */
-export async function Hero() {
+export async function Hero({ product }: { product?: Product | null }) {
   const t = await getTranslations();
+  const shot = product?.images[0];
 
   return (
     <section className="grid items-start gap-16 pb-[76px] pt-[92px] lg:grid-cols-[minmax(0,44fr)_minmax(0,56fr)]">
@@ -35,14 +43,31 @@ export async function Hero() {
         </p>
       </div>
 
-      <HeroWindow />
+      {shot && product ? (
+        <AppWindow
+          title={product.name}
+          footLeft={
+            product.latest
+              ? `v${product.latest.version.replace(/^v/, "")}`
+              : undefined
+          }
+          footRight={
+            product.platforms.length ? platformLabel(product.platforms) : undefined
+          }
+          src={imageUrl(shot.path)}
+          unoptimized={isUnoptimized(shot.path)}
+          alt={shot.alt ?? product.name}
+        />
+      ) : (
+        <HeroWindow />
+      )}
     </section>
   );
 }
 
 /**
- * 스크린샷이 준비되기 전까지 쓰는 UI 모형.
- * 제품이 발행되면 그 제품의 실제 화면 캡처로 교체한다.
+ * 스크린샷이 없을 때만 쓰는 UI 모형.
+ * 대표 제품에 스크린샷이 올라오면 위에서 실제 캡처로 바뀐다.
  *
  * 이 안의 글자는 번역하지 않는다. 스크린샷을 대신하는 자리이고,
  * 실제 캡처 이미지는 어느 언어로 찍혔든 그대로 쓰기 때문이다.

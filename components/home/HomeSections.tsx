@@ -31,7 +31,8 @@ export async function HomeSections({
 
   return (
     <main className="mx-auto max-w-page px-gutter">
-      <Hero />
+      {/* 히어로에 대표 제품의 첫 스크린샷이 들어간다 */}
+      <Hero product={featured} />
       <Stats data={stats} />
 
       <Section
@@ -42,7 +43,14 @@ export async function HomeSections({
           </SectionLink>
         }
       >
-        {featured && <Featured product={featured} />}
+        {/* 히어로가 첫 장을 이미 썼다. 두 장 이상 있으면 다음 장을 쓴다 —
+            같은 화면에 같은 이미지가 두 번 걸리면 스크린샷이 하나뿐인 것처럼 보인다 */}
+        {featured && (
+          <Featured
+            product={featured}
+            shotIndex={featured.images.length > 1 ? 1 : 0}
+          />
+        )}
         <ProductTable products={rest} />
       </Section>
 
