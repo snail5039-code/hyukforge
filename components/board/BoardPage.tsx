@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Btn, Label } from "@/components/ui";
+import { BoardSearch } from "./BoardSearch";
 import { shortDate } from "@/lib/format";
 import { BOARDS, STATE_KEY, type BoardSlug } from "@/lib/board";
 import type { PostPage } from "@/lib/queries/board";
@@ -21,7 +22,16 @@ export async function BoardPage({
 }) {
   const t = await getTranslations();
   const isRequest = board === "request";
-  const { posts, total, page, pageCount } = result;
+  const { posts, total, page, pageCount, search } = result;
+
+  // 쪽을 넘겨도 검색어가 풀리면 안 된다
+  const href = (n: number) => {
+    const p = new URLSearchParams();
+    if (search) p.set("q", search);
+    if (n > 1) p.set("page", String(n));
+    const qs = p.toString();
+    return qs ? `/board/${board}?${qs}` : `/board/${board}`;
+  };
 
   return (
     <main className="mx-auto max-w-page px-gutter pb-10">
@@ -53,14 +63,15 @@ export async function BoardPage({
           ))}
         </ul>
 
-        <span className="ml-auto">
+        <span className="ml-auto flex flex-wrap items-center gap-3">
+          <BoardSearch board={board} initial={search} />
           <Btn href={`/board/${board}/new`}>{t("board.write")}</Btn>
         </span>
       </div>
 
       {posts.length === 0 ? (
         <p className="border-b border-line py-16 text-center text-[13.5px] text-dim">
-          {t("board.empty")}
+          {search ? t("board.searchNone") : t("board.empty")}
         </p>
       ) : (
         <ul>
@@ -124,7 +135,7 @@ export async function BoardPage({
             ) : (
               <Link
                 key={n}
-                href={n === 1 ? `/board/${board}` : `/board/${board}?page=${n}`}
+                href={href(n)}
                 aria-current={n === page ? "page" : undefined}
                 className={
                   n === page
@@ -141,7 +152,7 @@ export async function BoardPage({
 
       <p className="pt-6">
         <Label>
-          {total} · {t(`board.${board}`)}
+          {total} · {search ? t("board.searchFound") : t(`board.${board}`)}
         </Label>
       </p>
     </main>

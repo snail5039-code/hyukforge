@@ -91,10 +91,12 @@ export const PAGE_SIZE = 20;
 
 export type PostPage = {
   posts: Post[];
-  /** RLS 를 통과한 전체 글 수. 마지막 쪽 번호를 알아야 해서 함께 센다. */
+  /** RLS 를 통과한 전체 글 수. 검색 중이면 걸린 수다. */
   total: number;
   page: number;
   pageCount: number;
+  /** 화면이 쪽 링크에 다시 실어야 해서 돌려준다 */
+  search: string;
 };
 
 /**
@@ -106,16 +108,34 @@ export type PostPage = {
  * count: "exact" 로 전체 수를 함께 받는다. RLS 가 적용된 뒤의 수라
  * 숨겨진 남의 글은 세지 않는다.
  */
+/**
+ * 검색어를 ilike 패턴에 넣어도 안전한 꼴로 바꾼다.
+ *
+ * 두 가지를 막는다.
+ *   · `%` `_` — LIKE 의 와일드카드다. 그대로 두면 "100%" 검색이 전부와 맞는다.
+ *   · `,` `(` `)` `"` — PostgREST 가 or 필터를 쪼갤 때 쓰는 문자다.
+ *     값에 섞이면 필터 구문 자체가 어긋난다.
+ */
+function likeSafe(term: string): string {
+  return term
+    // 백슬래시가 ilike 의 기본 이스케이프 문자다. 그래서 자기 자신도 먼저 escape 한다.
+    .replace(/[\\%_]/g, (m) => "\\" + m)
+    .replace(/[(),"]/g, " ")
+    .trim();
+}
+
 export async function listPosts(
   board: BoardSlug,
   page = 1,
   pageSize = PAGE_SIZE,
+  search = "",
 ): Promise<PostPage> {
   const supabase = await createClient();
   const me = await currentUserId();
 
   const current = Math.max(1, Math.floor(page));
   const from = (current - 1) * pageSize;
+  const term = likeSafe(search);
 
   // RLS 가 발행된 글 + 내 숨겨진 글만 돌려준다.
   // 요청 게시판은 공감이 많은 것부터 — 그러라고 만든 게시판이다.
@@ -123,6 +143,11 @@ export async function listPosts(
     .from("posts")
     .select(POST_COLUMNS, { count: "exact" })
     .eq("board", board);
+
+  // 제목과 본문 둘 다 본다. 검색 결과도 RLS 를 그대로 타므로
+  // 남의 숨겨진 글은 검색으로도 나오지 않는다.
+  if (term) q = q.or(`title.ilike.%${term}%,body.ilike.%${term}%`);
+
   q =
     board === "request"
       ? q.order("is_pinned", { ascending: false }).order("vote_count", { ascending: false })
@@ -146,6 +171,7 @@ export async function listPosts(
     total,
     page: current,
     pageCount: Math.max(1, Math.ceil(total / pageSize)),
+    search: search.trim(),
   };
 }
 

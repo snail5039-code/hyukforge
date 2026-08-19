@@ -161,7 +161,11 @@
       "inProgress": "En curso",
       "done": "Hecho",
       "declined": "Descartado"
-    }
+    },
+    "search": "Buscar",
+    "searchClear": "Borrar",
+    "searchNone": "Sin resultados",
+    "searchFound": "Resultados"
   },
   "shelf": {
     "nickname": "Apodo",

@@ -161,7 +161,11 @@
       "inProgress": "In progress",
       "done": "Done",
       "declined": "Declined"
-    }
+    },
+    "search": "Search",
+    "searchClear": "Clear",
+    "searchNone": "Nothing found",
+    "searchFound": "Results"
   },
   "shelf": {
     "nickname": "Nickname",

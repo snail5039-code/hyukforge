@@ -161,7 +161,11 @@
       "inProgress": "만드는 중",
       "done": "완료",
       "declined": "반려"
-    }
+    },
+    "search": "검색",
+    "searchClear": "지우기",
+    "searchNone": "찾은 글이 없습니다",
+    "searchFound": "검색 결과"
   },
   "shelf": {
     "nickname": "닉네임",

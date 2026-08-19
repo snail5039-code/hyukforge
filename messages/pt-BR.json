@@ -161,7 +161,11 @@
       "inProgress": "Em andamento",
       "done": "Concluído",
       "declined": "Recusado"
-    }
+    },
+    "search": "Buscar",
+    "searchClear": "Limpar",
+    "searchNone": "Nada encontrado",
+    "searchFound": "Resultados"
   },
   "shelf": {
     "nickname": "Apelido",

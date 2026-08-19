@@ -161,7 +161,11 @@
       "inProgress": "En cours",
       "done": "Terminé",
       "declined": "Refusé"
-    }
+    },
+    "search": "Rechercher",
+    "searchClear": "Effacer",
+    "searchNone": "Aucun résultat",
+    "searchFound": "Résultats"
   },
   "shelf": {
     "nickname": "Pseudo",

@@ -161,7 +161,11 @@
       "inProgress": "В работе",
       "done": "Готово",
       "declined": "Отклонено"
-    }
+    },
+    "search": "Поиск",
+    "searchClear": "Очистить",
+    "searchNone": "Ничего не найдено",
+    "searchFound": "Результаты"
   },
   "shelf": {
     "nickname": "Имя на форуме",
