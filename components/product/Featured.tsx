@@ -89,6 +89,10 @@ export async function Featured({
             <Btn href={p.externalUrl} external variant="primary">
               {t("product.open")} ↗
             </Btn>
+          ) : p.kind === "source" && p.repoUrl ? (
+            <Btn href={p.repoUrl} external variant="primary">
+              {t("product.viewSource")} ↗
+            </Btn>
           ) : (
             <Btn href={`/products/${p.slug}`} variant="primary">
               {p.latest ? t("product.download") : t("product.comingSoon")}

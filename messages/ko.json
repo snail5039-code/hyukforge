@@ -63,6 +63,7 @@
     "free": "무료",
     "requirements": "시스템 요구사항",
     "comingSoon": "곧 공개",
+    "viewSource": "소스 보기",
     "loginRequired": "받으려면 로그인이 필요합니다",
     "count": "{count}개"
   },

@@ -126,6 +126,20 @@ async function DownloadCell({ product: p }: { product: Product }) {
     );
   }
 
+  // 소스만 공개한 제품은 받을 것이 없다. 기다리라고 하지 않고 저장소로 보낸다.
+  if (p.kind === "source" && p.repoUrl) {
+    return (
+      <a
+        href={p.repoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${cls} text-amber hover:underline`}
+      >
+        {t("product.viewSource")} ↗
+      </a>
+    );
+  }
+
   // 릴리스가 없으면 아직 받을 수 없다.
   if (!p.latest) {
     return <span className={`${cls} text-dim`}>{t("product.comingSoon")}</span>;

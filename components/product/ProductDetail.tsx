@@ -86,6 +86,12 @@ export async function ProductDetail({
               <Btn href={`/api/download/${p.latest!.id}`} unlocalized variant="primary">
                 {t("product.download")} ↓
               </Btn>
+            ) : p.kind === "source" && p.repoUrl ? (
+              /* 소스만 공개한 제품은 받을 것이 없다. "곧 공개" 라고 적으면
+                 오지 않을 것을 기다리게 만든다. 있는 것(저장소)으로 보낸다. */
+              <Btn href={p.repoUrl} external variant="primary">
+                {t("product.viewSource")} ↗
+              </Btn>
             ) : (
               <Btn>{t("product.comingSoon")}</Btn>
             )}
