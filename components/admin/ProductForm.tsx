@@ -17,7 +17,7 @@ import { Field, Toggle, inputCls } from "./fields";
  * (app/[locale]/admin/layout.tsx 주석 참고)
  */
 
-const PLATFORMS = ["windows", "macos", "linux", "android", "ios"] as const;
+const PLATFORMS = ["windows", "macos", "linux", "android", "ios", "web"] as const;
 
 const KINDS = [
   ["download", "다운로드 — 설치파일을 받는다"],

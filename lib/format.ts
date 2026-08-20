@@ -55,6 +55,9 @@ export function platformLabel(platforms: string[]): string {
     linux: "Linux",
     android: "Android",
     ios: "iOS",
+    // 브라우저에서 도는 제품. kind='webapp' 은 화면이 따로 "Web" 을 쓰지만,
+    // 소스만 공개한 웹 제품(kind='source')은 이 표를 탄다.
+    web: "Web",
   };
   return platforms.map((p) => names[p] ?? p).join(" · ");
 }
