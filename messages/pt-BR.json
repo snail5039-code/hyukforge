@@ -22,7 +22,9 @@
     "ctaProducts": "Ver produtos",
     "ctaChangelog": "Registro de mudanças",
     "privacyNote": "A conta serve apenas para o histórico de downloads. Sem e-mails de marketing.",
-    "featured": "Mais baixado desta semana",
+    "featured": "Um de cada vez",
+    "prev": "Produto anterior",
+    "next": "Próximo produto",
     "wip": "No que estou trabalhando"
   },
   "stats": {
@@ -55,6 +57,7 @@
     "category": "Categoria",
     "version": "Versão",
     "size": "Tamanho",
+    "downloads": "Downloads",
     "platform": "Plataforma",
     "updated": "Atualizado",
     "price": "Preço",

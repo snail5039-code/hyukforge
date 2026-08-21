@@ -22,7 +22,9 @@
     "ctaProducts": "浏览产品",
     "ctaChangelog": "开发记录",
     "privacyNote": "账号只用于下载记录，不会发送营销邮件。",
-    "featured": "本周下载最多",
+    "featured": "一个一个看",
+    "prev": "上一个产品",
+    "next": "下一个产品",
     "wip": "正在做的东西"
   },
   "stats": {
@@ -55,6 +57,7 @@
     "category": "分类",
     "version": "版本",
     "size": "大小",
+    "downloads": "下载次数",
     "platform": "运行环境",
     "updated": "更新",
     "price": "价格",

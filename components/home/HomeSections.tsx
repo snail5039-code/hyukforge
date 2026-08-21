@@ -3,6 +3,7 @@ import { Section, SectionLink } from "@/components/ui";
 import { Featured } from "@/components/product/Featured";
 import { ProductTable } from "@/components/product/ProductTable";
 import { ChangelogList } from "./ChangelogList";
+import { FeaturedCarousel } from "./FeaturedCarousel";
 import { Hero } from "./Hero";
 import { Stats } from "./Stats";
 import type { Product, Stats as StatsData } from "@/lib/queries/products";
@@ -28,9 +29,15 @@ export async function HomeSections({
 }) {
   const t = await getTranslations();
 
-  // 대표 제품 하나를 크게 띄우고 나머지는 표로. 지정된 게 없으면 첫 번째를 쓴다.
+  // 큰 자리에 먼저 걸리는 제품. 지정된 게 없으면 첫 번째를 쓴다.
+  // 히어로도 이 제품의 스크린샷을 쓴다.
   const featured = products.find((p) => p.isFeatured) ?? products[0] ?? null;
-  const rest = featured ? products.filter((p) => p.id !== featured.id) : products;
+
+  // 큰 자리는 돌아가며 쓴다 — 대표 제품이 먼저, 그다음은 목록 순서.
+  // (listProducts 가 is_featured → 발행일 순으로 준다)
+  const carousel = featured
+    ? [featured, ...products.filter((p) => p.id !== featured.id)]
+    : products;
 
   return (
     <main className="mx-auto max-w-page px-gutter">
@@ -46,15 +53,28 @@ export async function HomeSections({
           </SectionLink>
         }
       >
-        {/* 히어로가 첫 장을 이미 썼다. 두 장 이상 있으면 다음 장을 쓴다 —
-            같은 화면에 같은 이미지가 두 번 걸리면 스크린샷이 하나뿐인 것처럼 보인다 */}
-        {featured && (
-          <Featured
-            product={featured}
-            shotIndex={featured.images.length > 1 ? 1 : 0}
-          />
+        {carousel.length > 0 && (
+          <FeaturedCarousel
+            names={carousel.map((p) => p.name)}
+            labels={{ prev: t("home.prev"), next: t("home.next") }}
+          >
+            {carousel.map((p) => (
+              <Featured
+                key={p.id}
+                product={p}
+                // 히어로가 대표 제품의 첫 장을 이미 썼다. 두 장 이상 있으면
+                // 다음 장을 쓴다 — 같은 화면에 같은 이미지가 두 번 걸리면
+                // 스크린샷이 하나뿐인 것처럼 보인다
+                shotIndex={
+                  p.id === featured?.id && p.images.length > 1 ? 1 : 0
+                }
+              />
+            ))}
+          </FeaturedCarousel>
         )}
-        <ProductTable products={rest} />
+        {/* 큰 자리가 돌아가므로 표는 전체 목록이다. 하나를 빼두면
+            그 제품만 표에서 사라진다 */}
+        <ProductTable products={products} />
       </Section>
 
       <Section

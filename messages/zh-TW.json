@@ -22,7 +22,9 @@
     "ctaProducts": "瀏覽產品",
     "ctaChangelog": "開發記錄",
     "privacyNote": "帳號只用於下載記錄，不會寄送行銷郵件。",
-    "featured": "本週下載最多",
+    "featured": "一個一個看",
+    "prev": "上一個產品",
+    "next": "下一個產品",
     "wip": "正在做的東西"
   },
   "stats": {
@@ -55,6 +57,7 @@
     "category": "分類",
     "version": "版本",
     "size": "大小",
+    "downloads": "下載次數",
     "platform": "執行環境",
     "updated": "更新",
     "price": "價格",

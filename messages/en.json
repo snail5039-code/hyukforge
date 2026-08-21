@@ -22,7 +22,9 @@
     "ctaProducts": "Browse products",
     "ctaChangelog": "Changelog",
     "privacyNote": "Your account is only used for download history. No marketing email.",
-    "featured": "Most downloaded this week",
+    "featured": "One at a time",
+    "prev": "Previous product",
+    "next": "Next product",
     "wip": "What I'm working on"
   },
   "stats": {
@@ -55,6 +57,7 @@
     "category": "Category",
     "version": "Version",
     "size": "Size",
+    "downloads": "Downloads",
     "platform": "Platform",
     "updated": "Updated",
     "price": "Price",

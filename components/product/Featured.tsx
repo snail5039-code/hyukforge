@@ -65,6 +65,14 @@ export async function Featured({
               {fileSize(p.latest.fileSize)}
             </SpecRow>
           )}
+          {/* 받을 것이 있는 제품만. 소스 공개나 웹앱은 받는 게 아니라서
+              0 이 찍히면 아무도 안 받아 간 것처럼 보인다.
+              0 회면 0 을 쓴다 — 숫자는 진짜만 (docs/DESIGN.md "글쓰기 규칙") */}
+          {p.kind === "download" && p.latest && (
+            <SpecRow label={t("product.downloads")}>
+              {p.downloadCount.toLocaleString()}
+            </SpecRow>
+          )}
           <SpecRow label={t("product.price")} accent={p.isFree}>
             {p.isFree ? t("product.free") : "—"}
           </SpecRow>

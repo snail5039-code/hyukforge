@@ -22,7 +22,9 @@
     "ctaProducts": "製品を見る",
     "ctaChangelog": "開発記録",
     "privacyNote": "アカウントはダウンロード履歴にのみ使います。宣伝メールは送りません。",
-    "featured": "今週いちばん多く受け取られたもの",
+    "featured": "作ったものを一つずつ",
+    "prev": "前の製品",
+    "next": "次の製品",
     "wip": "いま作っているもの"
   },
   "stats": {
@@ -55,6 +57,7 @@
     "category": "分類",
     "version": "バージョン",
     "size": "サイズ",
+    "downloads": "ダウンロード数",
     "platform": "動作環境",
     "updated": "更新",
     "price": "価格",
