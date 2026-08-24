@@ -50,6 +50,21 @@ export async function Featured({
           <p className="max-w-[38ch] text-[14px] text-mute">{p.tagline}</p>
         )}
 
+        <div className="mt-4 flex flex-wrap gap-2">
+          <span className="border border-office px-2 py-1 font-mono text-tag tracking-tag text-office">
+            {t(`product.implementation.${p.implementationStatus}`)}
+          </span>
+          <span
+            className={`border px-2 py-1 font-mono text-tag tracking-tag ${
+              p.deploymentStatus === "deployed"
+                ? "border-amber text-amber"
+                : "border-edge text-dim"
+            }`}
+          >
+            {t(`product.deployment.${p.deploymentStatus}`)}
+          </span>
+        </div>
+
         <div className="mt-6 border-t border-line">
           {p.latest && (
             <SpecRow label={t("product.version")}>
