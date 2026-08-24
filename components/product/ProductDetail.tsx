@@ -75,6 +75,16 @@ export async function ProductDetail({
                 {t("product.free")}
               </span>
             )}
+            <span className="border border-office px-2 py-1 font-mono text-tag tracking-tag text-office">
+              {t(`product.implementation.${p.implementationStatus}`)}
+            </span>
+            <span className={`border px-2 py-1 font-mono text-tag tracking-tag ${
+              p.deploymentStatus === "deployed"
+                ? "border-amber text-amber"
+                : "border-edge text-dim"
+            }`}>
+              {t(`product.deployment.${p.deploymentStatus}`)}
+            </span>
           </div>
 
           <div className="mt-7 flex flex-wrap gap-[10px]">
@@ -119,6 +129,12 @@ export async function ProductDetail({
             )}
             <SpecRow label={t("product.updated")}>
               {shortDate(p.updatedAt)}
+            </SpecRow>
+            <SpecRow label={t("product.implementation.label")}>
+              {t(`product.implementation.${p.implementationStatus}`)}
+            </SpecRow>
+            <SpecRow label={t("product.deployment.label")}>
+              {t(`product.deployment.${p.deploymentStatus}`)}
             </SpecRow>
             <SpecRow label={t("product.price")} accent={p.isFree}>
               {p.isFree ? t("product.free") : "—"}

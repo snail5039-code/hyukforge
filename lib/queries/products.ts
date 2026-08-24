@@ -11,6 +11,8 @@ export type CategorySlug =
   | "labs";
 
 export type ProductKind = "download" | "webapp" | "source";
+export type ImplementationStatus = "implemented" | "in_progress";
+export type DeploymentStatus = "deployed" | "not_deployed" | "suspended";
 
 export type Release = {
   id: string;
@@ -25,6 +27,8 @@ export type Product = {
   id: string;
   slug: string;
   kind: ProductKind;
+  implementationStatus: ImplementationStatus;
+  deploymentStatus: DeploymentStatus;
   category: CategorySlug | null;
   iconLetter: string | null;
   platforms: string[];
@@ -58,7 +62,7 @@ export type Product = {
 
 // PostgREST 임베드로 한 번에 가져온다. 목록 화면에서 N+1을 만들지 않으려는 것.
 const SELECT = `
-  id, slug, kind, icon_letter, platforms, is_free, external_url,
+  id, slug, kind, implementation_status, deployment_status, icon_letter, platforms, is_free, external_url,
   download_count, published_at, updated_at, is_featured, demo_url, video_url,
   github_repo, source_url,
   categories ( slug ),
@@ -72,6 +76,8 @@ type Raw = {
   id: string;
   slug: string;
   kind: ProductKind;
+  implementation_status: ImplementationStatus;
+  deployment_status: DeploymentStatus;
   icon_letter: string | null;
   platforms: string[] | null;
   is_free: boolean;
@@ -129,6 +135,8 @@ function shape(row: Raw, locale: string): Product {
     id: row.id,
     slug: row.slug,
     kind: row.kind,
+    implementationStatus: row.implementation_status,
+    deploymentStatus: row.deployment_status,
     category: row.categories?.slug ?? null,
     iconLetter: row.icon_letter,
     platforms: row.platforms ?? [],

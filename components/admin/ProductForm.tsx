@@ -31,6 +31,17 @@ const STATUSES = [
   ["archived", "보관 — 목록에서 내린다"],
 ] as const;
 
+const IMPLEMENTATION_STATUSES = [
+  ["implemented", "구현 완료"],
+  ["in_progress", "구현 중"],
+] as const;
+
+const DEPLOYMENT_STATUSES = [
+  ["deployed", "배포됨"],
+  ["not_deployed", "미배포"],
+  ["suspended", "배포 중단"],
+] as const;
+
 export function ProductForm({
   initial,
   categories,
@@ -169,6 +180,35 @@ export function ProductForm({
               ))}
             </select>
           </Field>
+
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="구현 상태">
+              <select
+                value={d.implementationStatus}
+                onChange={(e) =>
+                  set("implementationStatus", e.target.value as ProductDraft["implementationStatus"])
+                }
+                className={inputCls}
+              >
+                {IMPLEMENTATION_STATUSES.map(([v, label]) => (
+                  <option key={v} value={v}>{label}</option>
+                ))}
+              </select>
+            </Field>
+            <Field label="배포 상태">
+              <select
+                value={d.deploymentStatus}
+                onChange={(e) =>
+                  set("deploymentStatus", e.target.value as ProductDraft["deploymentStatus"])
+                }
+                className={inputCls}
+              >
+                {DEPLOYMENT_STATUSES.map(([v, label]) => (
+                  <option key={v} value={v}>{label}</option>
+                ))}
+              </select>
+            </Field>
+          </div>
 
           <Field label="발행 시각" hint="비우면 발행할 때 지금 시각으로 채워진다">
             <input

@@ -15,6 +15,8 @@ const make = (
 ): Product => ({
   id: p.slug,
   kind: "download",
+  implementationStatus: "implemented",
+  deploymentStatus: "deployed",
   category: "utilities",
   iconLetter: p.name[0],
   platforms: ["windows"],

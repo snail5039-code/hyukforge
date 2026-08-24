@@ -27,13 +27,14 @@ export async function ProductTable({ products }: { products: Product[] }) {
     t("product.version"),
     t("product.size"),
     t("product.updated"),
+    t("product.status"),
     t("product.source"),
     "",
   ];
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full min-w-[780px] border-collapse">
+      <table className="w-full min-w-[900px] border-collapse">
         <thead>
           <tr>
             {heads.map((h, i) => (
@@ -80,6 +81,17 @@ export async function ProductTable({ products }: { products: Product[] }) {
 
               <td className="u-data border-b border-line px-3 py-[15px] transition-colors group-hover:bg-panel">
                 {shortDate(p.updatedAt)}
+              </td>
+
+              <td className="border-b border-line px-3 py-[15px] transition-colors group-hover:bg-panel">
+                <div className="flex min-w-max flex-col items-start gap-1 font-mono text-[10px] tracking-tag">
+                  <span className="text-office">
+                    {t(`product.implementation.${p.implementationStatus}`)}
+                  </span>
+                  <span className={p.deploymentStatus === "deployed" ? "text-amber" : "text-dim"}>
+                    {t(`product.deployment.${p.deploymentStatus}`)}
+                  </span>
+                </div>
               </td>
 
               <td className="u-data border-b border-line px-3 py-[15px] transition-colors group-hover:bg-panel">
