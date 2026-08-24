@@ -35,6 +35,7 @@
 | 목록 안 검색 | 제품·다운로드 목록에도 상자가 있다 (`?q=`). 제품은 분류와 함께 걸린다 |
 | 검색창 | `components/search/SearchBox.tsx` **하나로 다 쓴다** — 검색 화면·제품·다운로드·게시판 |
 | 알림 | 내 글에 댓글(사용자) · 새 글·댓글(관리자). 화면 안에서만, 메일은 안 보낸다 |
+| GitHub 동기화 | Actions가 매시 17분·47분에 공개 제품 저장소를 확인. 의미 있는 커밋은 날짜별 개발 기록으로 묶고 새 GitHub Release도 기록한다. 현재 HEAD 5개를 기준점으로 초기화 완료 |
 
 ### 아직 없는 것
 
@@ -160,6 +161,17 @@ for u in $(grep -oE '/_next/static/immutable/chunks/[^"]+[.]js' /tmp/d.html | so
   curl -s "https://hyukforge.vercel.app$u" | grep -q vqogaaqgtgpfofqqksit && echo "박힘: $u"
 done
 ```
+
+### GitHub 제품 동기화
+
+`.github/workflows/sync-github.yml`이 30분마다 `scripts/sync-github.mjs`를 실행한다.
+GitHub 저장소 Secrets의 `NEXT_PUBLIC_SUPABASE_URL`·`SUPABASE_SERVICE_ROLE_KEY`가 필요하며
+2026-08-24 설정 완료했다. 수동 실행은 Actions의 **GitHub 제품 동기화 → Run workflow**를
+쓰거나 로컬 환경 변수를 읽힌 뒤 `npm run sync:github`를 실행한다.
+
+첫 실행 기준점은 `github_sync_state`에 보관한다. 저장소를 새 제품에 연결한 뒤 처음 실행하면
+과거 커밋을 전부 올리지 않고 현재 HEAD부터 추적한다. `feat`·`fix`·`perf`·`refactor`·`release`와
+명확한 한국어 기능/수정 커밋만 기록하고 docs·chore·test·merge·README 정리는 제외한다.
 
 브라우저로 볼 때는 콘솔 오류를 확인한다. 값이 없으면 `supabaseUrl is required` 가 뜬다.
 
