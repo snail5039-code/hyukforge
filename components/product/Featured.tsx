@@ -32,6 +32,7 @@ export async function Featured({
           src={shot ? imageUrl(shot.path) : undefined}
           unoptimized={shot ? isUnoptimized(shot.path) : undefined}
           alt={shot?.alt ?? p.name}
+          imageClassName="h-[240px] w-full bg-[#0C0C0B] object-contain sm:h-[300px] lg:h-[320px]"
         >
           {/* 스크린샷이 없을 때만 이 자리가 쓰인다 */}
           <div className="grid min-h-[220px] place-items-center px-6 py-10 text-center">
