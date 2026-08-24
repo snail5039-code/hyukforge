@@ -166,6 +166,11 @@ export async function ProductDetail({
             src={p.images[0] ? imageUrl(p.images[0].path) : undefined}
             unoptimized={p.images[0] ? isUnoptimized(p.images[0].path) : undefined}
             alt={p.images[0]?.alt ?? p.name}
+            imageClassName={
+              p.slug === "lastcall"
+                ? "h-[460px] w-full object-contain p-3 sm:h-[560px] sm:p-5"
+                : undefined
+            }
           >
             {/* 스크린샷이 아직 없을 때만 이 자리가 쓰인다 */}
             <div className="grid min-h-[300px] place-items-center px-6 py-12 text-center">
@@ -180,6 +185,7 @@ export async function ProductDetail({
         images={p.images}
         videoUrl={p.videoUrl}
         demoUrl={p.demoUrl}
+        compactImages={p.slug === "lastcall"}
       />
 
       {p.description && (
