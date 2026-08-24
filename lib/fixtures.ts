@@ -22,6 +22,7 @@ const make = (
   externalUrl: null,
   downloadCount: 0,
   publishedAt: "2026-08-16",
+  updatedAt: p.publishedAt ?? "2026-08-16",
   isFeatured: false,
   tagline: null,
   description: null,

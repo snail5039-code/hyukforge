@@ -79,7 +79,7 @@ export async function ProductTable({ products }: { products: Product[] }) {
               </td>
 
               <td className="u-data border-b border-line px-3 py-[15px] transition-colors group-hover:bg-panel">
-                {shortDate(p.latest?.releasedAt ?? p.publishedAt)}
+                {shortDate(p.updatedAt)}
               </td>
 
               <td className="u-data border-b border-line px-3 py-[15px] transition-colors group-hover:bg-panel">

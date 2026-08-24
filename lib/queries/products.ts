@@ -32,6 +32,8 @@ export type Product = {
   externalUrl: string | null;
   downloadCount: number;
   publishedAt: string | null;
+  /** 제품 수정·릴리스·개발 기록을 합친 실제 최근 활동일. */
+  updatedAt: string | null;
   isFeatured: boolean;
   /** 폴백까지 거친 뒤의 값. 화면에서 빈 값을 만날 일이 없다. */
   name: string;
@@ -57,11 +59,12 @@ export type Product = {
 // PostgREST 임베드로 한 번에 가져온다. 목록 화면에서 N+1을 만들지 않으려는 것.
 const SELECT = `
   id, slug, kind, icon_letter, platforms, is_free, external_url,
-  download_count, published_at, is_featured, demo_url, video_url,
+  download_count, published_at, updated_at, is_featured, demo_url, video_url,
   github_repo, source_url,
   categories ( slug ),
   product_images ( storage_path, alt_ko, alt_en, sort_order ),
   product_translations ( locale, name, tagline, description, requirements ),
+  changelog_entries ( entry_date ),
   releases ( id, version, platform, asset_url, file_size, released_at, is_latest, channel )
 `;
 
@@ -75,6 +78,7 @@ type Raw = {
   external_url: string | null;
   download_count: number;
   published_at: string | null;
+  updated_at: string | null;
   is_featured: boolean;
   demo_url: string | null;
   video_url: string | null;
@@ -94,6 +98,7 @@ type Raw = {
     description: string | null;
     requirements: string | null;
   }[];
+  changelog_entries: { entry_date: string }[];
   releases: {
     id: string;
     version: string;
@@ -111,6 +116,14 @@ function shape(row: Raw, locale: string): Product {
   const latest = row.releases?.find((r) => r.is_latest && r.channel === "stable");
   // 관리 화면에서는 '계정/저장소'와 GitHub 주소를 모두 받는다. 어느 쪽이 들어와도 같은 주소가 나오게.
   const repo = row.github_repo ? normalizeRepo(row.github_repo) : null;
+  const updatedAt = [
+    row.published_at,
+    row.updated_at,
+    ...row.releases.map((r) => r.released_at),
+    ...row.changelog_entries.map((entry) => entry.entry_date),
+  ]
+    .filter((date): date is string => Boolean(date))
+    .sort((a, b) => b.localeCompare(a))[0] ?? null;
 
   return {
     id: row.id,
@@ -123,6 +136,7 @@ function shape(row: Raw, locale: string): Product {
     externalUrl: row.external_url,
     downloadCount: row.download_count,
     publishedAt: row.published_at,
+    updatedAt,
     isFeatured: row.is_featured,
     name: t?.name ?? row.slug,
     tagline: t?.tagline ?? null,

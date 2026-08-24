@@ -118,7 +118,7 @@ export async function ProductDetail({
               </SpecRow>
             )}
             <SpecRow label={t("product.updated")}>
-              {shortDate(p.latest?.releasedAt ?? p.publishedAt)}
+              {shortDate(p.updatedAt)}
             </SpecRow>
             <SpecRow label={t("product.price")} accent={p.isFree}>
               {p.isFree ? t("product.free") : "—"}
