@@ -71,6 +71,8 @@
     "comingSoon": "まもなく公開",
     "viewSource": "ソースを見る",
     "loginRequired": "受け取るにはログインが必要です",
+    "prevPage": "前のページ",
+    "nextPage": "次のページ",
     "count": "{count}件"
   },
   "auth": {
@@ -124,6 +126,8 @@
   },
   "changelog": {
     "lead": "直したことと、まだ直せていないことをそのまま書きます。",
+    "prevMonth": "前の月",
+    "nextMonth": "次の月",
     "count": "{count}件"
   },
   "legal": {

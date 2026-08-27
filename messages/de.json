@@ -71,6 +71,8 @@
     "comingSoon": "Demnächst",
     "viewSource": "Quellcode ansehen",
     "loginRequired": "Zum Herunterladen anmelden",
+    "prevPage": "Vorherige Seite",
+    "nextPage": "Nächste Seite",
     "count": "{count}"
   },
   "auth": {
@@ -124,6 +126,8 @@
   },
   "changelog": {
     "lead": "Ich schreibe auf, was ich behoben habe und was noch nicht.",
+    "prevMonth": "Vorheriger Monat",
+    "nextMonth": "Nächster Monat",
     "count": "{count}"
   },
   "legal": {

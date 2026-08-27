@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Section, SectionLink } from "@/components/ui";
 import { Featured } from "@/components/product/Featured";
 import { ProductTable } from "@/components/product/ProductTable";
+import { Pager } from "@/components/Pager";
 import { ChangelogList } from "./ChangelogList";
 import { FeaturedCarousel } from "./FeaturedCarousel";
 import { Hero } from "./Hero";
@@ -9,6 +10,11 @@ import { Stats } from "./Stats";
 import type { Product, Stats as StatsData } from "@/lib/queries/products";
 import type { ChangelogEntry } from "@/lib/queries/changelog";
 import type { Notice } from "@/lib/queries/notices";
+
+// 표 한 쪽에 보여줄 제품 수. 이보다 많아지면 페이지로 나눈다.
+const PAGE_SIZE = 5;
+
+const pad = (n: number) => String(n).padStart(2, "0");
 
 /**
  * 홈 화면 본문.
@@ -38,6 +44,12 @@ export async function HomeSections({
   const carousel = featured
     ? [featured, ...products.filter((p) => p.id !== featured.id)]
     : products;
+
+  // 표가 아래로 계속 길어지는 대신 PAGE_SIZE개씩 페이지로 나눈다.
+  const productPages: Product[][] = [];
+  for (let i = 0; i < products.length; i += PAGE_SIZE) {
+    productPages.push(products.slice(i, i + PAGE_SIZE));
+  }
 
   return (
     <main className="mx-auto max-w-page px-gutter">
@@ -73,8 +85,21 @@ export async function HomeSections({
           </FeaturedCarousel>
         )}
         {/* 큰 자리가 돌아가므로 표는 전체 목록이다. 하나를 빼두면
-            그 제품만 표에서 사라진다 */}
-        <ProductTable products={products} />
+            그 제품만 표에서 사라진다. */}
+        {productPages.length === 0 ? (
+          <ProductTable products={[]} />
+        ) : (
+          <Pager
+            index={productPages.map(
+              (_, i) => `${pad(i + 1)} / ${pad(productPages.length)}`,
+            )}
+            labels={{ prev: t("product.prevPage"), next: t("product.nextPage") }}
+          >
+            {productPages.map((page, i) => (
+              <ProductTable key={i} products={page} />
+            ))}
+          </Pager>
+        )}
       </Section>
 
       <Section

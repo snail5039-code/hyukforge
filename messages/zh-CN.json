@@ -71,6 +71,8 @@
     "comingSoon": "即将发布",
     "viewSource": "查看源码",
     "loginRequired": "下载需要先登录",
+    "prevPage": "上一页",
+    "nextPage": "下一页",
     "count": "{count}"
   },
   "auth": {
@@ -124,6 +126,8 @@
   },
   "changelog": {
     "lead": "修好的和还没修好的，都照实写下来。",
+    "prevMonth": "上个月",
+    "nextMonth": "下个月",
     "count": "{count}"
   },
   "legal": {
