@@ -126,8 +126,8 @@
   },
   "changelog": {
     "lead": "Anoto lo que arreglé y lo que aún no.",
-    "prevMonth": "Mes anterior",
-    "nextMonth": "Mes siguiente",
+    "byMonth": "Por mes",
+    "byProduct": "Por producto",
     "count": "{count}"
   },
   "legal": {

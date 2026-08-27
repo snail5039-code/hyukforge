@@ -126,8 +126,8 @@
   },
   "changelog": {
     "lead": "고친 것과 아직 못 고친 것을 그대로 적습니다.",
-    "prevMonth": "이전 달",
-    "nextMonth": "다음 달",
+    "byMonth": "월별",
+    "byProduct": "제품별",
     "count": "{count}건"
   },
   "legal": {

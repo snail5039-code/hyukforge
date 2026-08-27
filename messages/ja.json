@@ -126,8 +126,8 @@
   },
   "changelog": {
     "lead": "直したことと、まだ直せていないことをそのまま書きます。",
-    "prevMonth": "前の月",
-    "nextMonth": "次の月",
+    "byMonth": "月別",
+    "byProduct": "製品別",
     "count": "{count}件"
   },
   "legal": {

@@ -126,8 +126,8 @@
   },
   "changelog": {
     "lead": "Je note ce que j’ai corrigé et ce qui ne l’est pas encore.",
-    "prevMonth": "Mois précédent",
-    "nextMonth": "Mois suivant",
+    "byMonth": "Par mois",
+    "byProduct": "Par produit",
     "count": "{count}"
   },
   "legal": {

@@ -126,8 +126,8 @@
   },
   "changelog": {
     "lead": "I write down what I fixed and what I haven't fixed yet.",
-    "prevMonth": "Previous month",
-    "nextMonth": "Next month",
+    "byMonth": "By month",
+    "byProduct": "By product",
     "count": "{count}"
   },
   "legal": {

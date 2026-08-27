@@ -126,8 +126,8 @@
   },
   "changelog": {
     "lead": "修好的和还没修好的，都照实写下来。",
-    "prevMonth": "上个月",
-    "nextMonth": "下个月",
+    "byMonth": "按月份",
+    "byProduct": "按产品",
     "count": "{count}"
   },
   "legal": {
