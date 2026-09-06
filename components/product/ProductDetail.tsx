@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { AppWindow } from "./AppWindow";
 import { Btn, IconBox, Label, SpecRow, Tag } from "@/components/ui";
 import { ProductPreview } from "./ProductPreview";
+import { RichParagraph } from "./RichText";
 import { AdminLink } from "@/components/admin/AdminOnly";
 import { fileSize, linkLabel, platformLabel, shortDate } from "@/lib/format";
 import { imageUrl, isUnoptimized } from "@/lib/images";
@@ -194,10 +195,10 @@ export async function ProductDetail({
             <h2 className="text-[17px] font-semibold">{t("section.about")}</h2>
             <span className="-translate-y-[3px] flex-1 border-t border-line" />
           </div>
-          {/* 마크다운 렌더링은 나중에. 지금은 문단만 나눈다. */}
+          {/* 마크다운 렌더링은 나중에. 지금은 문단 나누기·줄바꿈·주소 링크만 처리한다. */}
           <div className="max-w-[62ch] space-y-4 text-[15px] text-mute">
             {p.description.split("\n\n").map((para, i) => (
-              <p key={i}>{para}</p>
+              <RichParagraph key={i} text={para} />
             ))}
           </div>
         </section>
