@@ -13,7 +13,8 @@
     "board": "Board",
     "search": "Search",
     "menu": "Menu",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "toggleTheme": "Toggle theme"
   },
   "home": {
     "eyebrow": "Independent software studio · 2026—",

@@ -13,7 +13,8 @@
     "board": "게시판",
     "search": "검색",
     "menu": "메뉴",
-    "notifications": "알림"
+    "notifications": "알림",
+    "toggleTheme": "테마 전환"
   },
   "home": {
     "eyebrow": "독립 소프트웨어 공방 · 2026—",
