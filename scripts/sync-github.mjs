@@ -59,7 +59,7 @@ for (const product of products) {
       const groups = groupMeaningfulCommits(commits);
 
       for (const group of groups) {
-        const entryId = await addChangelog(product.id, group.date, group.body);
+        await addChangelog(product.id, group.date, group.body);
         totalEntries += 1;
         console.log(`${product.slug}: ${group.date} ${group.body}`);
 
