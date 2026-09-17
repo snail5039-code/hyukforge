@@ -157,6 +157,7 @@ export const STATS: Stats = {
   productCount: 7,
   monthlyDownloads: 1340,
   totalDownloads: 4467,
+  totalVisitors: 8210,
   lastUpdated: "2026-08-16",
 };
 

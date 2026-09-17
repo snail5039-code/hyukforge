@@ -245,6 +245,7 @@ export type Stats = {
   productCount: number;
   monthlyDownloads: number;
   totalDownloads: number;
+  totalVisitors: number;
   lastUpdated: string | null;
 };
 
@@ -264,6 +265,7 @@ export async function getStats(): Promise<Stats> {
     product_count: number;
     monthly_downloads: number;
     total_downloads: number;
+    total_visitors: number;
     last_updated: string | null;
   };
 
@@ -271,6 +273,8 @@ export async function getStats(): Promise<Stats> {
     productCount: row.product_count,
     monthlyDownloads: Number(row.monthly_downloads),
     totalDownloads: Number(row.total_downloads),
+    // 마이그레이션이 아직 안 올라간 순간에는 이 열이 없다. NaN 이 홈에 찍히는 것보다 0 이 낫다.
+    totalVisitors: Number(row.total_visitors ?? 0),
     lastUpdated: row.last_updated,
   };
 }

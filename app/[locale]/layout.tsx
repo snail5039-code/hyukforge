@@ -7,6 +7,7 @@ import { routing, locales } from "@/i18n/routing";
 import { siteUrl } from "@/lib/site";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
+import { VisitCounter } from "@/components/layout/VisitCounter";
 import "../globals.css";
 
 // 모노스페이스는 버전·용량·날짜·라벨에 쓴다. 워크벤치 톤의 핵심.
@@ -110,6 +111,8 @@ export default async function LocaleLayout({
           <Nav />
           {children}
           <Footer />
+          {/* 그리는 것은 없다. 방문 한 건을 서버에 알린다 */}
+          <VisitCounter />
         </NextIntlClientProvider>
       </body>
     </html>

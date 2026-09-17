@@ -17,7 +17,8 @@ export async function Stats({ data }: { data: StatsData }) {
       value: data.monthlyDownloads.toLocaleString(),
     },
     { label: t("stats.updated"), value: monthDay(data.lastUpdated) },
-    { label: t("stats.price"), value: t("stats.allFree"), accent: true },
+    // 무료라는 사실은 히어로 설명과 고정 공지에 이미 있다. 이 칸은 값이 변하는 것을 쓴다.
+    { label: t("stats.visitors"), value: data.totalVisitors.toLocaleString() },
   ];
 
   return (
@@ -30,11 +31,7 @@ export async function Stats({ data }: { data: StatsData }) {
           } ${i >= 2 ? "border-t border-line sm:border-t-0" : ""}`}
         >
           <Label>{c.label}</Label>
-          <b
-            className={`mt-[6px] block font-mono text-[23px] font-medium tracking-[-0.01em] ${
-              c.accent ? "text-amber" : "text-ink"
-            }`}
-          >
+          <b className="mt-[6px] block font-mono text-[23px] font-medium tracking-[-0.01em] text-ink">
             {c.value}
           </b>
         </div>
