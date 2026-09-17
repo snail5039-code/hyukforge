@@ -18,6 +18,9 @@ const { data: products, error: productError } = await supabase
 if (productError) fail(productError.message);
 
 let totalEntries = 0;
+// 화면에 영어로 나가는 기록. 커밋 제목을 그대로 쓰기 때문에 생긴다.
+// 자동으로 옮길 방법이 없으니 모아서 맨 끝에 한 번에 알린다.
+const untranslated = [];
 
 for (const product of products) {
   const repository = normalizeRepo(product.github_repo);
@@ -63,6 +66,12 @@ for (const product of products) {
         totalEntries += 1;
         console.log(`${product.slug}: ${group.date} ${group.body}`);
 
+        for (const item of group.items) {
+          if (!HANGUL.test(item)) {
+            untranslated.push(`${product.slug} ${group.date} — ${item}`);
+          }
+        }
+
         // 날짜 묶음 하나를 저장할 때마다 기준점을 전진시켜 중간 실패 시 중복을 줄인다.
         lastSha = group.lastSha;
         await saveState(
@@ -93,6 +102,22 @@ for (const product of products) {
 
 console.log(`동기화 완료: 새 개발 기록 ${totalEntries}건`);
 
+/**
+ * 개발 기록은 커밋 제목을 그대로 쓴다. 저장소 커밋이 영어면 화면에도 영어로 나간다.
+ * 사이트 글은 한국어로 쓰기로 했는데(CLAUDE.md) 여기만 새는 길이라, 지우거나
+ * 멋대로 옮기지 않고 눈에 띄게 알린다 — 빼면 그 변경이 통째로 사라지고,
+ * 기계로 옮기면 무슨 일을 했는지가 뭉개진다.
+ *
+ * 실제로 2026-09-14 살려줌 기록 18개 중 9개가 영어로 나갔고 손으로 옮겼다.
+ * 가장 싼 예방은 저장소 쪽 커밋 제목을 한국어로 쓰는 것이다.
+ */
+if (untranslated.length) {
+  console.log(`
+한국어로 옮겨야 할 기록 ${untranslated.length}건 — 지금 화면에 영어로 나갑니다:`);
+  for (const line of untranslated) console.log(`  · ${line}`);
+  console.log("  관리자 화면의 개발 기록에서 고칩니다.");
+}
+
 function groupMeaningfulCommits(commits) {
   const groups = new Map();
 
@@ -116,9 +141,13 @@ function groupMeaningfulCommits(commits) {
   return [...groups.values()].map((group) => ({
     date: group.date,
     lastSha: group.lastSha,
+    items: group.items,
     body: `${group.items.join(" · ")}.`,
   }));
 }
+
+/** 한글이 한 글자라도 있으면 한국어로 쓴 것으로 본다. */
+const HANGUL = /[가-힣]/;
 
 function isMeaningful(subject) {
   if (/^(docs|chore|test|style|ci|build)(\([^)]*\))?:/i.test(subject)) return false;
