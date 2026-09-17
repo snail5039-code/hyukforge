@@ -2,7 +2,7 @@
  * 원격 DB가 마이그레이션대로 올라갔는지 확인한다.
  *
  * 두 가지를 본다.
- *  1. 스키마 — 테이블 11개가 다 있는가 (service_role로 조회)
+ *  1. 스키마 — 테이블 12개가 다 있는가 (service_role로 조회)
  *  2. 접근 제어 — 공개돼야 할 것만 공개인가 (anon으로 조회)
  *
  * 키 값은 출력하지 않는다.
@@ -75,6 +75,7 @@ const TABLES = [
   "profiles",
   "downloads",
   "entitlements",
+  "site_visits",
 ];
 
 let failed = false;
@@ -149,6 +150,34 @@ for (const t of ["profiles", "downloads", "entitlements"]) {
     "record_download 는 anon 실행 권한 없음",
     blocked ? `HTTP ${res.status} · 42501` : `HTTP ${res.status} — ${body.slice(0, 60)}`,
   );
+}
+
+// 방문 집계 함수도 마찬가지다. 열려 있으면 홈의 방문자 수를 누구나 올릴 수 있다.
+// 20260917000001 에서 from public 만 회수해 실제로 뚫려 있었다 — 그래서 검사로 박는다.
+{
+  const res = await fetch(`${URL_}/rest/v1/rpc/record_visit`, {
+    method: "POST",
+    headers: {
+      apikey: ANON,
+      Authorization: `Bearer ${ANON}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ new_visitor: false }),
+  });
+
+  const body = await res.text();
+  const blocked = body.includes("42501");
+  ok(
+    blocked,
+    "record_visit 는 anon 실행 권한 없음",
+    blocked ? `HTTP ${res.status} · 42501` : `HTTP ${res.status} — ${body.slice(0, 60)}`,
+  );
+}
+
+// site_visits 는 RLS 를 켜고 정책을 만들지 않았다. 집계는 public_stats() 로만 나간다.
+{
+  const r = await query("site_visits", ANON);
+  ok(r.count === 0, "site_visits 는 anon에게 0행", `${r.count}행`);
 }
 
 console.log(failed ? "\n확인 실패" : "\n전부 통과");

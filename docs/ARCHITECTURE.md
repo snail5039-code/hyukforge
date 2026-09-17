@@ -256,17 +256,27 @@ create table entitlements (
 admin 판정은 `auth.jwt()`가 아니라 `profiles.role`을 조회하는 `is_admin()` 함수로 한다.
 JWT를 안 보므로 권한을 바꾸면 다시 로그인하지 않아도 즉시 반영된다.
 
-### 함수 실행 권한 — 두 번 데인 곳
+### 함수 실행 권한 — 세 번 데인 곳
 
 **Postgres는 함수를 만들 때 `EXECUTE`를 자동으로 `PUBLIC`에 부여한다.**
 `anon`은 `PUBLIC`에 속하므로 `revoke ... from anon`만 해서는 아무 효과가 없다.
 반드시 `revoke ... from public`부터 해야 한다.
+
+**그리고 그것만으로도 모자란다.** Supabase는 `public` 스키마의 새 함수에 대해
+`anon`·`authenticated`에게 `EXECUTE`를 기본 권한(`alter default privileges`)으로
+**따로** 부여한다. `PUBLIC`에서 회수해도 그 직접 부여분은 남는다.
+`record_visit`이 그렇게 뚫려 있었다(2026-09-17, `20260917000002`에서 고침).
+새 함수는 **public·anon·authenticated를 모두 회수한 뒤** 필요한 롤에만 다시 준다.
+잠갔다고 믿지 말고 `node scripts/db-check.mjs`로 실제 호출해서 확인한다 —
+그 검사에 `record_download`·`record_visit` 둘 다 들어 있다.
 
 그런데 전부 잠그면 안 된다. 함수를 **누가 부르는지**로 갈린다.
 
 | 함수 | 호출 주체 | anon 권한 |
 | --- | --- | --- |
 | `record_download()` | 앱 코드 | **없어야 함** |
+| `record_visit()` | 서버 라우트(`/api/visit`) | **없어야 함** |
+| `public_stats()` | 앱 코드 | 있어야 함 (집계값만 나간다) |
 | `is_admin()` | **RLS 정책 자신** | **있어야 함** |
 
 `is_admin()`을 anon에게서 회수하면 공개 제품 조회가 통째로 막힌다. 정책이
