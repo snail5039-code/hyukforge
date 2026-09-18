@@ -6,6 +6,7 @@ import { AuthButton } from "./AuthButton";
 import { MobileMenu } from "./MobileMenu";
 import { NotificationBell } from "./NotificationBell";
 import { ThemeToggle } from "./ThemeToggle";
+import { AdminOnly } from "@/components/admin/AdminOnly";
 
 export async function Nav() {
   const t = await getTranslations();
@@ -80,6 +81,23 @@ export async function Nav() {
         </ul>
 
         <NotificationBell />
+
+        {/* 관리자에게만 보인다. 주소를 외워서 치고 들어가지 않아도 되게 —
+            지금까지 /admin 으로 가는 길이 화면 어디에도 없었다.
+            문구를 번역하지 않는 건 관리 도구라 의도한 것이다
+            (app/[locale]/admin/layout.tsx 주석).
+
+            이건 편의 장치일 뿐 보안 장치가 아니다. 실제 차단은 RLS 정책과
+            /admin 레이아웃의 권한 검사가 한다 — 여기가 안 보여도 주소로
+            들어갈 수 있고, 관리자가 아니면 그때 404 가 난다. */}
+        <AdminOnly>
+          <Link
+            href="/admin"
+            className="hidden border border-dashed border-amber px-[10px] py-[5px] font-mono text-[11.5px] tracking-tag text-amber transition-colors hover:bg-amber hover:text-on-amber sm:block"
+          >
+            ADMIN
+          </Link>
+        </AdminOnly>
 
         <MobileMenu items={items} />
 
