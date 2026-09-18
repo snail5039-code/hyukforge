@@ -76,6 +76,17 @@ export function stamp(iso: string | null): string {
   return `${y}.${m}.${d} ${time}`;
 }
 
+/**
+ * 본문 첫 문단만. 마크다운을 렌더하지 않는 자리에서 쓴다 — 문단 구분만 본다.
+ *
+ * 홈의 공지 패널과 공지 목록이 같이 쓴다. 두 벌로 두면 한쪽만 고쳐져서
+ * 같은 공지가 자리마다 다르게 잘린다.
+ */
+export function lead(body: string, max = 96): string {
+  const first = body.split("\n\n")[0].replace(/\s+/g, " ").trim();
+  return first.length > max ? `${first.slice(0, max)}…` : first;
+}
+
 export function platformLabel(platforms: string[]): string {
   if (!platforms.length) return "—";
   const names: Record<string, string> = {
