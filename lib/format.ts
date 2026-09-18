@@ -47,6 +47,19 @@ export function monthDay(iso: string | null): string {
   return `${m}.${d}`;
 }
 
+/** 2026.08.16 14:32 — 이력처럼 시각까지 알아야 하는 자리에서 쓴다. */
+export function stamp(iso: string | null): string {
+  if (!iso) return "—";
+  const { y, m, d } = parts(iso);
+  const time = new Intl.DateTimeFormat("en-GB", {
+    timeZone: KST,
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(new Date(iso));
+  return `${y}.${m}.${d} ${time}`;
+}
+
 export function platformLabel(platforms: string[]): string {
   if (!platforms.length) return "—";
   const names: Record<string, string> = {

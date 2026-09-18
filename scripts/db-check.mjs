@@ -76,6 +76,7 @@ const TABLES = [
   "downloads",
   "entitlements",
   "site_visits",
+  "notice_events",
 ];
 
 let failed = false;
@@ -178,6 +179,12 @@ for (const t of ["profiles", "downloads", "entitlements"]) {
 {
   const r = await query("site_visits", ANON);
   ok(r.count === 0, "site_visits 는 anon에게 0행", `${r.count}행`);
+}
+
+// 공지 이력은 관리자만 읽는다. 트리거가 남기고 anon 에게는 한 행도 나가면 안 된다.
+{
+  const r = await query("notice_events", ANON);
+  ok(r.count === 0, "notice_events 는 anon에게 0행", `${r.count}행`);
 }
 
 console.log(failed ? "\n확인 실패" : "\n전부 통과");
