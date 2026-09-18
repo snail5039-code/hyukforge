@@ -40,6 +40,22 @@ export function shortDate(iso: string | null): string {
   return `${y}.${m}.${d}`;
 }
 
+/**
+ * 오늘(KST)을 2026-09-18 꼴로. 날짜별 집계의 기준이 되는 값이다.
+ *
+ * DB 쪽 record_visit()·record_hit() 이 `now() at time zone 'Asia/Seoul'` 로
+ * 날짜를 만든다. 화면에서 "최근 30일"을 자를 때 같은 기준을 써야
+ * 자정 근처에서 하루가 어긋나지 않는다.
+ */
+export function kstDay(date: Date = new Date()): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: KST,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(date);
+}
+
 /** 08.16 — 통계 칸처럼 좁은 자리에서 쓴다. */
 export function monthDay(iso: string | null): string {
   if (!iso) return "—";

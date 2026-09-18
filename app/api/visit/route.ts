@@ -1,4 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { isBotAgent } from "@/lib/visitors";
+import { kstDay } from "@/lib/format";
 
 /**
  * 방문 집계.
@@ -18,6 +20,10 @@ import { NextResponse, type NextRequest } from "next/server";
  *   자바스크립트가 꺼진 방문자는 세지 않는다. 봇은 UA 로 거르는데 이름을 숨긴
  *   크롤러는 지나간다. 둘 다 홈 숫자가 실제보다 조금 적거나 많을 수 있다는 뜻이고,
  *   그래도 "사람이 몇 명 왔나"에 가장 가까운 값이다.
+ *
+ *   여기서 거른 봇은 어디에도 남지 않았다. 그래서 프록시가 요청 단위로 따로
+ *   센다 — 관리자 화면(/admin/visits)의 사람/봇 구분은 그쪽 값이다.
+ *   (lib/hits.ts · proxy.ts)
  */
 
 // 쿠키를 읽고 쓰므로 캐시하면 안 된다
@@ -25,14 +31,10 @@ export const dynamic = "force-dynamic";
 
 const COOKIE = "hf_visit";
 
-/** 이름을 밝히는 크롤러·미리보기·계측 도구. 사람 방문이 아니다. */
-const BOT =
-  /bot|crawl|spider|slurp|facebookexternalhit|embedly|preview|monitor|curl|wget|headless|lighthouse|pingdom|uptime/i;
-
 export async function POST(request: NextRequest) {
-  const ua = request.headers.get("user-agent") ?? "";
-  // UA 가 아예 없는 요청도 브라우저가 아니다
-  if (!ua || BOT.test(ua)) return done(request, null);
+  // 봇 판정은 lib/visitors.ts 한 곳에서 한다. 판정이 두 벌이면
+  // 홈의 방문자 수와 관리자 화면의 사람/봇 구분이 서로 어긋난다.
+  if (isBotAgent(request.headers.get("user-agent"))) return done(request, null);
 
   const today = kstDay();
   const newVisitor = request.cookies.get(COOKIE)?.value !== today;
@@ -84,16 +86,6 @@ function done(request: NextRequest, day: string | null) {
   }
 
   return response;
-}
-
-/** 오늘(KST). 사이트의 다른 날짜와 기준을 맞춘다 (lib/format.ts). */
-function kstDay(): string {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Seoul",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date());
 }
 
 /**

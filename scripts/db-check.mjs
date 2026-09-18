@@ -76,6 +76,7 @@ const TABLES = [
   "downloads",
   "entitlements",
   "site_visits",
+  "site_hits",
   "notice_events",
 ];
 
@@ -175,16 +176,32 @@ for (const t of ["profiles", "downloads", "entitlements"]) {
   );
 }
 
-// site_visits 는 RLS 를 켜고 정책을 만들지 않았다. 집계는 public_stats() 로만 나간다.
+// 요청 집계 함수도 마찬가지다. 열려 있으면 관리자 화면의 사람/봇 숫자를 누구나 부풀릴 수 있다.
 {
-  const r = await query("site_visits", ANON);
-  ok(r.count === 0, "site_visits 는 anon에게 0행", `${r.count}행`);
+  const res = await fetch(`${URL_}/rest/v1/rpc/record_hit`, {
+    method: "POST",
+    headers: {
+      apikey: ANON,
+      Authorization: `Bearer ${ANON}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ p_is_bot: true, p_agent: "db-check" }),
+  });
+
+  const body = await res.text();
+  const blocked = body.includes("42501");
+  ok(
+    blocked,
+    "record_hit 는 anon 실행 권한 없음",
+    blocked ? `HTTP ${res.status} · 42501` : `HTTP ${res.status} — ${body.slice(0, 60)}`,
+  );
 }
 
-// 공지 이력은 관리자만 읽는다. 트리거가 남기고 anon 에게는 한 행도 나가면 안 된다.
-{
-  const r = await query("notice_events", ANON);
-  ok(r.count === 0, "notice_events 는 anon에게 0행", `${r.count}행`);
+// 방문 기록과 공지 이력은 관리자만 읽는다. anon 에게는 한 행도 나가면 안 된다.
+// site_visits 는 20260918000002 에서 관리자 읽기 정책이 생겼다 — anon 은 그대로 0행이어야 한다.
+for (const t of ["site_visits", "site_hits", "notice_events"]) {
+  const r = await query(t, ANON);
+  ok(r.count === 0, `${t} 는 anon에게 0행`, `${r.count}행`);
 }
 
 console.log(failed ? "\n확인 실패" : "\n전부 통과");
