@@ -290,7 +290,7 @@ IP도 UA 원문도 저장하지 않는다. 남는 건 날짜·사람/봇·이름
 본문보다 커지고, 알고 싶은 건 "무엇을 썼나"가 아니라 "언제부터 언제까지 보였나"다.
 공지를 지워도 이력은 남는다(`on delete set null` + `slug` 스냅샷).
 
-### 함수 실행 권한 — 세 번 데인 곳
+### 함수 실행 권한 — 네 번 데인 곳
 
 **Postgres는 함수를 만들 때 `EXECUTE`를 자동으로 `PUBLIC`에 부여한다.**
 `anon`은 `PUBLIC`에 속하므로 `revoke ... from anon`만 해서는 아무 효과가 없다.
@@ -300,9 +300,14 @@ IP도 UA 원문도 저장하지 않는다. 남는 건 날짜·사람/봇·이름
 `anon`·`authenticated`에게 `EXECUTE`를 기본 권한(`alter default privileges`)으로
 **따로** 부여한다. `PUBLIC`에서 회수해도 그 직접 부여분은 남는다.
 `record_visit`이 그렇게 뚫려 있었다(2026-09-17, `20260917000002`에서 고침).
+**같은 실수를 `admin_list_users`에서 한 번 더 했다**(2026-09-21, `20260921000002`에서 고침) —
+이 문단을 읽고도 `revoke ... from public`만 적었다. 함수 안의 `is_admin()` 검사 덕분에
+anon이 불러도 0행이라 값이 새지는 않았지만, 검사 한 겹에 기대면 그 한 겹을 고칠 때 조용히 열린다.
 새 함수는 **public·anon·authenticated를 모두 회수한 뒤** 필요한 롤에만 다시 준다.
 잠갔다고 믿지 말고 `node scripts/db-check.mjs`로 실제 호출해서 확인한다 —
-그 검사에 `record_download`·`record_visit`·`record_hit` 셋 다 들어 있다.
+그 검사에 `record_download`·`record_visit`·`record_hit`와
+회원 관리 함수 셋(`admin_list_users`·`admin_set_role`·`admin_clear_nickname`)이 들어 있다.
+**잡아낸 것도 db-check다.** 화면을 먼저 열어봤으면 못 봤다.
 
 그런데 전부 잠그면 안 된다. 함수를 **누가 부르는지**로 갈린다.
 
@@ -313,6 +318,9 @@ IP도 UA 원문도 저장하지 않는다. 남는 건 날짜·사람/봇·이름
 | `record_hit()` | 프록시(`proxy.ts`) | **없어야 함** |
 | `public_stats()` | 앱 코드 | 있어야 함 (집계값만 나간다) |
 | `is_admin()` | **RLS 정책 자신** | **있어야 함** |
+| `admin_list_users()` | 관리자 화면 | **없어야 함** (authenticated 만) |
+| `admin_set_role()` | 관리자 화면 | **없어야 함** (authenticated 만) |
+| `admin_clear_nickname()` | 관리자 화면 | **없어야 함** (authenticated 만) |
 
 `is_admin()`을 anon에게서 회수하면 공개 제품 조회가 통째로 막힌다. 정책이
 
