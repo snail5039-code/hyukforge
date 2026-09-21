@@ -21,6 +21,7 @@ const MENU = [
   ["/admin/notices", "공지"],
   ["/admin/changelog", "개발 기록"],
   ["/admin/boards", "게시판 관리"],
+  ["/admin/users", "회원"],
   ["/admin/visits", "방문"],
 ] as const;
 
