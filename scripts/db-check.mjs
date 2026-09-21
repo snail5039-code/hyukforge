@@ -204,5 +204,32 @@ for (const t of ["site_visits", "site_hits", "notice_events"]) {
   ok(r.count === 0, `${t} 는 anon에게 0행`, `${r.count}행`);
 }
 
+// 회원 관리 함수는 authenticated 에게만 열려 있다. anon 은 실행조차 못 해야 한다 —
+// admin_list_users 는 auth.users 의 이메일을 돌려주고, admin_set_role 은 권한을 바꾼다.
+// (20260921000001_admin_users.sql)
+for (const [fn, args] of [
+  ["admin_list_users", {}],
+  ["admin_set_role", { target: "00000000-0000-0000-0000-000000000000", new_role: "admin" }],
+  ["admin_clear_nickname", { target: "00000000-0000-0000-0000-000000000000" }],
+]) {
+  const res = await fetch(`${URL_}/rest/v1/rpc/${fn}`, {
+    method: "POST",
+    headers: {
+      apikey: ANON,
+      Authorization: `Bearer ${ANON}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(args),
+  });
+
+  const body = await res.text();
+  const blocked = body.includes("42501");
+  ok(
+    blocked,
+    `${fn} 는 anon 실행 권한 없음`,
+    blocked ? `HTTP ${res.status} · 42501` : `HTTP ${res.status} — ${body.slice(0, 60)}`,
+  );
+}
+
 console.log(failed ? "\n확인 실패" : "\n전부 통과");
 process.exit(failed ? 1 : 0);
