@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { isBotAgent } from "@/lib/visitors";
+import { isLocalHost } from "@/lib/hits";
 import { kstDay } from "@/lib/format";
 
 /**
@@ -35,6 +36,10 @@ export async function POST(request: NextRequest) {
   // 봇 판정은 lib/visitors.ts 한 곳에서 한다. 판정이 두 벌이면
   // 홈의 방문자 수와 관리자 화면의 사람/봇 구분이 서로 어긋난다.
   if (isBotAgent(request.headers.get("user-agent"))) return done(request, null);
+
+  // 개발 서버도 프로덕션 DB 를 가리킨다. 화면 하나 고치는 동안 내가 낸 요청이
+  // 홈의 "오늘 방문자" 를 올리면 그건 거짓말이다 (lib/hits.ts).
+  if (isLocalHost(request.nextUrl.hostname)) return done(request, null);
 
   const today = kstDay();
   const newVisitor = request.cookies.get(COOKIE)?.value !== today;

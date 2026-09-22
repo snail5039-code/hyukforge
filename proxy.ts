@@ -25,8 +25,21 @@ export async function proxy(request: NextRequest) {
 
   // 응답을 내보낸 뒤에 센다. 통계 때문에 화면이 늦어질 이유가 없다.
   // 여기서 세는 이유는 봇이 브라우저 쪽 집계(/api/visit)에 잡히지 않아서다.
-  if (countableHit(request.nextUrl.pathname, request.headers.get("sec-fetch-dest"))) {
-    after(() => recordHit(request.headers.get("user-agent")));
+  // 유입 경로(Referer)도 여기서만 볼 수 있다 — 화면까지 내려가지 않는 헤더다.
+  if (
+    countableHit(
+      request.nextUrl.pathname,
+      request.headers.get("sec-fetch-dest"),
+      request.nextUrl.hostname,
+    )
+  ) {
+    // 콜백 안에서 request 를 읽지 않는다. 응답이 나간 뒤에 도는 코드라
+    // 그때까지 요청이 살아 있다고 보장할 이유가 없다.
+    const ua = request.headers.get("user-agent");
+    const referer = request.headers.get("referer");
+    const href = request.nextUrl.href;
+
+    after(() => recordHit(ua, referer, href));
   }
 
   return response;

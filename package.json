@@ -15,6 +15,7 @@
     "make-admin": "node scripts/make-admin.mjs",
     "test:role-guard": "node scripts/test-role-guard.mjs",
     "test:agents": "node scripts/test-agents.mjs",
+    "test:referrers": "node scripts/test-referrers.mjs",
     "sync:github": "node scripts/sync-github.mjs"
   },
   "dependencies": {
