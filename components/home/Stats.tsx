@@ -17,8 +17,9 @@ export async function Stats({ data }: { data: StatsData }) {
       value: data.monthlyDownloads.toLocaleString(),
     },
     { label: t("stats.updated"), value: monthDay(data.lastUpdated) },
-    // 무료라는 사실은 히어로 설명과 고정 공지에 이미 있다. 이 칸은 값이 변하는 것을 쓴다.
-    { label: t("stats.visitors"), value: data.totalVisitors.toLocaleString() },
+    // 총합이 아니라 오늘 값이다. 몇 달치가 쌓인 수는 어제와 오늘이 같아 보여서
+    // 보고 나서 알게 되는 것이 없었다. 하루치는 변하는 게 눈에 보인다.
+    { label: t("stats.today"), value: data.todayVisitors.toLocaleString() },
   ];
 
   return (

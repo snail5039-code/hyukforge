@@ -50,5 +50,6 @@ export const EMPTY_STATS: Stats = {
   monthlyDownloads: 0,
   totalDownloads: 0,
   totalVisitors: 0,
+  todayVisitors: 0,
   lastUpdated: null,
 };

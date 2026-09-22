@@ -158,6 +158,7 @@ export const STATS: Stats = {
   monthlyDownloads: 1340,
   totalDownloads: 4467,
   totalVisitors: 8210,
+  todayVisitors: 37,
   lastUpdated: "2026-08-16",
 };
 

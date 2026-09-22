@@ -246,6 +246,8 @@ export type Stats = {
   monthlyDownloads: number;
   totalDownloads: number;
   totalVisitors: number;
+  /** 오늘(KST) 처음 온 사람. 홈 네 칸에 나가는 값이다 */
+  todayVisitors: number;
   lastUpdated: string | null;
 };
 
@@ -266,6 +268,7 @@ export async function getStats(): Promise<Stats> {
     monthly_downloads: number;
     total_downloads: number;
     total_visitors: number;
+    today_visitors: number;
     last_updated: string | null;
   };
 
@@ -275,6 +278,7 @@ export async function getStats(): Promise<Stats> {
     totalDownloads: Number(row.total_downloads),
     // 마이그레이션이 아직 안 올라간 순간에는 이 열이 없다. NaN 이 홈에 찍히는 것보다 0 이 낫다.
     totalVisitors: Number(row.total_visitors ?? 0),
+    todayVisitors: Number(row.today_visitors ?? 0),
     lastUpdated: row.last_updated,
   };
 }
