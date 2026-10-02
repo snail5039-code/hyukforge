@@ -22,6 +22,16 @@ let totalEntries = 0;
 // 자동으로 옮길 방법이 없으니 모아서 맨 끝에 한 번에 알린다.
 const untranslated = [];
 
+/**
+ * 한글이 한 글자라도 있으면 한국어로 쓴 것으로 본다.
+ *
+ * 반드시 아래 루프보다 위에 둔다. 예전에는 파일 맨 아래에 있었는데, 최상위
+ * await 루프가 먼저 돌면서 이 줄에 닿기 전에 읽어 TDZ ReferenceError 가 났다.
+ * 개발 기록을 넣은 직후·기준점을 옮기기 직전에 죽어서, 실행할 때마다 같은
+ * 기록이 또 들어갔다 (2026-10-01~02, virtual-bank-agent 같은 기록 5건).
+ */
+const HANGUL = /[가-힣]/;
+
 for (const product of products) {
   const repository = normalizeRepo(product.github_repo);
   const repo = await github(`/repos/${repository}`);
@@ -62,17 +72,24 @@ for (const product of products) {
       const groups = groupMeaningfulCommits(commits);
 
       for (const group of groups) {
-        await addChangelog(product.id, group.date, group.body);
-        totalEntries += 1;
-        console.log(`${product.slug}: ${group.date} ${group.body}`);
+        // 그 날짜에 이 제품 기록이 이미 있으면 넣지 않는다. 관리자가 손으로 고쳐 쓴
+        // 기록이 커밋 제목으로 덮여 두 줄이 되지 않게 하고, 기준점을 옮기기 전에
+        // 실패했을 때 다음 실행이 같은 기록을 또 넣는 것도 막는다.
+        if (await hasEntryOn(product.id, group.date)) {
+          console.log(`${product.slug}: ${group.date} 기록이 이미 있어 건너뜀`);
+        } else {
+          await addChangelog(product.id, group.date, group.body);
+          totalEntries += 1;
+          console.log(`${product.slug}: ${group.date} ${group.body}`);
 
-        for (const item of group.items) {
-          if (!HANGUL.test(item)) {
-            untranslated.push(`${product.slug} ${group.date} — ${item}`);
+          for (const item of group.items) {
+            if (!HANGUL.test(item)) {
+              untranslated.push(`${product.slug} ${group.date} — ${item}`);
+            }
           }
         }
 
-        // 날짜 묶음 하나를 저장할 때마다 기준점을 전진시켜 중간 실패 시 중복을 줄인다.
+        // 날짜 묶음 하나를 처리할 때마다 기준점을 전진시켜 중간 실패 시 중복을 줄인다.
         lastSha = group.lastSha;
         await saveState(
           product,
@@ -146,14 +163,21 @@ function groupMeaningfulCommits(commits) {
   }));
 }
 
-/** 한글이 한 글자라도 있으면 한국어로 쓴 것으로 본다. */
-const HANGUL = /[가-힣]/;
-
 function isMeaningful(subject) {
   if (/^(docs|chore|test|style|ci|build)(\([^)]*\))?:/i.test(subject)) return false;
   if (/^(readme|update|merge|wip|test|[a-z]|\d+)$/i.test(subject.trim())) return false;
   return /^(feat|fix|perf|refactor|release)(\([^)]*\))?!?:/i.test(subject)
     || /(기능|추가|수정|개선|개편|배포|완성|보안|오류|버그|안정)/.test(subject);
+}
+
+async function hasEntryOn(productId, entryDate) {
+  const { count, error } = await supabase
+    .from("changelog_entries")
+    .select("id", { count: "exact", head: true })
+    .eq("product_id", productId)
+    .eq("entry_date", entryDate);
+  if (error) fail(error.message);
+  return (count ?? 0) > 0;
 }
 
 async function addChangelog(productId, entryDate, body) {
